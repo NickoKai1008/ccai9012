@@ -2,3 +2,5 @@ data/
 model/
 starter_kits/4_cv_models/webcam_yolo/video/Live Cam Iseo _ SkylineWebcams _(9_30_16_55).mp4
 weekly_scripts/week7/video/Live Cam Iseo _ SkylineWebcams _(9_30_16_55).mp4
+.DS_Store
+.ipynb_checkpoints
