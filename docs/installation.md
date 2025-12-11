@@ -98,7 +98,64 @@ pip install -e .
 
 This installs the ccai9012 utilities as a package, allowing you to `import ccai9012` from anywhere.
 
-## 3. Set Up Jupyter Notebook Kernel
+## 3. Test Your Environment
+
+After installation, it's important to verify that all required packages are properly installed. Run the provided test script:
+
+```bash
+# Make sure the ccai9012 environment is activated
+conda activate ccai9012
+
+# Run the test script
+python test_environment.py
+```
+
+### Understanding Test Results
+
+The test script will check multiple categories of packages:
+
+- **Core Scientific Packages**: numpy, pandas, matplotlib, scipy, scikit-learn
+- **Deep Learning Frameworks**: PyTorch, torchvision, transformers, diffusers, accelerate
+- **LLM Packages**: langchain, openai, tiktoken, and related tools
+- **Computer Vision Tools**: OpenCV, YOLO (ultralytics), and related packages
+- **Visualization Libraries**: plotly, seaborn, and plotting tools
+- **Custom Utilities**: ccai9012 package modules
+
+**Output Symbols:**
+- ✓ (checkmark) = Package imported successfully
+- ⚠ (warning) = Package works but may have version compatibility warnings
+- ✗ (cross) = Package failed to import (needs troubleshooting)
+
+### Verbose Testing
+
+For detailed information about each test:
+
+```bash
+python test_environment.py --verbose
+```
+
+This will show each package being tested in real-time and provide more detailed error messages if any issues occur.
+
+### What to Do If Tests Fail
+
+If you see ✗ marks for any packages:
+
+1. **Check the error message** - It usually indicates what's missing
+2. **Reinstall the environment**:
+   ```bash
+   conda deactivate
+   conda env remove -n ccai9012
+   conda env create -f environment.yml
+   conda activate ccai9012
+   pip install -e .
+   ```
+3. **Install missing packages individually**:
+   ```bash
+   pip install package-name
+   ```
+4. **Check the Common Issues section** below for platform-specific problems
+
+## 4. Set Up Jupyter Notebook Kernel
 
 To use the course materials in Jupyter notebooks, you need to add the conda environment as a Jupyter kernel:
 
@@ -110,7 +167,7 @@ conda activate ccai9012
 python -m ipykernel install --user --name ccai9012 --display-name "ccai9012"
 ```
 
-## 4. Launch Jupyter Notebook
+## 5. Launch Jupyter Notebook
 
 Now you can start Jupyter Notebook and access all course materials:
 
@@ -169,4 +226,3 @@ For questions or suggestions:
 1. Submit an issue on our GitHub repository
 2. Email [course_email]
 3. Post in the course forum
-

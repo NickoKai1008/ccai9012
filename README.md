@@ -77,6 +77,18 @@ python -m ipykernel install --user --name ccai9012 --display-name "ccai9012"
 jupyter notebook
 ```
 
+### 4. Test Your Environment
+
+After installation, verify that all required packages are properly installed:
+
+```bash
+# Make sure the ccai9012 environment is activated
+conda activate ccai9012
+
+# Run the test script
+python test_environment.py
+```
+
 ## Support & Feedback
 
 For questions or suggestions:

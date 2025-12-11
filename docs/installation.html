@@ -97,7 +97,50 @@ conda env create -f environment.yml
 pip install -e .
 </code></pre>
 <p>This installs the ccai9012 utilities as a package, allowing you to <code>import ccai9012</code> from anywhere.</p>
-<h2>3. Set Up Jupyter Notebook Kernel</h2>
+<h2>3. Test Your Environment</h2>
+<p>After installation, it's important to verify that all required packages are properly installed. Run the provided test script:</p>
+<pre><code class="language-bash"># Make sure the ccai9012 environment is activated
+conda activate ccai9012
+
+# Run the test script
+python test_environment.py
+</code></pre>
+<h3>Understanding Test Results</h3>
+<p>The test script will check multiple categories of packages:</p>
+<ul>
+<li><strong>Core Scientific Packages</strong>: numpy, pandas, matplotlib, scipy, scikit-learn</li>
+<li><strong>Deep Learning Frameworks</strong>: PyTorch, torchvision, transformers, diffusers, accelerate</li>
+<li><strong>LLM Packages</strong>: langchain, openai, tiktoken, and related tools</li>
+<li><strong>Computer Vision Tools</strong>: OpenCV, YOLO (ultralytics), and related packages</li>
+<li><strong>Visualization Libraries</strong>: plotly, seaborn, and plotting tools</li>
+<li><strong>Custom Utilities</strong>: ccai9012 package modules</li>
+</ul>
+<p><strong>Output Symbols:</strong><br />
+- ✓ (checkmark) = Package imported successfully<br />
+- ⚠ (warning) = Package works but may have version compatibility warnings<br />
+- ✗ (cross) = Package failed to import (needs troubleshooting)</p>
+<h3>Verbose Testing</h3>
+<p>For detailed information about each test:</p>
+<pre><code class="language-bash">python test_environment.py --verbose
+</code></pre>
+<p>This will show each package being tested in real-time and provide more detailed error messages if any issues occur.</p>
+<h3>What to Do If Tests Fail</h3>
+<p>If you see ✗ marks for any packages:</p>
+<ol>
+<li><strong>Check the error message</strong> - It usually indicates what's missing</li>
+<li><strong>Reinstall the environment</strong>:<br />
+<code>bash
+   conda deactivate
+   conda env remove -n ccai9012
+   conda env create -f environment.yml
+   conda activate ccai9012
+   pip install -e .</code></li>
+<li><strong>Install missing packages individually</strong>:<br />
+<code>bash
+   pip install package-name</code></li>
+<li><strong>Check the Common Issues section</strong> below for platform-specific problems</li>
+</ol>
+<h2>4. Set Up Jupyter Notebook Kernel</h2>
 <p>To use the course materials in Jupyter notebooks, you need to add the conda environment as a Jupyter kernel:</p>
 <pre><code class="language-bash"># Make sure the ccai9012 environment is activated
 conda activate ccai9012
@@ -105,7 +148,7 @@ conda activate ccai9012
 # Install the environment as a Jupyter kernel
 python -m ipykernel install --user --name ccai9012 --display-name &quot;ccai9012&quot;
 </code></pre>
-<h2>4. Launch Jupyter Notebook</h2>
+<h2>5. Launch Jupyter Notebook</h2>
 <p>Now you can start Jupyter Notebook and access all course materials:</p>
 <pre><code class="language-bash"># Make sure you're in the project directory and environment is activated
 conda activate ccai9012 # activate the environment if not already done
