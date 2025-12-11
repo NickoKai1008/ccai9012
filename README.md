@@ -9,13 +9,14 @@ In this repository, you'll find a comprehensive set of resources, including week
 ```
 ├── weekly_scripts/        # Weekly course code
 │   ├── week1/            # Python basics
-│   ├── week2/            # Data processing & MLP
-│   ├── week3/            # CNN & SVI
-│   ├── week4/            # Image Generation & LLM
-│   ├── week6/            # ML Fundamentals
-│   ├── week7/            # YOLO Object Detection
-│   ├── week8/            # Model Fairness
-│   └── week9/            # ...
+│   ├── week2/            # Data processing & Feature visualization
+│   ├── week3/            # Shapley values & Model interpretation
+│   ├── week5/            # ML fundamentals & MLP
+│   ├── week6/            # CNN & Street View Imagery
+│   ├── week8/            # Image generation & LLM output control
+│   ├── week9/            # LLM hallucination
+│   ├── week10/           # YOLO object detection
+│   └── week11/           # Embedding & Credit decision fairness
 │
 ├── starter_kits/         # Project starter kits
 │   ├── 1_traditional_generative_ml/
