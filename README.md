@@ -34,7 +34,7 @@ In this repository, you'll find a comprehensive set of resources, including week
 
 ## Documentation
 
-**[View Complete Documentation Website →](https://ccai9012.github.io/ccai9012/index.html)**
+**[View Complete Documentation Website →](https://ccai9012.github.io/ccai9012/)**
 
 The complete course documentation is now available as a unified website with the following sections:
 
