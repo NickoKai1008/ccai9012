@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCAI9012 - Module 4 - CV Models</title>
+    <link rel="stylesheet" href="../docs-style.css">
+</head>
+<body>
+    <div class="container">
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h2>CCAI9012</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../timetable.html">Timetable</a></li>
+                <li><a href="../installation.html">Installation Guide</a></li>
+                <li><a href="../starter_kits/index.html" class="active">Starter Kits</a></li>
+                <li class="sub-item"><a href="../starter_kits/m1_gan.html">Module 1: Traditional Generative ML</a></li>
+                <li class="sub-item"><a href="../starter_kits/m2_llm.html">Module 2: LLM for Structuring Information</a></li>
+                <li class="sub-item"><a href="../starter_kits/m3_mm.html">Module 3: Multimodal Reasoning</a></li>
+                <li class="sub-item"><a href="../starter_kits/m4_cv.html" class="active">Module 4: CV Models</a></li>
+                <li class="sub-item"><a href="../starter_kits/m5_bias.html">Module 5: Bias & Interpretability</a></li>
+                <li><a href="../reading_material.html">Reading Materials</a></li>
+                <li><a href="../datasets.html">Datasets Reference</a></li>
+                <li><a href="../api/index.html">API Documentation</a></li>
+            </ul>
+        </nav>
+
+        <main id="content">
+<h1>CV Models (Segmentation, Detection, Tracking)</h1>
+<p><strong>Related API:</strong> <a href="../api/yolo_utils.html"><code>ccai9012.yolo_utils</code></a> · <a href="../api/svi_utils.html"><code>ccai9012.svi_utils</code></a></p>
+<h3>Overview</h3>
+<p><strong>Category:</strong> Perception &amp; Prediction from Visual Data</p>
+<p><strong>Modular Components:</strong>
+- Object Detection/Tracking with YOLO
+- Semantic Segmentation Model
+- Trajectory Extraction
+- Visualization</p>
+<h3>Use Cases</h3>
+<ul>
+<li>What factors influence walking behavior?</li>
+<li>How does visual cleanliness (graffiti, trash, lighting) relate to perceived safety?</li>
+<li>Can we predict CO2 emission using the SVIs?</li>
+</ul>
+<h3>Code Examples</h3>
+<h4>Pedestrian Behavior Analysis in Public Spaces</h4>
+<p><strong>Content:</strong>
+- Detect pedestrians using YOLO
+- Track movement using DeepSORT
+- Analyze flow, dwell time, and walkability</p>
+<p><strong>Dataset:</strong>
+- Webcam data
+- Source: https://www.skylinewebcams.com/en.html</p>
+<p><strong>Required Packages:</strong> YOLOv5, OpenCV, DeepSORT, numpy, matplotlib</p>
+<p align="center">
+  <img src="../figs/SCR-20251218-lzkz.jpeg" width="600"><br>
+  <em>Identify pedestrian location and generate footprint heatmap with tracking.</em>
+</p>
+
+<h4>SVI-Based Housing Price Prediction</h4>
+<p><strong>Content:</strong>
+- Use subjective perception scores (e.g., cleanliness, greenery) on SVI
+- Combine CV scoring with regression to predict housing price
+- Visual quality → real estate value linkage</p>
+<p><strong>Datasets:</strong>
+- Google Street View Imagery (SVI) from Google Map API
+- California housing price dataset from sklearn.datasets</p>
+<p><strong>Required Packages:</strong> OpenCV, scikit-learn, pandas, matplotlib, PyTorch</p>
+<p align="center">
+  <img src="../figs/SCR-20251218-mawu.jpeg" width="600"><br>
+  <em>SVI-based housing price estimation. Nouriani, A., Lemke, L., 2022. Vision-based housing price estimation using interior, exterior & satellite images. Intelligent Systems with Applications 14, 200081. https://doi.org/10.1016/j.iswa.2022.200081.</em>
+</p>
+
+<hr />
+        </main>
+    </div>
+</body>
+</html>

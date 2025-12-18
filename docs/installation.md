@@ -14,15 +14,19 @@ First, install Anaconda, a Python data science platform that includes necessary 
    - **macOS**: Download the .pkg installer (Select "64-Bit Graphical Installer")
    - **Linux**: Download the .sh installer
 
+<p align="center">
+  <img src="figs/install/SCR-20251218-moef.png" width="600"><br>
+  <em>Choose the Anaconda installation package according to your system</em>
+</p>
+
 ### Run the Installer
 
 - **Windows**: Double-click the .exe file and follow the prompts. **Important**: Select "Add Anaconda to my PATH environment variable" during installation.
 - **macOS**: Double-click the .pkg file and follow the installation wizard.
 - **Linux**: Open a terminal, navigate to the download location, and run:
   ```bash
-  bash Anaconda3-xxxx.xx-Linux-x86_64.sh
+  bash Anaconda3-xxxx.xx-Linux-x86_64.sh # replace xxxx.xx with the version you downloaded
   ```
-  (replace xxxx.xx with the version you downloaded)
 
 ### Verify Installation
 
@@ -39,6 +43,11 @@ conda --version
 ```
 
 You should see the conda version number displayed, confirming installation.
+
+<p align="center">
+  <img src="figs/install/SCR-20251218-mpki.png" width="600"><br>
+  <em>Anaconda installation confirmation.</em>
+</p>
 
 ## 2. Download the Project and Create Environment
 
@@ -57,6 +66,11 @@ cd ccai9012
 # Create environment from environment.yml
 conda env create -f environment.yml
 ```
+
+<p align="center">
+  <img src="figs/install/SCR-20251218-mxmc.png" width="600"><br>
+  <em>After install the environment. If you use the default configuration, the name will display as "ccai9012". </em>
+</p>
 
 ### Option 2: Download ZIP
 
@@ -87,6 +101,11 @@ conda activate ccai9012 # ensuring you're in the project directory
 
 Your command prompt should now show `(ccai9012)` at the beginning of the line, indicating the environment is active.
 
+<p align="center">
+  <img src="figs/install/SCR-20251218-myst.png" width="600"><br>
+  <em>Make sure you are in the project directory (displayed in the red box). </em>
+</p>
+
 ### Install the ccai9012 Package
 
 Install the ccai9012 package in development mode:
@@ -97,6 +116,11 @@ pip install -e .
 ```
 
 This installs the ccai9012 utilities as a package, allowing you to `import ccai9012` from anywhere.
+
+<p align="center">
+  <img src="figs/install/SCR-20251218-mzpj.png" width="600"><br>
+  <em>After installing package. </em>
+</p>
 
 ## 3. Test Your Environment
 
@@ -125,6 +149,11 @@ The test script will check multiple categories of packages:
 - ✓ (checkmark) = Package imported successfully
 - ⚠ (warning) = Package works but may have version compatibility warnings
 - ✗ (cross) = Package failed to import (needs troubleshooting)
+
+<p align="center">
+  <img src="figs/install/SCR-20251218-naog.png" width="600"><br>
+  <em>Package imported successfully. </em>
+</p>
 
 ### Verbose Testing
 

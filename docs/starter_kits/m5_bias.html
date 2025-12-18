@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCAI9012 - Module 5 - Bias Detection & Interpretability</title>
+    <link rel="stylesheet" href="../docs-style.css">
+</head>
+<body>
+    <div class="container">
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h2>CCAI9012</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../timetable.html">Timetable</a></li>
+                <li><a href="../installation.html">Installation Guide</a></li>
+                <li><a href="../starter_kits/index.html" class="active">Starter Kits</a></li>
+                <li class="sub-item"><a href="../starter_kits/m1_gan.html">Module 1: Traditional Generative ML</a></li>
+                <li class="sub-item"><a href="../starter_kits/m2_llm.html">Module 2: LLM for Structuring Information</a></li>
+                <li class="sub-item"><a href="../starter_kits/m3_mm.html">Module 3: Multimodal Reasoning</a></li>
+                <li class="sub-item"><a href="../starter_kits/m4_cv.html">Module 4: CV Models</a></li>
+                <li class="sub-item"><a href="../starter_kits/m5_bias.html" class="active">Module 5: Bias & Interpretability</a></li>
+                <li><a href="../reading_material.html">Reading Materials</a></li>
+                <li><a href="../datasets.html">Datasets Reference</a></li>
+                <li><a href="../api/index.html">API Documentation</a></li>
+            </ul>
+        </nav>
+
+        <main id="content">
+<h1>Bias Detection &amp; Interpretability</h1>
+<p><strong>Related API:</strong> <a href="../api/nn_utils.html"><code>ccai9012.nn_utils</code></a></p>
+<h3>Overview</h3>
+<p><strong>Category:</strong> Bias Detection</p>
+<p><strong>Modular Components:</strong>
+- Fairness Metrics Evaluator
+- Model Explainer (SHAP/LIME)
+- Feature Attribution Visualizer</p>
+<h3>Use Cases</h3>
+<ul>
+<li>Do public service recommendation models (e.g., bus stop placement, streetlight allocation) tend to ignore low-density or low-income areas?</li>
+<li>Why citizens&rsquo; application for housing subsidies or public services was deprioritized?</li>
+<li>Do predictive maintenance systems for infrastructure (e.g., water leaks, power outages) prioritize certain zones? Is this optimization fair?</li>
+<li>In citizen feedback systems (e.g., 311 complaints), are certain types of reports more likely to trigger response recommendations than others? Why?</li>
+</ul>
+<h3>Code Example: Credit Decision Bias Auditing</h3>
+<p><strong>Content:</strong>
+- Analyze credit data using LLM and interpretable ML
+- Detect bias in approval logic (e.g., income, gender)
+- Apply SHAP and counterfactual fairness methods</p>
+<p><strong>Datasets:</strong>
+- German Dataset (credit data) from AIF Fairness 360
+- COMPAS dataset (pre-prepared from https://www.kaggle.com/datasets/danofer/compass)</p>
+<p><strong>Required Packages:</strong> Fairlearn, SHAP, pandas, scikit-learn, transformers</p>
+<hr />
+<h2>Getting Started</h2>
+<ol>
+<li><strong>Choose your module</strong> based on your interests and project goals</li>
+<li><strong>Review the use cases</strong> to understand potential applications</li>
+<li><strong>Check the required packages</strong> and install them in your environment</li>
+<li><strong>Access the starter code</strong> in the corresponding <code>starter_kits/</code> directory</li>
+<li><strong>Download the datasets</strong> from the provided sources</li>
+<li><strong>Follow the code examples</strong> to understand the implementation approach</li>
+</ol>
+<p>For technical support and detailed API documentation, refer to the main <a href="../README.md">README.md</a> and the <a href="ccai9012/index.html">ccai9012 library documentation</a>.</p>
+        </main>
+    </div>
+</body>
+</html>

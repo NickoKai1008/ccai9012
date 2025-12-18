@@ -16,7 +16,12 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="timetable.html">Timetable</a></li>
                 <li><a href="installation.html" class="active">Installation Guide</a></li>
-                <li><a href="starter_kits.html">Starter Kits</a></li>
+                <li><a href="starter_kits/index.html">Starter Kits</a></li>
+                <li class="sub-item"><a href="starter_kits/m1_gan.html">Module 1: Traditional Generative ML</a></li>
+                <li class="sub-item"><a href="starter_kits/m2_llm.html">Module 2: LLM for Structuring Information</a></li>
+                <li class="sub-item"><a href="starter_kits/m3_mm.html">Module 3: Multimodal Reasoning</a></li>
+                <li class="sub-item"><a href="starter_kits/m4_cv.html">Module 4: CV Models</a></li>
+                <li class="sub-item"><a href="starter_kits/m5_bias.html">Module 5: Bias & Interpretability</a></li>
                 <li><a href="reading_material.html">Reading Materials</a></li>
                 <li><a href="datasets.html">Datasets Reference</a></li>
                 <li><a href="api/index.html">API Documentation</a></li>
@@ -25,30 +30,34 @@
 
         <main id="content">
 <h1>Installation Guide</h1>
-<p>This guide will help you set up the toolkit on your computer, even if you're new to programming or AI.</p>
+<p>This guide will help you set up the toolkit on your computer, even if you&rsquo;re new to programming or AI.</p>
 <h2>1. Install Anaconda</h2>
 <p>First, install Anaconda, a Python data science platform that includes necessary tools and package management.</p>
 <h3>Download Anaconda</h3>
 <ol>
-<li>Visit <a href="https://www.anaconda.com/products/distribution">Anaconda's website</a></li>
-<li>Download the installer for your operating system:<br />
-   - <strong>Windows</strong>: Download the .exe installer (Select "64-Bit Graphical Installer")<br />
-   - <strong>macOS</strong>: Download the .pkg installer (Select "64-Bit Graphical Installer")<br />
+<li>Visit <a href="https://www.anaconda.com/products/distribution">Anaconda&rsquo;s website</a></li>
+<li>Download the installer for your operating system:
+   - <strong>Windows</strong>: Download the .exe installer (Select &ldquo;64-Bit Graphical Installer&rdquo;)
+   - <strong>macOS</strong>: Download the .pkg installer (Select &ldquo;64-Bit Graphical Installer&rdquo;)
    - <strong>Linux</strong>: Download the .sh installer</li>
 </ol>
+<p align="center">
+  <img src="figs/install/SCR-20251218-moef.png" width="600"><br>
+  <em>Choose the Anaconda installation package according to your system</em>
+</p>
+
 <h3>Run the Installer</h3>
 <ul>
-<li><strong>Windows</strong>: Double-click the .exe file and follow the prompts. <strong>Important</strong>: Select "Add Anaconda to my PATH environment variable" during installation.</li>
+<li><strong>Windows</strong>: Double-click the .exe file and follow the prompts. <strong>Important</strong>: Select &ldquo;Add Anaconda to my PATH environment variable&rdquo; during installation.</li>
 <li><strong>macOS</strong>: Double-click the .pkg file and follow the installation wizard.</li>
-<li><strong>Linux</strong>: Open a terminal, navigate to the download location, and run:<br />
-<code>bash
-  bash Anaconda3-xxxx.xx-Linux-x86_64.sh</code><br />
-  (replace xxxx.xx with the version you downloaded)</li>
+<li><strong>Linux</strong>: Open a terminal, navigate to the download location, and run:
+  <code>bash
+  bash Anaconda3-xxxx.xx-Linux-x86_64.sh # replace xxxx.xx with the version you downloaded</code></li>
 </ul>
 <h3>Verify Installation</h3>
 <p><strong>1. Open Terminal:</strong></p>
 <ul>
-<li>On <strong>Windows</strong>: Press <code>Win + S</code>, type <code>Anaconda Prompt</code>, and select "Anaconda Prompt (anaconda3)".</li>
+<li>On <strong>Windows</strong>: Press <code>Win + S</code>, type <code>Anaconda Prompt</code>, and select &ldquo;Anaconda Prompt (anaconda3)&rdquo;.</li>
 <li>On <strong>macOS</strong>: Press <code>Command + Space</code>, type <code>Terminal</code>, and press Enter.</li>
 <li>On <strong>Linux</strong>: Open your terminal application.</li>
 </ul>
@@ -56,6 +65,11 @@
 <pre><code class="language-bash">conda --version
 </code></pre>
 <p>You should see the conda version number displayed, confirming installation.</p>
+<p align="center">
+  <img src="figs/install/SCR-20251218-mpki.png" width="600"><br>
+  <em>Anaconda installation confirmation.</em>
+</p>
+
 <h2>2. Download the Project and Create Environment</h2>
 <p>Clone the project repository or download it as a ZIP file, then create the conda environment:</p>
 <h3>Option 1: Using Git (Recommended)</h3>
@@ -69,11 +83,16 @@ cd ccai9012
 # Create environment from environment.yml
 conda env create -f environment.yml
 </code></pre>
+<p align="center">
+  <img src="figs/install/SCR-20251218-mxmc.png" width="600"><br>
+  <em>After install the environment. If you use the default configuration, the name will display as "ccai9012". </em>
+</p>
+
 <h3>Option 2: Download ZIP</h3>
-<p>If you don't have Git installed:</p>
+<p>If you don&rsquo;t have Git installed:</p>
 <ul>
 <li>Visit the GitHub repository page</li>
-<li>Click the green "Code" button and select "Download ZIP"</li>
+<li>Click the green &ldquo;Code&rdquo; button and select &ldquo;Download ZIP&rdquo;</li>
 <li>Extract the ZIP file to your desired location</li>
 <li>Open terminal and navigate to the extracted folder:</li>
 </ul>
@@ -91,14 +110,24 @@ conda env create -f environment.yml
 <pre><code class="language-bash">conda activate ccai9012 # ensuring you're in the project directory
 </code></pre>
 <p>Your command prompt should now show <code>(ccai9012)</code> at the beginning of the line, indicating the environment is active.</p>
+<p align="center">
+  <img src="figs/install/SCR-20251218-myst.png" width="600"><br>
+  <em>Make sure you are in the project directory (displayed in the red box). </em>
+</p>
+
 <h3>Install the ccai9012 Package</h3>
 <p>Install the ccai9012 package in development mode:</p>
 <pre><code class="language-bash"># Make sure you're in the project directory and environment is activated
 pip install -e .
 </code></pre>
 <p>This installs the ccai9012 utilities as a package, allowing you to <code>import ccai9012</code> from anywhere.</p>
+<p align="center">
+  <img src="figs/install/SCR-20251218-mzpj.png" width="600"><br>
+  <em>After installing package. </em>
+</p>
+
 <h2>3. Test Your Environment</h2>
-<p>After installation, it's important to verify that all required packages are properly installed. Run the provided test script:</p>
+<p>After installation, it&rsquo;s important to verify that all required packages are properly installed. Run the provided test script:</p>
 <pre><code class="language-bash"># Make sure the ccai9012 environment is activated
 conda activate ccai9012
 
@@ -115,10 +144,15 @@ python test_environment.py
 <li><strong>Visualization Libraries</strong>: plotly, seaborn, and plotting tools</li>
 <li><strong>Custom Utilities</strong>: ccai9012 package modules</li>
 </ul>
-<p><strong>Output Symbols:</strong><br />
-- ✓ (checkmark) = Package imported successfully<br />
-- ⚠ (warning) = Package works but may have version compatibility warnings<br />
+<p><strong>Output Symbols:</strong>
+- ✓ (checkmark) = Package imported successfully
+- ⚠ (warning) = Package works but may have version compatibility warnings
 - ✗ (cross) = Package failed to import (needs troubleshooting)</p>
+<p align="center">
+  <img src="figs/install/SCR-20251218-naog.png" width="600"><br>
+  <em>Package imported successfully. </em>
+</p>
+
 <h3>Verbose Testing</h3>
 <p>For detailed information about each test:</p>
 <pre><code class="language-bash">python test_environment.py --verbose
@@ -127,16 +161,16 @@ python test_environment.py
 <h3>What to Do If Tests Fail</h3>
 <p>If you see ✗ marks for any packages:</p>
 <ol>
-<li><strong>Check the error message</strong> - It usually indicates what's missing</li>
-<li><strong>Reinstall the environment</strong>:<br />
-<code>bash
+<li><strong>Check the error message</strong> - It usually indicates what&rsquo;s missing</li>
+<li><strong>Reinstall the environment</strong>:
+   <code>bash
    conda deactivate
    conda env remove -n ccai9012
    conda env create -f environment.yml
    conda activate ccai9012
    pip install -e .</code></li>
-<li><strong>Install missing packages individually</strong>:<br />
-<code>bash
+<li><strong>Install missing packages individually</strong>:
+   <code>bash
    pip install package-name</code></li>
 <li><strong>Check the Common Issues section</strong> below for platform-specific problems</li>
 </ol>
@@ -160,19 +194,19 @@ jupyter notebook
 <h3>Important Jupyter Setup Steps</h3>
 <ol>
 <li><strong>Jupyter will open in your web browser</strong> (usually at http://localhost:8888)</li>
-<li><strong>Select the correct kernel</strong>: When you open any notebook (.ipynb file):<br />
-   - Click on "Kernel" in the menu bar<br />
-   - Select "Change kernel"<br />
-   - Choose "ccai9012" from the dropdown<br />
+<li><strong>Select the correct kernel</strong>: When you open any notebook (.ipynb file):
+   - Click on &ldquo;Kernel&rdquo; in the menu bar
+   - Select &ldquo;Change kernel&rdquo;
+   - Choose &ldquo;ccai9012&rdquo; from the dropdown
    - This ensures the notebook uses the correct environment with all installed packages</li>
-<li><strong>Navigate to course materials</strong>:<br />
-   - <code>weekly_scripts/</code> - for weekly course materials<br />
-   - <code>starter_kits/</code> - for project starter kits<br />
+<li><strong>Navigate to course materials</strong>:
+   - <code>weekly_scripts/</code> - for weekly course materials
+   - <code>starter_kits/</code> - for project starter kits
    - <code>docs/ccai9012/</code> - for documentation (open index.html in browser)</li>
 </ol>
 <h2>Common Issues</h2>
 <h3>CUDA Setup</h3>
-<p>If you have an NVIDIA GPU, it's recommended to set up CUDA for GPU acceleration:</p>
+<p>If you have an NVIDIA GPU, it&rsquo;s recommended to set up CUDA for GPU acceleration:</p>
 <h4>1. Check CUDA compatibility:</h4>
 <pre><code class="language-bash">nvidia-smi
 </code></pre>
@@ -182,7 +216,7 @@ jupyter notebook
 </code></pre>
 <h3>Common Error Messages</h3>
 <ol>
-<li><strong>ModuleNotFoundError</strong>: If you see "No module named 'xyz'", run: <code>pip install xyz</code></li>
+<li><strong>ModuleNotFoundError</strong>: If you see &ldquo;No module named &lsquo;xyz&rsquo;&rdquo;, run: <code>pip install xyz</code></li>
 <li><strong>DLL Load Failed</strong>: On Windows, reinstall PyTorch with the correct CUDA version</li>
 <li><strong>Out of Memory</strong>: Reduce batch sizes in your code or use CPU mode</li>
 </ol>

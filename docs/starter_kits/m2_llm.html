@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCAI9012 - Module 2 - LLM for Structuring Information</title>
+    <link rel="stylesheet" href="../docs-style.css">
+</head>
+<body>
+    <div class="container">
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h2>CCAI9012</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../timetable.html">Timetable</a></li>
+                <li><a href="../installation.html">Installation Guide</a></li>
+                <li><a href="../starter_kits/index.html" class="active">Starter Kits</a></li>
+                <li class="sub-item"><a href="../starter_kits/m1_gan.html">Module 1: Traditional Generative ML</a></li>
+                <li class="sub-item"><a href="../starter_kits/m2_llm.html" class="active">Module 2: LLM for Structuring Information</a></li>
+                <li class="sub-item"><a href="../starter_kits/m3_mm.html">Module 3: Multimodal Reasoning</a></li>
+                <li class="sub-item"><a href="../starter_kits/m4_cv.html">Module 4: CV Models</a></li>
+                <li class="sub-item"><a href="../starter_kits/m5_bias.html">Module 5: Bias & Interpretability</a></li>
+                <li><a href="../reading_material.html">Reading Materials</a></li>
+                <li><a href="../datasets.html">Datasets Reference</a></li>
+                <li><a href="../api/index.html">API Documentation</a></li>
+            </ul>
+        </nav>
+
+        <main id="content">
+<h1>LLM for Structuring Information</h1>
+<p><strong>Related API:</strong> <a href="../api/llm_utils.html"><code>ccai9012.llm_utils</code></a></p>
+<h3>Overview</h3>
+<p><strong>Category:</strong> Unstructured Text Analysis &amp; Knowledge Structuring</p>
+<p><strong>Modular Components:</strong>
+- Text Preprocessing Pipeline
+- LLM API Calling
+- LLM Embedding Extractor
+- Vector Clustering
+- Q&amp;A over Documents
+- Heatmap Visualization
+- Wordcloud generation</p>
+<h3>Use Cases</h3>
+<ul>
+<li>How do short-term rental reviews reflect neighborhood livability over time?</li>
+<li>Can we detect major sentiment shifts before and after a major policy announcement or public event?</li>
+<li>How is generative AI affecting job market? (Job market analysis across industry and time)</li>
+<li>Can we use LLMs to detect gaps between declared policy priorities and proposed implementation measures in urban planning documents?</li>
+<li>How are terms like &ldquo;resilience&rdquo;, &ldquo;sustainability&rdquo;, or &ldquo;equity&rdquo; defined and operationalized differently across documents?</li>
+</ul>
+<h3>Code Examples</h3>
+<h4>Urban Sentiment Classification</h4>
+<p><strong>Content:</strong>
+- Extract structured sentiment (location, themes, polarity) from reviews using LLM
+- Use NER + classification
+- Create sentiment maps to inform urban design</p>
+<p><strong>Dataset:</strong>
+- Yelp open dataset
+- Source: https://business.yelp.com/data/resources/open-dataset/</p>
+<p><strong>Required Packages:</strong> LangChain, DeepSeek, transformers, pandas, json</p>
+<p align="center">
+  <img src="../figs/yelp.png" width="400"><br>
+  <em>Yelp Review heatmap.</em>
+</p>
+
+<h4>Airbnb Reviews Analysis</h4>
+<p><strong>Content:</strong>
+- Collect Airbnb housing and review data (public dataset Inside Airbnb)
+- Classification of reviews&rsquo; sentiments of different aspects (location, host, facility)
+- Create Airbnb aspect-wise impression heatmap and wordcloud</p>
+<p><strong>Dataset:</strong>
+- Airbnb review dataset
+- Source: https://insideairbnb.com/get-the-data/</p>
+<p align="center">
+  <img src="../figs/wordcloud.png" width="400"><br>
+  <em>Airbnb Review keywords wordcloud.</em>
+</p>
+
+<h4>Energy Action Plan PDF Structuring</h4>
+<p><strong>Content:</strong>
+- Extract building/energy info from Energy Action Plans (PDFs)
+- Summarize content into JSON format for analysis
+- Enable comparison across tribal regions over time</p>
+<p><strong>Dataset:</strong>
+- Energy Action Plans documents
+- Source: https://cchrc.org/</p>
+<p><strong>Required Packages:</strong> LangChain, PyMuPDF, pdfplumber, transformers, pandas</p>
+<h4>Literature Review of Topics</h4>
+<p><strong>Content:</strong>
+- Webcrawl website for relevant papers
+- Go through document by document with specific questions
+- Identify insights &amp; keywords
+- Catalogue &amp; represent findings</p>
+<p><strong>Dataset:</strong> Collection of literatures from specific topic</p>
+<hr />
+        </main>
+    </div>
+</body>
+</html>

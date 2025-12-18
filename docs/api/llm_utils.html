@@ -80,7 +80,8 @@ el.replaceWith(d);
             <ul class="nav-menu">
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="../installation.html">Installation Guide</a></li>
-                <li><a href="../starter_kits.html">Starter Kits</a></li>
+                <li><a href="../starter_kits/index.html">Starter Kits</a></li>
+                <li><a href="../starter_kits/m2_llm.html">Starter Kit: Module 2 (LLM)</a></li>
                 <li><a href="../reading_material.html">Reading Materials</a></li>
                 <li><a href="../datasets.html">Datasets Reference</a></li>
                 <li><a href="index.html">API Documentation</a></li>
@@ -99,11 +100,18 @@ el.replaceWith(d);
         </nav>
 
         <main id="content" class="api-content">
-
 <article id="content">
 <header>
 <h1 class="title">Module <code>ccai9012.llm_utils</code></h1>
 </header>
+<!-- STARTERKIT_BACKLINKS_START -->
+<section class="starterkit-backlinks" style="margin-top:1.5rem; padding:1rem; border:1px solid #e5e7eb; border-radius:10px; background:#fff">
+  <h2 style="margin-top:0">Related Starter Kit(s)</h2>
+  <ul>
+<li><a href="../starter_kits/m2_llm.html">Starter Kit Module 2</a></li>
+  </ul>
+</section>
+<!-- STARTERKIT_BACKLINKS_END -->
 <section id="section-intro">
 <h1 id="large-language-model-llm-utilities-module">Large Language Model (LLM) Utilities Module</h1>
 <p>This module provides a comprehensive set of utilities for working with Large Language Models (LLMs),
@@ -422,21 +430,21 @@ polarity, sentiment, keywords, and any metadata from the original reviews.</dd>
 <h2 id="example">Example</h2>
 <pre><code class="language-python-repl">&gt;&gt;&gt; # First load reviews from a city
 &gt;&gt;&gt; reviews = load_reviews_by_city(
-&gt;&gt;&gt;     &quot;data/yelp_reviews/business.json&quot;,
-&gt;&gt;&gt;     &quot;data/yelp_reviews/review.json&quot;,
-&gt;&gt;&gt;     &quot;San Francisco&quot;,
+&gt;&gt;&gt;     &#34;data/yelp_reviews/business.json&#34;,
+&gt;&gt;&gt;     &#34;data/yelp_reviews/review.json&#34;,
+&gt;&gt;&gt;     &#34;San Francisco&#34;,
 &gt;&gt;&gt;     max_reviews=200
 &gt;&gt;&gt; )
 &gt;&gt;&gt; # Then analyze them
 &gt;&gt;&gt; llm = initialize_llm()
-&gt;&gt;&gt; results_df = analyze_reviews(reviews, llm, &quot;sf_review_analysis.csv&quot;, max_reviews=100)
+&gt;&gt;&gt; results_df = analyze_reviews(reviews, llm, &#34;sf_review_analysis.csv&#34;, max_reviews=100)
 &gt;&gt;&gt;
 &gt;&gt;&gt; # Visualize results
 &gt;&gt;&gt; import matplotlib.pyplot as plt
 &gt;&gt;&gt; plt.figure(figsize=(10, 6))
-&gt;&gt;&gt; results_df['polarity'].value_counts().plot(kind='bar')
-&gt;&gt;&gt; plt.title('Sentiment Distribution in San Francisco Reviews')
-&gt;&gt;&gt; plt.ylabel('Number of Reviews')
+&gt;&gt;&gt; results_df[&#39;polarity&#39;].value_counts().plot(kind=&#39;bar&#39;)
+&gt;&gt;&gt; plt.title(&#39;Sentiment Distribution in San Francisco Reviews&#39;)
+&gt;&gt;&gt; plt.ylabel(&#39;Number of Reviews&#39;)
 </code></pre></div>
 </dd>
 <dt id="ccai9012.llm_utils.ask_llm"><code class="name flex">
@@ -1277,3 +1285,4 @@ If None, results are not saved. Defaults to None.</p>
     </div>
 </body>
 </html>
+

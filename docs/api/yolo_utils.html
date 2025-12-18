@@ -80,7 +80,8 @@ el.replaceWith(d);
             <ul class="nav-menu">
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="../installation.html">Installation Guide</a></li>
-                <li><a href="../starter_kits.html">Starter Kits</a></li>
+                <li><a href="../starter_kits/index.html">Starter Kits</a></li>
+                <li><a href="../starter_kits/m4_cv.html">Starter Kit: Module 4 (CV)</a></li>
                 <li><a href="../reading_material.html">Reading Materials</a></li>
                 <li><a href="../datasets.html">Datasets Reference</a></li>
                 <li><a href="index.html">API Documentation</a></li>
@@ -99,11 +100,18 @@ el.replaceWith(d);
         </nav>
 
         <main id="content" class="api-content">
-
 <article id="content">
 <header>
 <h1 class="title">Module <code>ccai9012.yolo_utils</code></h1>
 </header>
+<!-- STARTERKIT_BACKLINKS_START -->
+<section class="starterkit-backlinks" style="margin-top:1.5rem; padding:1rem; border:1px solid #e5e7eb; border-radius:10px; background:#fff">
+  <h2 style="margin-top:0">Related Starter Kit(s)</h2>
+  <ul>
+<li><a href="../starter_kits/m4_cv.html">Starter Kit Module 4</a></li>
+  </ul>
+</section>
+<!-- STARTERKIT_BACKLINKS_END -->
 <section id="section-intro">
 <h1 id="yolo-utilities-module">YOLO Utilities Module</h1>
 <p>This module provides utilities for object detection, tracking, and visualization using YOLO models.
@@ -417,7 +425,7 @@ output_video="results/visualization.mp4"
             from IPython.display import display, clear_output
             import matplotlib.pyplot as plt
 
-            rgb_frame = cv2.cvtColor(blended, cv2.COLOR_BGR2RGB)
+            rgb_frame = cv2.cvtColor(blended, cv2.COLOR_BGR2RGB);
             plt.figure(figsize=(12, 9))
             plt.imshow(rgb_frame)
             plt.axis(&#39;off&#39;)

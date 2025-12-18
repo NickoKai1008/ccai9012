@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCAI9012 - Module 1 - Traditional Generative ML</title>
+    <link rel="stylesheet" href="../docs-style.css">
+</head>
+<body>
+    <div class="container">
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h2>CCAI9012</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../timetable.html">Timetable</a></li>
+                <li><a href="../installation.html">Installation Guide</a></li>
+                <li><a href="../starter_kits/index.html" class="active">Starter Kits</a></li>
+                <li class="sub-item"><a href="../starter_kits/m1_gan.html" class="active">Module 1: Traditional Generative ML</a></li>
+                <li class="sub-item"><a href="../starter_kits/m2_llm.html">Module 2: LLM for Structuring Information</a></li>
+                <li class="sub-item"><a href="../starter_kits/m3_mm.html">Module 3: Multimodal Reasoning</a></li>
+                <li class="sub-item"><a href="../starter_kits/m4_cv.html">Module 4: CV Models</a></li>
+                <li class="sub-item"><a href="../starter_kits/m5_bias.html">Module 5: Bias & Interpretability</a></li>
+                <li><a href="../reading_material.html">Reading Materials</a></li>
+                <li><a href="../datasets.html">Datasets Reference</a></li>
+                <li><a href="../api/index.html">API Documentation</a></li>
+            </ul>
+        </nav>
+
+        <main id="content">
+<h1>Traditional Generative ML</h1>
+<p><strong>Related API:</strong> <a href="../api/gan_utils.html"><code>ccai9012.gan_utils</code></a></p>
+<h3>Overview</h3>
+<p><strong>Category:</strong> Synthetic Data Generation &amp; Prediction</p>
+<p><strong>Modular Components:</strong>
+- CycleGAN Training Pipeline
+- Custom Dataset Loader
+- Image Augmentation
+- Text2Image Prompt Interface</p>
+<p align="center">
+  <img src="../figs/SCR-20251218-lfxu.jpeg" width="600"><br>
+  <em>Zhu, J.-Y., Park, T., Isola, P., Efros, A.A., 2020. Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks. https://doi.org/10.48550/arXiv.1703.10593
+</em>
+</p>
+
+<h3>Use Cases</h3>
+<ul>
+<li>Predicting dockless bike-sharing demand based on satellite image</li>
+<li>Riding activity heatmap generation with urban map</li>
+<li>Solar radiation prediction at the urban-scale</li>
+</ul>
+<h3>Code Example: Building Profile Layout Generation from Road Network</h3>
+<p align="center">
+  <img src="../figs/SCR-20251218-kslf.png" width="600"><br>
+  <em>Wu, A.N., Biljecki, F., 2021. GANmapper: geographical data translation [WWW Document]. arXiv.org. https://doi.org/10.1080/13658816.2022.2041643
+</em>
+</p>
+
+<p><strong>Content:</strong>
+- Use Pix2Pix style GAN model to generate building profile layout from road network
+- Illustrate the whole pipeline of GAN, including data processing, training, inference and evaluate
+- Data augmentation to deal with insufficient data volume</p>
+<p><strong>Dataset:</strong>
+- Building profile and road network dataset (image pair)
+- Source: https://github.com/ualsg/GANmapper</p>
+<p><strong>Required Packages:</strong> PyTorch, torchvision, CycleGAN, Pillow, matplotlib</p>
+<hr />
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCAI9012 - Module 3 - Multimodal Reasoning</title>
+    <link rel="stylesheet" href="../docs-style.css">
+</head>
+<body>
+    <div class="container">
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h2>CCAI9012</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../timetable.html">Timetable</a></li>
+                <li><a href="../installation.html">Installation Guide</a></li>
+                <li><a href="../starter_kits/index.html" class="active">Starter Kits</a></li>
+                <li class="sub-item"><a href="../starter_kits/m1_gan.html">Module 1: Traditional Generative ML</a></li>
+                <li class="sub-item"><a href="../starter_kits/m2_llm.html">Module 2: LLM for Structuring Information</a></li>
+                <li class="sub-item"><a href="../starter_kits/m3_mm.html" class="active">Module 3: Multimodal Reasoning</a></li>
+                <li class="sub-item"><a href="../starter_kits/m4_cv.html">Module 4: CV Models</a></li>
+                <li class="sub-item"><a href="../starter_kits/m5_bias.html">Module 5: Bias & Interpretability</a></li>
+                <li><a href="../reading_material.html">Reading Materials</a></li>
+                <li><a href="../datasets.html">Datasets Reference</a></li>
+                <li><a href="../api/index.html">API Documentation</a></li>
+            </ul>
+        </nav>
+
+        <main id="content">
+<h1>Multimodal Reasoning</h1>
+<p><strong>Related API:</strong> <a href="../api/multi_modal_utils.html"><code>ccai9012.multi_modal_utils</code></a> · <a href="../api/svi_utils.html"><code>ccai9012.svi_utils</code></a></p>
+<h3>Overview</h3>
+<p><strong>Category:</strong> Visual-Language Reasoning</p>
+<p><strong>Modular Components:</strong>
+- Model Initialization (API calling/Local implementation)
+- Image Captioning
+- Keyword Extraction from Text</p>
+<h3>Use Cases</h3>
+<ul>
+<li>Do AI models associate certain architectural styles with particular geographic regions unfairly?</li>
+<li>Urban light pollution areas spotting based on facade material analysis</li>
+<li>Can we visualize gentrification through facade transformation using historical vs. recent street views?</li>
+<li>Thermal defect spotting based on facade and indoor infrared images</li>
+</ul>
+<h3>Code Examples</h3>
+<h4>Material Bias in AI-generated Architectural Images</h4>
+<p><strong>Content:</strong>
+- Use Text2Image to generate images of buildings
+- Generate lots of images
+- Parse images</p>
+<p align="center">
+  <img src="../figs/building_exterior_001.png" width="400"><br>
+  <img src="../figs/SCR-20251218-lxrc.png" width="600"><br>
+  <em>Using BLIP to identify the facade material from the images generated from StableDiffusion.</em>
+</p>
+
+<h4>Assessment of Conservation Status in Urban Historic Districts</h4>
+<p><strong>Content:</strong>
+- Categorizing SVIs of historic districts with CLIP
+- Evaluating mixing index of historic and added-on buildings</p>
+<p><strong>Dataset:</strong>
+- Google Street View Imagery (SVI)
+- Source: Google Map API
+- </p>
+<p align="center">
+  <img src="../figs/SCR-20251218-lvlc.jpeg" width="400"><br>
+  <em>Using CLIP to identify the historical status of the urban block.</em>
+</p>
+<hr />
+        </main>
+    </div>
+</body>
+</html>
