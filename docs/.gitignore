@@ -1,3 +1,6 @@
 .DS_Store
 .idea/
 __pycache__/
+
+docs/figs/flowchart/flowchart_2.drawio.xml
+docs/figs/flowchart/sk_overview.drawio.xml

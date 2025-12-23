@@ -2,6 +2,12 @@
 
 This document provides detailed information about all five starter kit modules available for your final projects. Each module includes comprehensive components, example use cases, and required packages.
 
+<p align="center">
+  <img src="figs/flowchart/sk_overview.drawio.png" width="1100"><br>
+  <em> Starter Kits Overview
+</em>
+</p>
+
 ## Module 1: Traditional Generative ML
 
 **Related API:** [`ccai9012.gan_utils`](api/gan_utils.html)
@@ -49,7 +55,7 @@ This document provides detailed information about all five starter kit modules a
 
 ## Module 2: LLM for Structuring Information
 
-**Related API:** [`ccai9012.llm_utils`](api/llm_utils.html)
+**Related API:** [`ccai9012.llm_utils`](api/llm_utils.html) · [`ccai9012.viz_utils`](api/viz_utils.html)
 
 ### Overview
 **Category:** Unstructured Text Analysis & Knowledge Structuring
@@ -80,7 +86,7 @@ This document provides detailed information about all five starter kit modules a
 
 **Dataset:**
 - Yelp open dataset
-- Source: https://business.yelp.com/data/resources/open-dataset/
+- Source: https://business.yelp.com/data/resources/open-dataset/ (Please press the **Download JSON** red button to get the dataset, and put the file under `starter_kits/2_llm_structure_output/urban_sentiment/data` folder.)
 
 **Required Packages:** LangChain, DeepSeek, transformers, pandas, json
 
@@ -129,7 +135,7 @@ This document provides detailed information about all five starter kit modules a
 
 ## Module 3: Multimodal Reasoning
 
-**Related API:** [`ccai9012.multi_modal_utils`](api/multi_modal_utils.html) · [`ccai9012.svi_utils`](api/svi_utils.html)
+**Related API:** [`ccai9012.multi_modal_utils`](api/multi_modal_utils.html) · [`ccai9012.svi_utils`](api/svi_utils.html) · [`ccai9012.viz_utils`](api/viz_utils.html)
 
 ### Overview
 **Category:** Visual-Language Reasoning
@@ -176,7 +182,7 @@ This document provides detailed information about all five starter kit modules a
 
 ## Module 4: CV Models (Segmentation, Detection, Tracking)
 
-**Related API:** [`ccai9012.yolo_utils`](api/yolo_utils.html) · [`ccai9012.svi_utils`](api/svi_utils.html)
+**Related API:** [`ccai9012.yolo_utils`](api/yolo_utils.html) · [`ccai9012.svi_utils`](api/svi_utils.html) 
 
 ### Overview
 **Category:** Perception & Prediction from Visual Data
@@ -232,7 +238,7 @@ This document provides detailed information about all five starter kit modules a
 
 ## Module 5: Bias Detection & Interpretability
 
-**Related API:** [`ccai9012.nn_utils`](api/nn_utils.html)
+[//]: # (**Related API:** [`ccai9012.nn_utils`]&#40;api/nn_utils.html&#41;)
 
 ### Overview
 **Category:** Bias Detection
@@ -266,9 +272,8 @@ This document provides detailed information about all five starter kit modules a
 
 1. **Choose your module** based on your interests and project goals
 2. **Review the use cases** to understand potential applications
-3. **Check the required packages** and install them in your environment
-4. **Access the starter code** in the corresponding `starter_kits/` directory
-5. **Download the datasets** from the provided sources
-6. **Follow the code examples** to understand the implementation approach
+3. **Access the starter code** in the corresponding `starter_kits/` directory
+4. **Download the datasets** from the provided sources
+5. **Follow the code examples** to understand the implementation approach
 
 For technical support and detailed API documentation, refer to the main [README.md](../README.md) and the [ccai9012 library documentation](ccai9012/index.html).

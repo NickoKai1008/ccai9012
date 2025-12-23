@@ -292,26 +292,49 @@ def _generate_starter_kits_subpages(starter_md_path: Path):
 
 
 def _starter_kits_index_landing_md(md_text: str) -> str:
-    """Generate a compact landing page markdown for docs/starter_kits/index.html.
+    """Generate a landing page markdown for docs/starter_kits/index.html.
 
     Requirement:
-    - Only one-line intro per module + a button/link to the module subpage.
-    - No detailed content on the index page.
+    - Include the content before "## Module 1" from the source markdown at the top
+      (this includes images / HTML blocks).
+    - Then show only one-line intro per module + a button/link to the module subpage.
+    - No detailed per-module content on the index page.
 
     We keep the title from the source markdown (if present), then render a simple list.
     """
     title_match = re.search(r"^#\s+(.+?)\s*$", md_text, flags=re.MULTILINE)
     title = title_match.group(1).strip() if title_match else "Starter Kits"
 
+    # Grab everything before Module 1 heading (if present)
+    m1 = re.search(r"^##\s+Module\s+1\b", md_text, flags=re.MULTILINE)
+    preface = md_text[: m1.start()].strip() if m1 else md_text.strip()
+
+    # Remove the first H1 from the preface to avoid duplicating the title (we add our own).
+    preface = re.sub(r"^#\s+.+?\s*$", "", preface, count=1, flags=re.MULTILINE).strip()
+
     modules = _split_starter_kits_modules(md_text)
     if not modules:
-        modules = [(1, "Traditional Generative ML", ""), (2, "LLM for Structuring Information", ""), (3, "Multimodal Reasoning", ""), (4, "CV Models", ""), (5, "Bias Detection & Interpretability", "")]
+        modules = [
+            (1, "Traditional Generative ML", ""),
+            (2, "LLM for Structuring Information", ""),
+            (3, "Multimodal Reasoning", ""),
+            (4, "CV Models", ""),
+            (5, "Bias Detection & Interpretability", ""),
+        ]
 
     # Map module number -> subpage filename
     num_to_file = {i + 1: MODULE_SUBPAGES[i]["filename"] for i in range(min(len(MODULE_SUBPAGES), 5))}
 
     parts: list[str] = [
         f"# {title}",
+        "",
+    ]
+
+    # Include preface (images/HTML included) at the very top.
+    if preface:
+        parts.extend([preface, "", "---", ""])  # small separator before cards
+
+    parts.extend([
         "Pick one module to view details and starter code.",
         "",
         "<style>",
@@ -320,7 +343,7 @@ def _starter_kits_index_landing_md(md_text: str) -> str:
         ".module-card p{margin:0 0 10px 0;color:#374151}",
         "</style>",
         "",
-    ]
+    ])
 
     for num, module_title, _ in modules:
         summary = MODULE_INDEX_SUMMARY.get(num, "Module overview.")
@@ -472,6 +495,16 @@ def convert_md_to_html(md_file_path, output_dir=None):
     # Convert markdown to HTML
     if md_file.name == "starter_kits.md":
         md_for_index = _starter_kits_index_landing_md(md_content)
+
+        # IMPORTANT: index.html lives in docs/starter_kits/, so rewrite image paths accordingly
+        # (e.g., figs/... -> ../figs/...) and copy any referenced assets.
+        docs_dir = md_file.parent
+        out_dir = docs_dir / "starter_kits"
+        out_dir.mkdir(parents=True, exist_ok=True)
+
+        md_for_index = _rewrite_relative_asset_paths(md_for_index, from_dir=docs_dir, to_dir=out_dir)
+        _copy_local_assets(md_for_index, from_dir=docs_dir, to_dir=out_dir)
+
         html_content = _new_markdown().convert(md_for_index)
     else:
         html_content = _new_markdown().convert(md_content)
