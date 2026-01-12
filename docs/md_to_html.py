@@ -2,7 +2,7 @@
 """docs/md_to_html.py
 
 Single-purpose docs builder:
-- Convert Markdown sources under docs/md/ into HTML pages under docs/html/.
+- Convert Markdown sources under docs/md/ into HTML pages under docs/.
 - Navigation and page mapping are driven by docs/pages.json.
 
 Non-goals (by design):
@@ -26,12 +26,16 @@ from markdown.extensions.tables import TableExtension
 
 
 def _ensure_dirs(*, docs_dir: Path) -> tuple[Path, Path]:
-    """Return (md_root, html_root), creating them if missing."""
+    """Return (md_root, site_root), creating them if missing.
+
+    md_root: docs/md (markdown sources)
+    site_root: docs/ (final site root where index.html lives and all HTML is generated)
+    """
     md_root = docs_dir / "md"
-    html_root = docs_dir / "html"
+    site_root = docs_dir
     md_root.mkdir(parents=True, exist_ok=True)
-    html_root.mkdir(parents=True, exist_ok=True)
-    return md_root, html_root
+    site_root.mkdir(parents=True, exist_ok=True)
+    return md_root, site_root
 
 
 def _rel_to_root(p: Path, root: Path) -> str:
@@ -39,27 +43,31 @@ def _rel_to_root(p: Path, root: Path) -> str:
     return p.resolve().relative_to(root.resolve()).as_posix()
 
 
-def _base_href_for_output(*, output_path: Path, html_root: Path) -> str:
-    """Compute base href prefix to reach html_root from output_path.parent."""
-    rel_parent = output_path.parent.resolve().relative_to(html_root.resolve())
+def _base_href_for_output(*, output_path: Path, site_root: Path) -> str:
+    """Compute base href prefix to reach site_root from output_path.parent.
+
+    site_root must be the *true* website root (docs/), not docs/html/.
+    """
+    rel_parent = output_path.parent.resolve().relative_to(site_root.resolve())
     depth = len(rel_parent.parts)
     return "../" * depth
 
 
-def _css_href_for_output(*, cfg: dict, output_path: Path, html_root: Path, docs_dir: Path) -> str:
+def _css_href_for_output(*, cfg: dict, output_path: Path, site_root: Path, docs_dir: Path) -> str:
     """Compute css href for output page.
 
     Supports both:
-      - site.css.path == "docs-style.css" (preferred; relative to html_root)
+      - site.css.path == "docs-style.css" (preferred; relative to site_root)
       - legacy site.css.top_level_href/subdir_href (relative to docs root)
     """
     site_css = (cfg.get("site") or {}).get("css") or {}
 
     css_path = site_css.get("path")
     if isinstance(css_path, str) and css_path.strip():
-        return _base_href_for_output(output_path=output_path, html_root=html_root) + css_path.strip()
+        return _base_href_for_output(output_path=output_path, site_root=site_root) + css_path.strip()
 
-    legacy = site_css.get("subdir_href") if output_path.parent != html_root else site_css.get("top_level_href")
+    # Legacy behavior: treat docs_dir as the root (same as site_root).
+    legacy = site_css.get("subdir_href") if output_path.parent != site_root else site_css.get("top_level_href")
     if not isinstance(legacy, str) or not legacy:
         legacy = "docs-style.css"
 
@@ -122,9 +130,9 @@ def _load_site_config(*, docs_dir: Path) -> dict:
                 if not isinstance(source, str):
                     raise ValueError(f"docs/pages.json pages[{key}].source must be a string")
                 if output is not None:
-                    if not isinstance(output, str) or output.startswith("/") or output.startswith(".."):
+                    if not isinstance(output, str) or output.startswith("/"):
                         raise ValueError(
-                            f"docs/pages.json pages[{key}].output must be a relative path under docs/: {output!r}"
+                            f"docs/pages.json pages[{key}].output must be a relative path: {output!r}"
                         )
 
             children = node.get("children")
@@ -299,30 +307,8 @@ def _render_html(cfg: dict, *, title: str, html_content: str, active_key: str | 
     )
 
 
-def _ensure_site_css_available(*, docs_dir: Path, html_root: Path, cfg: dict):
-    """Copy the site CSS into docs/html so all pages can reference it reliably."""
-    site_css = (cfg.get("site") or {}).get("css") or {}
-    css_rel = site_css.get("path") if isinstance(site_css.get("path"), str) and site_css.get("path").strip() else "docs-style.css"
-    css_rel = css_rel.strip().lstrip("/")
-
-    src = docs_dir / "docs-style.css"
-    if not src.exists():
-        return
-
-    dst = html_root / css_rel
-    dst.parent.mkdir(parents=True, exist_ok=True)
-    shutil.copy2(src, dst)
-
-
 def _render_home_cards_section(cfg: dict) -> str:
-    """Render the Home page 'quick links' card grid from the pages tree.
-
-    pages.json is the single source of truth:
-    - Any page node can opt in by setting:
-        "home_card": {"show": true, "order": 1, ...}
-    - The section heading is controlled by the Home node:
-        pages[key=="home"].home_cards_title
-    """
+    """Render the Home page 'quick links' card grid from the pages tree."""
 
     # Find Home node to get title
     home_title = "Documentation"
@@ -334,9 +320,8 @@ def _render_home_cards_section(cfg: dict) -> str:
                 home_title = t.strip()
             break
 
-    # Build mapping from page key -> href (output/href)
+    # Build mapping from page key -> href
     key_to_href: dict[str, str] = {}
-    key_to_node: dict[str, dict] = {}
     for entry in _flatten_pages_tree(cfg):
         node = entry["node"]
         key = node.get("key")
@@ -352,13 +337,12 @@ def _render_home_cards_section(cfg: dict) -> str:
             else:
                 href = ""
 
-        # keep only safe relative links
+        # Keep only safe relative links
         if href and (href.startswith("/") or href.startswith("..")):
             href = ""
 
         if href:
             key_to_href[key] = href
-            key_to_node[key] = node
 
     # Collect card nodes
     cards: list[dict] = []
@@ -374,7 +358,6 @@ def _render_home_cards_section(cfg: dict) -> str:
 
         href = key_to_href.get(key)
         if not href:
-            # no link target; silently skip
             continue
 
         order = hc.get("order")
@@ -383,8 +366,6 @@ def _render_home_cards_section(cfg: dict) -> str:
         except Exception:
             order_val = 10_000
 
-        # home_card.title is optional and can inherit from page metadata.
-        # Treat empty/whitespace as missing.
         hc_title = hc.get("title")
         if isinstance(hc_title, str):
             hc_title = hc_title.strip()
@@ -406,7 +387,6 @@ def _render_home_cards_section(cfg: dict) -> str:
 
     cards.sort(key=lambda c: (c["order"], c["key"]))
 
-    # Render
     lines: list[str] = []
     lines.append('<section class="quick-links">')
     lines.append(f"  <h2>{home_title}</h2>")
@@ -426,83 +406,13 @@ def _render_home_cards_section(cfg: dict) -> str:
     return "\n".join(lines)
 
 
-def convert_md_to_html(md_file_path: str | os.PathLike, output_dir: str | os.PathLike | None = None) -> bool:
-    """Convert a markdown file to HTML under docs/html (no path rewriting)."""
-    docs_dir = Path(__file__).parent
-    cfg = _load_site_config(docs_dir=docs_dir)
-
-    md_root, html_root = _ensure_dirs(docs_dir=docs_dir)
-
-    _ensure_site_css_available(docs_dir=docs_dir, html_root=html_root, cfg=cfg)
-
-    md_file = Path(md_file_path)
-    if not md_file.exists():
-        print(f"Error: File {md_file} not found", flush=True)
-        return False
-
-    # Support passing either a path under docs/md or a legacy path under docs/.
-    md_file_res = md_file.resolve()
-    if not str(md_file_res).startswith(str(md_root.resolve())):
-        candidate = (md_root / md_file_path).resolve()
-        if candidate.exists():
-            md_file = candidate
-        else:
-            md_file = md_file_res
-
-    md_content = md_file.read_text(encoding="utf-8")
-
-    pages_by_source = _pages_by_source(cfg)
-    try:
-        source_key = _rel_to_root(md_file, md_root)
-    except Exception:
-        source_key = Path(md_file.name).as_posix()
-
-    config = pages_by_source.get(source_key)
-    if not config:
-        print(f"Warning: No configuration found for {source_key}, using defaults", flush=True)
-        title = md_file.stem.replace("_", " ").title()
-        html_rel = Path(source_key).with_suffix(".html").as_posix()
-        active_key = None
-    else:
-        title = config["title"]
-        html_rel = config["output"]
-        active_key = config.get("nav_key")
-
-    output_path = (Path(output_dir) / html_rel) if output_dir else (html_root / html_rel)
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-
-    html_content = _new_markdown().convert(md_content)
-
-    # Home page: append cards section driven by pages.json
-    if source_key == "index.md":
-        cards_html = _render_home_cards_section(cfg)
-        if cards_html:
-            html_content = "\n".join([html_content, cards_html])
-
-    base_href = _base_href_for_output(output_path=output_path, html_root=html_root)
-    css_href = _css_href_for_output(cfg=cfg, output_path=output_path, html_root=html_root, docs_dir=docs_dir)
-
-    full_html = _render_html(
-        cfg,
-        title=title,
-        html_content=html_content,
-        active_key=active_key,
-        base_href=base_href,
-        css_href=css_href,
-    )
-
-    output_path.write_text(full_html, encoding="utf-8")
-    print(f"✓ Converted: {source_key} → {output_path}", flush=True)
-    return True
-
-
-def _patch_api_html_css_links(*, html_root: Path, cfg: dict):
+def _patch_api_html_css_links(*, site_root: Path, cfg: dict):
     """Ensure pdoc-generated API pages use the site-wide CSS."""
     site_css = (cfg.get("site") or {}).get("css") or {}
     css_rel = site_css.get("path") if isinstance(site_css.get("path"), str) and site_css.get("path").strip() else "docs-style.css"
     css_rel = css_rel.strip().lstrip("/")
 
-    api_dir = html_root / "api"
+    api_dir = site_root / "api"
     if not api_dir.exists():
         return
 
@@ -519,9 +429,9 @@ def _patch_api_html_css_links(*, html_root: Path, cfg: dict):
             continue
 
         try:
-            rel = os.path.relpath((html_root / css_rel).resolve(), p.parent.resolve())
+            rel = os.path.relpath((site_root / css_rel).resolve(), p.parent.resolve())
         except ValueError:
-            rel = str((html_root / css_rel).resolve())
+            rel = str((site_root / css_rel).resolve())
         rel = rel.replace(os.sep, "/")
 
         head_start = re.search(r"<head[^>]*>", html, flags=re.IGNORECASE)
@@ -538,9 +448,9 @@ def _patch_api_html_css_links(*, html_root: Path, cfg: dict):
         p.write_text(html, encoding="utf-8")
 
 
-def _finalize_api_output_layout(*, html_root: Path):
+def _finalize_api_output_layout(*, site_root: Path):
     """Normalize API output: delete flat pages + ensure api/index.html redirect exists."""
-    api_dir = html_root / "api"
+    api_dir = site_root / "api"
     if not api_dir.exists():
         return
 
@@ -573,9 +483,9 @@ def _finalize_api_output_layout(*, html_root: Path):
     index_path.write_text(redirect_html, encoding="utf-8")
 
 
-def _wrap_api_pages_with_site_chrome(*, docs_dir: Path, cfg: dict, html_root: Path):
+def _wrap_api_pages_with_site_chrome(*, docs_dir: Path, cfg: dict, site_root: Path):
     """Wrap pdoc-generated API pages with the same left sidebar as the main site."""
-    api_dir = html_root / "api"
+    api_dir = site_root / "api"
     if not api_dir.exists():
         return
 
@@ -648,8 +558,8 @@ def _wrap_api_pages_with_site_chrome(*, docs_dir: Path, cfg: dict, html_root: Pa
 
         content_html = _extract_pdoc_article(html)
 
-        css_href = _css_href_for_output(cfg=cfg, output_path=p, html_root=html_root, docs_dir=docs_dir)
-        base_href = _base_href_for_output(output_path=p, html_root=html_root)
+        css_href = _css_href_for_output(cfg=cfg, output_path=p, site_root=site_root, docs_dir=docs_dir)
+        base_href = _base_href_for_output(output_path=p, site_root=site_root)
         nav_items_html = _render_nav_items(cfg, base_href=base_href, active_key="api")
 
         wrapped = "\n".join([
@@ -755,9 +665,9 @@ def _infer_api_to_modules_from_md(*, md_root: Path) -> dict[str, set[int]]:
     return out
 
 
-def _inject_starterkit_backlinks_into_api_pages(*, docs_dir: Path, cfg: dict, html_root: Path, md_root: Path):
+def _inject_starterkit_backlinks_into_api_pages(*, docs_dir: Path, cfg: dict, site_root: Path, md_root: Path):
     """Add 'Related Starter Kit(s)' block into wrapped API HTML pages."""
-    api_dir = html_root / "api" / "ccai9012"
+    api_dir = site_root / "api" / "ccai9012"
     if not api_dir.exists():
         return
 
@@ -778,7 +688,7 @@ def _inject_starterkit_backlinks_into_api_pages(*, docs_dir: Path, cfg: dict, ht
             if not m:
                 continue
             try:
-                rel_href = os.path.relpath((html_root / m["href"]).resolve(), api_page_dir.resolve())
+                rel_href = os.path.relpath((site_root / m["href"]).resolve(), api_page_dir.resolve())
             except ValueError:
                 rel_href = m["href"]
             rel_href = rel_href.replace(os.sep, "/")
@@ -834,20 +744,94 @@ def _inject_starterkit_backlinks_into_api_pages(*, docs_dir: Path, cfg: dict, ht
             p.write_text(new_html, encoding="utf-8")
 
 
+def convert_md_to_html(md_file_path: str | os.PathLike, output_dir: str | os.PathLike | None = None) -> bool:
+    """Convert a markdown file to HTML under docs/ (no path rewriting)."""
+    docs_dir = Path(__file__).parent
+    cfg = _load_site_config(docs_dir=docs_dir)
+
+    md_root, site_root = _ensure_dirs(docs_dir=docs_dir)
+
+    md_file = Path(md_file_path)
+    if not md_file.exists():
+        print(f"Error: File {md_file} not found", flush=True)
+        return False
+
+    # Support passing either a path under docs/md or a legacy path under docs/.
+    md_file_res = md_file.resolve()
+    if not str(md_file_res).startswith(str(md_root.resolve())):
+        candidate = (md_root / md_file_path).resolve()
+        if candidate.exists():
+            md_file = candidate
+        else:
+            md_file = md_file_res
+
+    md_content = md_file.read_text(encoding="utf-8")
+
+    pages_by_source = _pages_by_source(cfg)
+    try:
+        source_key = _rel_to_root(md_file, md_root)
+    except Exception:
+        source_key = Path(md_file.name).as_posix()
+
+    config = pages_by_source.get(source_key)
+    if not config:
+        print(f"Warning: No configuration found for {source_key}, using defaults", flush=True)
+        title = md_file.stem.replace("_", " ").title()
+        html_rel = Path(source_key).with_suffix(".html").as_posix()
+        active_key = None
+    else:
+        title = config["title"]
+        html_rel = config["output"]
+        active_key = config.get("nav_key")
+
+    # Default output location:
+    # - When output_dir is provided, honor it exactly.
+    # - Otherwise, write pages under docs/ (site_root).
+    if output_dir:
+        output_path = Path(output_dir) / html_rel
+    else:
+        output_path = site_root / html_rel
+
+    output_path = output_path.resolve()
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+
+    html_content = _new_markdown().convert(md_content)
+
+    # Home page: append cards section driven by pages.json
+    if source_key == "index.md":
+        cards_html = _render_home_cards_section(cfg)
+        if cards_html:
+            html_content = "\n".join([html_content, cards_html])
+
+    base_href = _base_href_for_output(output_path=output_path, site_root=site_root)
+    css_href = _css_href_for_output(cfg=cfg, output_path=output_path, site_root=site_root, docs_dir=docs_dir)
+
+    full_html = _render_html(
+        cfg,
+        title=title,
+        html_content=html_content,
+        active_key=active_key,
+        base_href=base_href,
+        css_href=css_href,
+    )
+
+    output_path.write_text(full_html, encoding="utf-8")
+    print(f"✓ Converted: {source_key} → {output_path}", flush=True)
+    return True
+
+
 def convert_all_docs() -> None:
     """Convert markdown files referenced by docs/pages.json."""
     docs_dir = Path(__file__).parent
     cfg = _load_site_config(docs_dir=docs_dir)
 
-    md_root, html_root = _ensure_dirs(docs_dir=docs_dir)
+    md_root, site_root = _ensure_dirs(docs_dir=docs_dir)
 
-    _ensure_site_css_available(docs_dir=docs_dir, html_root=html_root, cfg=cfg)
-
-    _patch_api_html_css_links(html_root=html_root, cfg=cfg)
-    _finalize_api_output_layout(html_root=html_root)
-    _wrap_api_pages_with_site_chrome(docs_dir=docs_dir, cfg=cfg, html_root=html_root)
+    _patch_api_html_css_links(site_root=site_root, cfg=cfg)
+    _finalize_api_output_layout(site_root=site_root)
+    _wrap_api_pages_with_site_chrome(docs_dir=docs_dir, cfg=cfg, site_root=site_root)
     # Inject backlinks after wrapping so insertion points (<header> / <main id="content">) are stable.
-    _inject_starterkit_backlinks_into_api_pages(docs_dir=docs_dir, cfg=cfg, html_root=html_root, md_root=md_root)
+    _inject_starterkit_backlinks_into_api_pages(docs_dir=docs_dir, cfg=cfg, site_root=site_root, md_root=md_root)
 
     pages_by_source = _pages_by_source(cfg)
     md_files: list[Path] = []

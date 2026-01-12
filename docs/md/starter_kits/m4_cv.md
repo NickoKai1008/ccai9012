@@ -1,6 +1,6 @@
 # CV Models (Segmentation, Detection, Tracking)
 
-**Related API:** [`ccai9012.yolo_utils`](../../html/api/ccai9012/yolo_utils.html) · [`ccai9012.svi_utils`](../../html/api/ccai9012/svi_utils.html) 
+**Related API:** [`ccai9012.yolo_utils`](../api/ccai9012/yolo_utils.html) · [`ccai9012.svi_utils`](../api/ccai9012/svi_utils.html) 
 
 ### Overview
 **Category:** Perception & Prediction from Visual Data
@@ -31,7 +31,7 @@
 **Required Packages:** YOLOv5, OpenCV, DeepSORT, numpy, matplotlib
 
 <p align="center">
-  <img src="../../figs/SCR-20251218-lzkz.jpeg" width="600"><br>
+  <img src="../figs/SCR-20251218-lzkz.jpeg" width="600"><br>
   <em>Identify pedestrian location and generate footprint heatmap with tracking.</em>
 </p>
 
@@ -48,7 +48,7 @@
 **Required Packages:** OpenCV, scikit-learn, pandas, matplotlib, PyTorch
 
 <p align="center">
-  <img src="../../figs/SCR-20251218-mawu.jpeg" width="600"><br>
+  <img src="../figs/SCR-20251218-mawu.jpeg" width="600"><br>
   <em>SVI-based housing price estimation. Nouriani, A., Lemke, L., 2022. Vision-based housing price estimation using interior, exterior & satellite images. Intelligent Systems with Applications 14, 200081. https://doi.org/10.1016/j.iswa.2022.200081.</em>
 </p>
 

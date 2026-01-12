@@ -35,6 +35,15 @@
 <header>
 <h1 class="title">Module <code>ccai9012.svi_utils</code></h1>
 </header>
+<!-- STARTERKIT_BACKLINKS_START -->
+<section class="api-related-block" style="margin:1rem 0; padding:1rem; border:1px solid #e5e7eb; border-left:6px solid #4f46e5; border-radius:10px; background:#fafafa">
+  <div class="api-related-block__title" style="font-weight:700; margin-bottom:0.5rem">Related Starter Kit(s)</div>
+  <ul style="margin:0; padding-left:1.2rem">
+<li><a href="../../starter_kits/m3_mm.html">Module 3 - Multimodal Reasoning</a></li>
+<li><a href="../../starter_kits/m4_cv.html">Module 4 - CV Models</a></li>
+  </ul>
+</section>
+<!-- STARTERKIT_BACKLINKS_END -->
 <section id="section-intro">
 <h1 id="street-view-imagery-svi-utilities">Street View Imagery (SVI) Utilities</h1>
 <p>This module provides tools for working with Google Street View Images (SVIs), including downloading,
@@ -363,9 +372,12 @@ If None, uses CITYSCAPES_COLORS. Defaults to None.</dd>
             save_dir (str, optional): Directory to save downloaded images. Defaults to &#34;images&#34;.
         &#34;&#34;&#34;
         if api_key is None:
-            api_key = os.getenv(&#34;GOOGLEMAP_API_KEY&#34;)
-            if api_key is None:
-                api_key = getpass.getpass(&#34;Enter your Google Map API key: &#34;)
+            # Prefer `ccai9012/token.yaml` (key: env.GOOGLEMAP_API_KEY), then env vars, then prompt.
+            api_key = get_token(
+                env_var=&#34;GOOGLEMAP_API_KEY&#34;,
+                yaml_key=&#34;env.GOOGLEMAP_API_KEY&#34;,
+                prompt=&#34;Enter your Google Map API key: &#34;,
+            )
         self.api_key = api_key
         self.save_dir = save_dir
         os.makedirs(self.save_dir, exist_ok=True)

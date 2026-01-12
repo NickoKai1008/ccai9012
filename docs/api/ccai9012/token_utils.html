@@ -1,0 +1,160 @@
+<!-- START PDOC WRAPPER -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Module ccai9012.token_utils</title>
+  <link rel="stylesheet" href="../../docs-style.css">
+</head>
+<body>
+  <div class="container">
+    <nav id="sidebar">
+      <div class="sidebar-header">
+        <h2>CCAI9012</h2>
+      </div>
+      <ul class="nav-menu">
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../../timetable.html">Timetable</a></li>
+                <li><a href="../../installation.html">Installation Guide</a></li>
+                <li><a href="../../starter_kits/index.html">Starter Kits</a></li>
+                <li class="sub-item"><a href="../../starter_kits/m1_gan.html">Module 1: Traditional Generative ML</a></li>
+                <li class="sub-item"><a href="../../starter_kits/m2_llm.html">Module 2: LLM for Structuring Information</a></li>
+                <li class="sub-item"><a href="../../starter_kits/m3_mm.html">Module 3: Multimodal Reasoning</a></li>
+                <li class="sub-item"><a href="../../starter_kits/m4_cv.html">Module 4: CV Models</a></li>
+                <li class="sub-item"><a href="../../starter_kits/m5_bias.html">Module 5: Bias & Interpretability</a></li>
+                <li><a href="../../reading_material.html">Reading Materials</a></li>
+                <li><a href="../../datasets.html">Datasets Reference</a></li>
+                <li><a href="../../api/ccai9012/index.html" class="active">API Documentation</a></li>
+      </ul>
+    </nav>
+
+    <main id="content" class="api-content">
+      <!-- API content extracted from pdoc -->
+<article class="api-doc">
+<header>
+<h1 class="title">Module <code>ccai9012.token_utils</code></h1>
+</header>
+<section id="section-intro">
+<p>ccai9012.token_utils</p>
+<p>Centralized secret/token loading for the toolkit.</p>
+<p>Contract
+- Looks for tokens in <code>ccai9012/token.yaml</code> (configurable via env var <code>CCAI9012_TOKEN_YAML</code>).
+- If missing/invalid, falls back to environment variables.
+- If still missing, optionally prompts the user via <code>getpass.getpass</code>.
+- On success, sets the corresponding environment variable for the current session.</p>
+<p>Notes
+- This module is intentionally lightweight and avoids network calls.
+- It never validates whether a token works remotely; "invalid" here means empty/placeholder.</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="ccai9012.token_utils.get_token"><code class="name flex">
+<span>def <span class="ident">get_token</span></span>(<span>*,<br>env_var: str,<br>yaml_key: Optional[str] = None,<br>prompt: Optional[str] = None,<br>allow_prompt: bool = True,<br>token_yaml_path: Optional[str | os.PathLike[str]] = None) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_token(
+    *,
+    env_var: str,
+    yaml_key: Optional[str] = None,
+    prompt: Optional[str] = None,
+    allow_prompt: bool = True,
+    token_yaml_path: Optional[str | os.PathLike[str]] = None,
+) -&gt; str:
+    &#34;&#34;&#34;Resolve a secret token with precedence: YAML -&gt; env -&gt; prompt.
+
+    Args:
+        env_var: Environment variable name to read/set.
+        yaml_key: Dotted key inside token.yaml. If None, defaults to `env.&lt;env_var&gt;`.
+        prompt: Prompt text for manual entry. Defaults to &#34;Enter your {env_var}: &#34;.
+        allow_prompt: If False, never prompts and raises ValueError if token is missing.
+        token_yaml_path: Optional override path. If None, uses env var
+            `CCAI9012_TOKEN_YAML` then defaults to `ccai9012/token.yaml`.
+
+    Returns:
+        Token string.
+
+    Raises:
+        ValueError: if token cannot be resolved and prompting is disabled.
+    &#34;&#34;&#34;
+
+    yaml_key = yaml_key or f&#34;env.{env_var}&#34;
+    prompt = prompt or f&#34;Enter your {env_var}: &#34;
+
+    # 1) YAML
+    path = Path(
+        token_yaml_path
+        or os.getenv(&#34;CCAI9012_TOKEN_YAML&#34;)
+        or str(_DEFAULT_TOKEN_YAML_REL)
+    )
+    token: Optional[str] = None
+    try:
+        data = _load_yaml(path)
+        token = _get_by_dotted_path(data, yaml_key)
+    except FileNotFoundError:
+        token = None
+
+    if not _is_invalid_secret(token):
+        os.environ[env_var] = token.strip()  # keep session compatibility
+        return token.strip()
+
+    # 2) Env var
+    token = os.getenv(env_var)
+    if not _is_invalid_secret(token):
+        os.environ[env_var] = token.strip()
+        return token.strip()
+
+    # 3) Prompt
+    if allow_prompt:
+        token = getpass.getpass(prompt)
+        if _is_invalid_secret(token):
+            raise ValueError(f&#34;A valid value for {env_var} was not provided.&#34;)
+        os.environ[env_var] = token.strip()
+        return token.strip()
+
+    raise ValueError(
+        f&#34;Missing {env_var}. Set it in environment or in token.yaml key &#39;{yaml_key}&#39;.&#34;
+    )</code></pre>
+</details>
+<div class="desc"><p>Resolve a secret token with precedence: YAML -&gt; env -&gt; prompt.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>env_var</code></strong></dt>
+<dd>Environment variable name to read/set.</dd>
+<dt><strong><code>yaml_key</code></strong></dt>
+<dd>Dotted key inside token.yaml. If None, defaults to <code>env.&lt;env_var&gt;</code>.</dd>
+<dt><strong><code>prompt</code></strong></dt>
+<dd>Prompt text for manual entry. Defaults to "Enter your {env_var}: ".</dd>
+<dt><strong><code>allow_prompt</code></strong></dt>
+<dd>If False, never prompts and raises ValueError if token is missing.</dd>
+<dt><strong><code>token_yaml_path</code></strong></dt>
+<dd>Optional override path. If None, uses env var
+<code>CCAI9012_TOKEN_YAML</code> then defaults to <code>ccai9012/token.yaml</code>.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>Token string.</p>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>if token cannot be resolved and prompting is disabled.</dd>
+</dl></div>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+    </main>
+  </div>
+</body>
+</html>
+<!-- END PDOC WRAPPER -->

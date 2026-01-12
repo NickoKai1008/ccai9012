@@ -3,7 +3,7 @@
 This document provides detailed information about all five starter kit modules available for your final projects. Each module includes comprehensive components, example use cases, and required packages.
 
 <p align="center">
-  <img src="../../figs/flowchart/sk_overview.drawio.png" width="1100"><br>
+  <img src="../figs/flowchart/sk_overview.drawio.png" width="1100"><br>
   <em> Starter Kits Overview
 </em>
 </p>
@@ -41,3 +41,13 @@ Computer vision: detection, segmentation, tracking, and visual analytics.
 Bias detection, fairness evaluation, and interpretability tooling.
 
 [Open Module →](m5_bias.html)
+
+---
+
+## Getting Started
+
+1. **Choose your module** based on your interests and project goals
+2. **Review the use cases** to understand potential applications
+3. **Access the starter code** in the corresponding `starter_kits/` directory
+4. **Download the datasets** from the provided sources
+5. **Follow the code examples** to understand the implementation approach

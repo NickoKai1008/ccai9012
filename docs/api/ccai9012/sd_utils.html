@@ -83,11 +83,8 @@ images = client.generate_images("a photo of a cat", num_images=2)</p>
     Returns:
         str: The Hugging Face API key.
     &#34;&#34;&#34;
-    api_key = os.getenv(env_var)
-    if not api_key:
-        api_key = getpass.getpass(f&#34;Enter your {env_var}: &#34;)
-        os.environ[env_var] = api_key
-    return api_key</code></pre>
+    # Prefer `ccai9012/token.yaml` (key: env.&lt;ENV_VAR&gt;), then env vars, then prompt.
+    return get_token(env_var=env_var, yaml_key=f&#34;env.{env_var}&#34;, prompt=f&#34;Enter your {env_var}: &#34;)</code></pre>
 </details>
 <div class="desc"><p>Get Hugging Face API key from environment variables or prompt user securely.</p>
 <p>This function first attempts to retrieve the API key from the specified environment variable.

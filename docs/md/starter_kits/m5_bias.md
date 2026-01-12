@@ -27,14 +27,3 @@
 
 **Required Packages:** Fairlearn, SHAP, pandas, scikit-learn, transformers
 
----
-
-## Getting Started
-
-1. **Choose your module** based on your interests and project goals
-2. **Review the use cases** to understand potential applications
-3. **Access the starter code** in the corresponding `starter_kits/` directory
-4. **Download the datasets** from the provided sources
-5. **Follow the code examples** to understand the implementation approach
-
-For technical support and detailed API documentation, refer to the main [README.md](../README.md) and the [ccai9012 library documentation](ccai9012/index.html).

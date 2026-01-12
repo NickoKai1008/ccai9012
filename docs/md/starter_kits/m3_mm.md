@@ -1,6 +1,6 @@
 # Multimodal Reasoning
 
-**Related API:** [`ccai9012.multi_modal_utils`](../../html/api/ccai9012/multi_modal_utils.html) · [`ccai9012.svi_utils`](../../html/api/ccai9012/svi_utils.html) · [`ccai9012.viz_utils`](../../html/api/ccai9012/viz_utils.html)
+**Related API:** [`ccai9012.multi_modal_utils`](../api/ccai9012/multi_modal_utils.html) · [`ccai9012.svi_utils`](../api/ccai9012/svi_utils.html) · [`ccai9012.viz_utils`](../api/ccai9012/viz_utils.html)
 
 ### Overview
 **Category:** Visual-Language Reasoning
@@ -25,8 +25,8 @@
 - Parse images
 
 <p align="center">
-  <img src="../../figs/building_exterior_001.png" width="400"><br>
-  <img src="../../figs/SCR-20251218-lxrc.png" width="600"><br>
+  <img src="../figs/building_exterior_001.png" width="400"><br>
+  <img src="../figs/SCR-20251218-lxrc.png" width="600"><br>
   <em>Using BLIP to identify the facade material from the images generated from StableDiffusion.</em>
 </p>
 
@@ -40,7 +40,7 @@
 - Source: Google Map API
 - 
 <p align="center">
-  <img src="../../figs/SCR-20251218-lvlc.jpeg" width="400"><br>
+  <img src="../figs/SCR-20251218-lvlc.jpeg" width="400"><br>
   <em>Using CLIP to identify the historical status of the urban block.</em>
 </p>
 ---
