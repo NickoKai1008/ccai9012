@@ -69,7 +69,6 @@
           "href": "starter_kits/m1_gan.html",
           "module": {
             "number": 1,
-            "filename": "m1_gan.html",
             "page_title": "Module 1 - Traditional Generative ML",
             "index_summary": "Traditional generative ML for synthetic data generation and prediction."
           }
@@ -82,7 +81,6 @@
           "href": "starter_kits/m2_llm.html",
           "module": {
             "number": 2,
-            "filename": "m2_llm.html",
             "page_title": "Module 2 - LLM for Structuring Information",
             "index_summary": "LLMs to structure unstructured text into analyzable formats."
           }
@@ -95,7 +93,6 @@
           "href": "starter_kits/m3_mm.html",
           "module": {
             "number": 3,
-            "filename": "m3_mm.html",
             "page_title": "Module 3 - Multimodal Reasoning",
             "index_summary": "Multimodal (vision-language) reasoning over images and text."
           }
@@ -108,7 +105,6 @@
           "href": "starter_kits/m4_cv.html",
           "module": {
             "number": 4,
-            "filename": "m4_cv.html",
             "page_title": "Module 4 - CV Models",
             "index_summary": "Computer vision: detection, segmentation, tracking, and visual analytics."
           }
@@ -121,7 +117,6 @@
           "href": "starter_kits/m5_bias.html",
           "module": {
             "number": 5,
-            "filename": "m5_bias.html",
             "page_title": "Module 5 - Bias Detection & Interpretability",
             "index_summary": "Bias detection, fairness evaluation, and interpretability tooling."
           }
@@ -168,10 +163,5 @@
         "button": "View API Docs →"
       }
     }
-  ],
-  "starter_kits": {
-    "source": "starter_kits.md",
-    "output_dir": "starter_kits",
-    "index_output": "starter_kits/index.html"
-  }
+  ]
 }

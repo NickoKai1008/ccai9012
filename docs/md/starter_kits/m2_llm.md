@@ -1,6 +1,6 @@
 # LLM for Structuring Information
 
-**Related API:** [`ccai9012.llm_utils`](api/llm_utils.html) · [`ccai9012.viz_utils`](api/viz_utils.html)
+**Related API:** [`ccai9012.llm_utils`](../../html/api/ccai9012/llm_utils.html) · [`ccai9012.viz_utils`](../../html/api/ccai9012/viz_utils.html)
 
 ### Overview
 **Category:** Unstructured Text Analysis & Knowledge Structuring
@@ -36,7 +36,7 @@
 **Required Packages:** LangChain, DeepSeek, transformers, pandas, json
 
 <p align="center">
-  <img src="figs/yelp.png" width="400"><br>
+  <img src="../../figs/yelp.png" width="400"><br>
   <em>Yelp Review heatmap.</em>
 </p>
 
@@ -51,7 +51,7 @@
 - Source: https://insideairbnb.com/get-the-data/
 
 <p align="center">
-  <img src="figs/wordcloud.png" width="400"><br>
+  <img src="../../figs/wordcloud.png" width="400"><br>
   <em>Airbnb Review keywords wordcloud.</em>
 </p>
 

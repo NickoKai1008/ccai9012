@@ -1,6 +1,6 @@
 # Traditional Generative ML
 
-**Related API:** [`ccai9012.gan_utils`](api/gan_utils.html)
+**Related API:** [`ccai9012.gan_utils`](../../html/api/ccai9012/gan_utils.html)
 
 ### Overview
 **Category:** Synthetic Data Generation & Prediction
@@ -12,7 +12,7 @@
 - Text2Image Prompt Interface
 
 <p align="center">
-  <img src="figs/SCR-20251218-lfxu.jpeg" width="600"><br>
+  <img src="../../figs/SCR-20251218-lfxu.jpeg" width="600"><br>
   <em>Zhu, J.-Y., Park, T., Isola, P., Efros, A.A., 2020. Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks. https://doi.org/10.48550/arXiv.1703.10593
 </em>
 </p>
@@ -25,7 +25,7 @@
 ### Code Example: Building Profile Layout Generation from Road Network
 
 <p align="center">
-  <img src="figs/SCR-20251218-kslf.png" width="600"><br>
+  <img src="../../figs/SCR-20251218-kslf.png" width="600"><br>
   <em>Wu, A.N., Biljecki, F., 2021. GANmapper: geographical data translation [WWW Document]. arXiv.org. https://doi.org/10.1080/13658816.2022.2041643
 </em>
 </p>

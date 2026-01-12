@@ -15,7 +15,7 @@ First, install Anaconda, a Python data science platform that includes necessary 
    - **Linux**: Download the .sh installer
 
 <p align="center">
-  <img src="figs/install/SCR-20251218-moef.png" width="600"><br>
+  <img src="../figs/install/SCR-20251218-moef.png" width="600"><br>
   <em>Choose the Anaconda installation package according to your system</em>
 </p>
 
@@ -45,7 +45,7 @@ conda --version
 You should see the conda version number displayed, confirming installation.
 
 <p align="center">
-  <img src="figs/install/SCR-20251218-mpki.png" width="600"><br>
+  <img src="../figs/install/SCR-20251218-mpki.png" width="600"><br>
   <em>Anaconda installation confirmation.</em>
 </p>
 
@@ -68,7 +68,7 @@ conda env create -f environment.yml
 ```
 
 <p align="center">
-  <img src="figs/install/SCR-20251218-mxmc.png" width="600"><br>
+  <img src="../figs/install/SCR-20251218-mxmc.png" width="600"><br>
   <em>After install the environment. If you use the default configuration, the name will display as "ccai9012". </em>
 </p>
 
@@ -102,7 +102,7 @@ conda activate ccai9012 # ensuring you're in the project directory
 Your command prompt should now show `(ccai9012)` at the beginning of the line, indicating the environment is active.
 
 <p align="center">
-  <img src="figs/install/SCR-20251218-myst.png" width="600"><br>
+  <img src="../figs/install/SCR-20251218-myst.png" width="600"><br>
   <em>Make sure you are in the project directory (displayed in the red box). </em>
 </p>
 
@@ -118,7 +118,7 @@ pip install -e .
 This installs the ccai9012 utilities as a package, allowing you to `import ccai9012` from anywhere.
 
 <p align="center">
-  <img src="figs/install/SCR-20251218-mzpj.png" width="600"><br>
+  <img src="../figs/install/SCR-20251218-mzpj.png" width="600"><br>
   <em>After installing package. </em>
 </p>
 

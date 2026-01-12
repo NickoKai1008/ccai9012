@@ -1,6 +1,5 @@
 # Bias Detection & Interpretability
 
-[//]: # (**Related API:** [`ccai9012.nn_utils`]&#40;api/nn_utils.html&#41;)
 
 ### Overview
 **Category:** Bias Detection
