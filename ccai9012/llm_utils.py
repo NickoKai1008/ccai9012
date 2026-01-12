@@ -29,8 +29,7 @@ Usage:
     run_qa_chain("What does the document say about climate change?", retriever, llm)
 """
 
-import os
-import getpass
+# Remove unused imports after centralizing token retrieval
 from typing import Optional
 from langchain_deepseek import ChatDeepSeek
 
@@ -38,6 +37,7 @@ import json
 import time
 from tqdm import tqdm
 import pandas as pd
+from .token_utils import get_token
 
 
 # ==========================
@@ -64,11 +64,8 @@ def get_deepseek_api_key(env_var: str = "DEEPSEEK_API_KEY") -> str:
         >>> # Or specify a custom environment variable
         >>> api_key = get_deepseek_api_key("MY_CUSTOM_DEEPSEEK_KEY")
     """
-    api_key = os.getenv(env_var)
-    if not api_key:
-        api_key = getpass.getpass(f"Enter your {env_var}: ")
-        os.environ[env_var] = api_key
-    return api_key
+    # Prefer `ccai9012/token.yaml` (key: env.<ENV_VAR>), then env vars, then prompt.
+    return get_token(env_var=env_var, yaml_key=f"env.{env_var}", prompt=f"Enter your {env_var}: ")
 
 
 def initialize_llm(

@@ -6,8 +6,8 @@ __pycache__/
 
 data/
 models/
-tmp/
-tmp_2/
+tests/
+
 docs/figs/flowchart/*.xml.bkp
 docs/figs/flowchart/*.xml
 docs/md/weekly_syllabus.md

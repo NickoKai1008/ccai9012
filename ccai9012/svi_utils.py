@@ -20,13 +20,14 @@ the composition of street-level imagery through semantic segmentation.
 import os
 import numpy as np
 import torch
-import getpass
 import requests
 from io import BytesIO
 from PIL import Image
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
-from typing import Optional, Tuple
+from typing import Optional
+
+from .token_utils import get_token
 
 CITYSCAPES_CLASSES = [
     "road", "sidewalk", "building", "wall", "fence", "pole", "traffic light",
@@ -68,9 +69,12 @@ class GoogleSVIDownloader:
             save_dir (str, optional): Directory to save downloaded images. Defaults to "images".
         """
         if api_key is None:
-            api_key = os.getenv("GOOGLEMAP_API_KEY")
-            if api_key is None:
-                api_key = getpass.getpass("Enter your Google Map API key: ")
+            # Prefer `ccai9012/token.yaml` (key: env.GOOGLEMAP_API_KEY), then env vars, then prompt.
+            api_key = get_token(
+                env_var="GOOGLEMAP_API_KEY",
+                yaml_key="env.GOOGLEMAP_API_KEY",
+                prompt="Enter your Google Map API key: ",
+            )
         self.api_key = api_key
         self.save_dir = save_dir
         os.makedirs(self.save_dir, exist_ok=True)

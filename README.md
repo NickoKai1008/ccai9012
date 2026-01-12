@@ -89,6 +89,10 @@ conda activate ccai9012
 python test_environment.py
 ```
 
+### 5. Set up the API tokens
+Please fill in the `ccai9012/token.yaml` with the API token you received from the course staff or your own token.
+
+
 ## Support & Feedback
 
 For questions or suggestions:

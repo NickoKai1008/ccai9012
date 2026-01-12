@@ -22,11 +22,12 @@ Usage:
 """
 
 import os
-import getpass
 from huggingface_hub import InferenceClient
 from diffusers import StableDiffusionPipeline
 import torch
 from IPython.display import display
+
+from .token_utils import get_token
 
 
 def get_hf_api_key(env_var: str = "HUGGINGFACE_API_KEY") -> str:
@@ -44,11 +45,8 @@ def get_hf_api_key(env_var: str = "HUGGINGFACE_API_KEY") -> str:
     Returns:
         str: The Hugging Face API key.
     """
-    api_key = os.getenv(env_var)
-    if not api_key:
-        api_key = getpass.getpass(f"Enter your {env_var}: ")
-        os.environ[env_var] = api_key
-    return api_key
+    # Prefer `ccai9012/token.yaml` (key: env.<ENV_VAR>), then env vars, then prompt.
+    return get_token(env_var=env_var, yaml_key=f"env.{env_var}", prompt=f"Enter your {env_var}: ")
 
 
 class SDClient:
