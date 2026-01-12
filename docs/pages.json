@@ -4,6 +4,7 @@
     "name": "CCAI9012",
     "title_prefix": "CCAI9012 - ",
     "css": {
+      "path": "docs-style.css",
       "top_level_href": "docs-style.css",
       "subdir_href": "../docs-style.css"
     }
@@ -49,7 +50,7 @@
       "key": "starter",
       "label": "Starter Kits",
       "title": "Starter Kits",
-      "source": "starter_kits.md",
+      "source": "starter_kits/index.md",
       "output": "starter_kits/index.html",
       "nav_children_class": "sub-item",
       "home_card": {
@@ -63,6 +64,8 @@
         {
           "key": "m1",
           "label": "Module 1: Traditional Generative ML",
+          "source": "starter_kits/m1_gan.md",
+          "output": "starter_kits/m1_gan.html",
           "href": "starter_kits/m1_gan.html",
           "module": {
             "number": 1,
@@ -74,6 +77,8 @@
         {
           "key": "m2",
           "label": "Module 2: LLM for Structuring Information",
+          "source": "starter_kits/m2_llm.md",
+          "output": "starter_kits/m2_llm.html",
           "href": "starter_kits/m2_llm.html",
           "module": {
             "number": 2,
@@ -85,6 +90,8 @@
         {
           "key": "m3",
           "label": "Module 3: Multimodal Reasoning",
+          "source": "starter_kits/m3_mm.md",
+          "output": "starter_kits/m3_mm.html",
           "href": "starter_kits/m3_mm.html",
           "module": {
             "number": 3,
@@ -96,6 +103,8 @@
         {
           "key": "m4",
           "label": "Module 4: CV Models",
+          "source": "starter_kits/m4_cv.md",
+          "output": "starter_kits/m4_cv.html",
           "href": "starter_kits/m4_cv.html",
           "module": {
             "number": 4,
@@ -107,6 +116,8 @@
         {
           "key": "m5",
           "label": "Module 5: Bias & Interpretability",
+          "source": "starter_kits/m5_bias.md",
+          "output": "starter_kits/m5_bias.html",
           "href": "starter_kits/m5_bias.html",
           "module": {
             "number": 5,

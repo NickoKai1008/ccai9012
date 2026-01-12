@@ -4,12 +4,15 @@ Simple script to convert markdown files to HTML with consistent styling.
 Usage: python md_to_html.py [markdown_file]
 Or run without arguments to convert all markdown files in docs/
 
+Docs structure (new):
+- Markdown sources live under docs/md/
+- Generated HTML lives under docs/html/
+- Assets (figs/, docs-style.css, api/) currently remain under docs/ (legacy) unless configured otherwise.
+
 Extra behavior:
-- When converting docs/starter_kits.md, also generates per-module subpages under
-  docs/starter_kits/ (index.html + m1_gan.html ... m5_bias.html) by splitting
-  the markdown on "## Module X:" headings.
-- Rewrites relative image paths so they work from subpages.
-- Optionally copies referenced local images into docs/starter_kits/.
+- When converting the Starter Kits source, can generate per-module starter kit pages.
+  In the new layout, this means generating markdown pages under docs/md/starter_kits/
+  (index.md + m1_gan.md ... m5_bias.md) so they correspond 1:1 with HTML outputs.
 
 Configuration:
 - Single source of truth: docs/pages.json
@@ -29,6 +32,94 @@ import json
 
 # NOTE: The docs generator uses docs/pages.json only.
 # (Legacy config.yaml is no longer used.)
+
+def _ensure_dirs(*, docs_dir: Path) -> tuple[Path, Path]:
+    """Return (md_root, html_root), creating them if missing."""
+    md_root = docs_dir / "md"
+    html_root = docs_dir / "html"
+    md_root.mkdir(parents=True, exist_ok=True)
+    html_root.mkdir(parents=True, exist_ok=True)
+    return md_root, html_root
+
+
+def _rel_to_root(p: Path, root: Path) -> str:
+    """Relative path from root using POSIX separators."""
+    return p.resolve().relative_to(root.resolve()).as_posix()
+
+
+def _base_href_for_output(*, output_path: Path, html_root: Path) -> str:
+    """Compute base href prefix to reach html_root from output_path.parent."""
+    rel_parent = output_path.parent.resolve().relative_to(html_root.resolve())
+    depth = len(rel_parent.parts)
+    return "../" * depth
+
+
+def _css_href_for_output(*, cfg: dict, output_path: Path, html_root: Path, docs_dir: Path) -> str:
+    """Compute css href for output page.
+
+    Supports both:
+      - site.css.path == "docs-style.css" (preferred; relative to html_root)
+      - legacy site.css.top_level_href/subdir_href (relative to docs root)
+    """
+    site_css = (cfg.get("site") or {}).get("css") or {}
+
+    css_path = site_css.get("path")
+    if isinstance(css_path, str) and css_path.strip():
+        return _base_href_for_output(output_path=output_path, html_root=html_root) + css_path.strip()
+
+    legacy = site_css.get("subdir_href") if output_path.parent != html_root else site_css.get("top_level_href")
+    if not isinstance(legacy, str) or not legacy:
+        legacy = "docs-style.css"
+
+    legacy_abs = (docs_dir / legacy).resolve()
+    try:
+        rel = os.path.relpath(legacy_abs, output_path.parent.resolve())
+    except ValueError:
+        rel = str(legacy_abs)
+    return rel.replace(os.sep, "/")
+
+
+def _rewrite_relative_links_in_markdown(md_text: str, *, from_dir: Path, to_dir: Path, docs_dir: Path, html_root: Path):
+    """Rewrite markdown/HTML links that assume docs-root locations.
+
+    We want authoring convenience in docs/md/*.
+    Today, docs/api and docs/figs are still under docs/ (legacy), so links like:
+      - api/gan_utils.html
+      - figs/img.png
+    must be rewritten to correct relative paths from the output html location.
+
+    Notes:
+    - Images are also handled by _rewrite_relative_asset_paths; this mainly targets href links.
+    """
+
+    def _rewrite_href(path_str: str) -> str:
+        path_str = path_str.strip()
+        if ("://" in path_str) or path_str.startswith("data:") or path_str.startswith("/"):
+            return path_str
+        if path_str.startswith("#"):
+            return path_str
+
+        if path_str.startswith("api/") or path_str.startswith("figs/"):
+            src_abs = (docs_dir / path_str).resolve()
+            try:
+                rel = os.path.relpath(src_abs, to_dir)
+            except ValueError:
+                rel = str(src_abs)
+            return rel.replace(os.sep, "/")
+
+        return path_str
+
+    md_text = re.sub(
+        r"(\[[^]]*]\()(.*?)(\))",
+        lambda m: f"{m.group(1)}{_rewrite_href(m.group(2))}{m.group(3)}",
+        md_text,
+    )
+    md_text = re.sub(
+        r"(href=[\"'])([^\"']+)([\"'])",
+        lambda m: f"{m.group(1)}{_rewrite_href(m.group(2))}{m.group(3)}",
+        md_text,
+    )
+    return md_text
 
 # ----------------------------
 # Config loading / validation
@@ -141,24 +232,28 @@ def _flatten_pages_tree(cfg: dict) -> list[dict]:
 
 
 def _pages_by_source(cfg: dict) -> dict[str, dict]:
-    """Build mapping: markdown source filename -> page config used for conversion."""
+    """Build mapping: markdown source relative path -> page config used for conversion."""
     out: dict[str, dict] = {}
     for entry in _flatten_pages_tree(cfg):
         node = entry["node"]
         source = node.get("source")
         if not isinstance(source, str):
             continue
-        if source in out:
-            raise ValueError(f"docs/pages.json: duplicated source in pages tree: {source}")
+
+        # Normalize to POSIX-style relative paths (as used in JSON)
+        source_key = Path(source).as_posix()
+
+        if source_key in out:
+            raise ValueError(f"docs/pages.json: duplicated source in pages tree: {source_key}")
 
         output = node.get("output")
         if not isinstance(output, str) or not output:
             # default output: replace .md with .html at docs root
-            output = Path(source).with_suffix(".html").name
+            output = Path(source_key).with_suffix(".html").as_posix()
 
-        out[source] = {
-            "title": node.get("title") or Path(source).stem.replace("_", " ").title(),
-            "output": output,
+        out[source_key] = {
+            "title": node.get("title") or Path(source_key).stem.replace("_", " ").title(),
+            "output": Path(output).as_posix(),
             "nav_key": node.get("key"),
         }
 
@@ -348,8 +443,16 @@ _IMG_SRC_RE = re.compile(r"(<img\s+[^>]*src=[\"'])([^\"']+)([\"'][^>]*>)", re.IG
 _MD_IMG_RE = re.compile(r"(!\[[^]]*]\()([^)]*)(\))")
 
 
-def _rewrite_relative_asset_paths(md_text: str, *, from_dir: Path, to_dir: Path):
-    """Rewrite relative image src/hrefs in markdown so they remain correct after moving."""
+_DEF_DOCS_ROOT_ASSET_PREFIXES = ("figs/", "api/")
+
+
+def _rewrite_relative_asset_paths(md_text: str, *, from_dir: Path, to_dir: Path, docs_dir: Path | None = None):
+    """Rewrite relative image src/hrefs in markdown so they remain correct after moving.
+
+    Special handling:
+    - Paths starting with 'figs/' (and optionally 'api/') are treated as docs-root assets
+      (docs/figs, docs/api) rather than relative to the markdown file directory.
+    """
 
     def _rewrite(path_str: str) -> str:
         path_str = path_str.strip()
@@ -361,17 +464,19 @@ def _rewrite_relative_asset_paths(md_text: str, *, from_dir: Path, to_dir: Path)
             # already relative upwards; leave as-is
             return path_str
 
-        src_abs = (from_dir / path_str).resolve()
+        # Docs-root assets
+        if docs_dir is not None and any(path_str.startswith(p) for p in _DEF_DOCS_ROOT_ASSET_PREFIXES):
+            src_abs = (docs_dir / path_str).resolve()
+        else:
+            src_abs = (from_dir / path_str).resolve()
+
         try:
             rel = os.path.relpath(src_abs, to_dir)
         except ValueError:
-            # different drives etc.
             rel = str(src_abs)
         return rel.replace(os.sep, "/")
 
-    # HTML <img src>
     md_text = _IMG_SRC_RE.sub(lambda m: f"{m.group(1)}{_rewrite(m.group(2))}{m.group(3)}", md_text)
-    # Markdown images ![]()
     md_text = _MD_IMG_RE.sub(lambda m: f"{m.group(1)}{_rewrite(m.group(2))}{m.group(3)}", md_text)
     return md_text
 
@@ -427,81 +532,26 @@ def _split_starter_kits_modules(md_text: str):
     return modules
 
 
-def _generate_starter_kits_subpages(starter_md_path: Path, *, cfg: dict):
-    docs_dir = starter_md_path.parent
-    starter_cfg = cfg.get("starter_kits") or {}
-    out_dir = docs_dir / (starter_cfg.get("output_dir") or "starter_kits")
-    out_dir.mkdir(parents=True, exist_ok=True)
+# NOTE: Legacy starter_kits HTML subpage generator is no longer used in the new md/html layout.
+# We keep starter_kits splitting utilities and generate markdown pages instead.
 
-    md_text = starter_md_path.read_text(encoding="utf-8")
-    modules = _split_starter_kits_modules(md_text)
-    if not modules:
-        print("Warning: No '## Module X:' sections found; skipping starter_kits subpages", flush=True)
-        return
-
-    module_cfgs = _starter_module_config(cfg)
-    num_to_cfg = {int(m["number"]): m for m in module_cfgs if isinstance(m.get("number"), int) or isinstance(m.get("number"), bool) is False}
-
-    # From docs/ to docs/starter_kits/
-    from_dir = docs_dir
-    to_dir = out_dir
-
-    def _rewrite_api_links_for_subpages(s: str) -> str:
-        """On subpages (docs/starter_kits/*.html), links like api/xxx.html must become ../api/xxx.html."""
-        # Markdown links: [text](api/xxx.html)
-        s = re.sub(r"(\()api/", r"\1../api/", s)
-        # Raw HTML links: href="api/xxx.html"
-        s = re.sub(r"(href=[\"'])api/", r"\1../api/", s)
-        return s
-
-    for num, module_title, module_block in modules:
-        mcfg = num_to_cfg.get(num)
-        if not mcfg:
-            continue
-
-        # Make module page content self-contained: keep heading as H1
-        module_md = re.sub(r"^##\s+Module\s+\d+\s*:\s*", "# ", module_block, flags=re.MULTILINE)
-
-        # Fix links that must point to sibling ../api/ from docs/starter_kits/*.
-        module_md = _rewrite_api_links_for_subpages(module_md)
-
-        # Ensure images work from docs/starter_kits/
-        module_md = _rewrite_relative_asset_paths(module_md, from_dir=from_dir, to_dir=to_dir)
-
-        # Copy local images into docs/starter_kits/ as requested (keeps referenced relative paths)
-        _copy_local_assets(module_md, from_dir=from_dir, to_dir=to_dir)
-
-        html_body = _new_markdown().convert(module_md)
-
-        full_html = _render_html(
-            cfg,
-            title=mcfg.get("page_title") or f"Module {num}",
-            html_content=html_body,
-            active_key=mcfg.get("nav_key"),
-            base_href="../",
-            css_href=((cfg.get("site") or {}).get("css") or {}).get("subdir_href") or "../docs-style.css",
-        )
-
-        filename = mcfg.get("filename") or f"module_{num}.html"
-        (out_dir / filename).write_text(full_html, encoding="utf-8")
-        print(f"✓ Generated subpage: starter_kits/{filename}", flush=True)
+# (Deleted) def _generate_starter_kits_subpages(...)
 
 
 def _starter_kits_index_landing_md(md_text: str, *, cfg: dict) -> str:
-    """Generate a landing page markdown for docs/starter_kits/index.html.
+    """Generate a landing page markdown for starter_kits/index.
 
-    Requirement:
-    - Include the content before "## Module 1" from the source markdown at the top
-      (this includes images / HTML blocks).
-    - Then show only one-line intro per module + a button/link to the module subpage.
-    - No detailed per-module content on the index page.
+    Why previously it looked "HTML style":
+    - We used raw <div>/<style> cards to match the site's CSS buttons without extra markdown extensions.
 
-    We keep the title from the source markdown (if present), then render a simple list.
+    New behavior:
+    - Keep it as pure Markdown (plus existing preface HTML blocks/images from the legacy source),
+      so the md files look like md and stay editable.
+    - Link targets remain as HTML filenames (m1_gan.html, ...) because the navigation is for the generated site.
     """
     title_match = re.search(r"^#\s+(.+?)\s*$", md_text, flags=re.MULTILINE)
     title = title_match.group(1).strip() if title_match else "Starter Kits"
 
-    # Grab everything before Module 1 heading (if present)
     m1 = re.search(r"^##\s+Module\s+1\b", md_text, flags=re.MULTILINE)
     preface = md_text[: m1.start()].strip() if m1 else md_text.strip()
 
@@ -521,23 +571,13 @@ def _starter_kits_index_landing_md(md_text: str, *, cfg: dict) -> str:
     module_cfgs = _starter_module_config(cfg)
     num_to_cfg = {int(m["number"]): m for m in module_cfgs if "number" in m}
 
-    parts: list[str] = [
-        f"# {title}",
-        "",
-    ]
+    parts: list[str] = [f"# {title}", ""]
 
-    # Include preface (images/HTML included) at the very top.
     if preface:
-        parts.extend([preface, "", "---", ""])  # small separator before cards
+        parts.extend([preface, "", "---", ""])
 
     parts.extend([
         "Pick one module to view details and starter code.",
-        "",
-        "<style>",
-        ".module-card{border:1px solid #e5e7eb;border-radius:10px;padding:14px 16px;margin:12px 0;background:#fff}",
-        ".module-card h3{margin:0 0 6px 0}",
-        ".module-card p{margin:0 0 10px 0;color:#374151}",
-        "</style>",
         "",
     ])
 
@@ -545,18 +585,14 @@ def _starter_kits_index_landing_md(md_text: str, *, cfg: dict) -> str:
         mcfg = num_to_cfg.get(num, {})
         summary = mcfg.get("index_summary") or "Module overview."
         href = mcfg.get("filename") or "index.html"
-        parts.append(
-            "\n".join([
-                '<div class="module-card">',
-                f"  <h3>Module {num}: {module_title}</h3>",
-                f"  <p>{summary}</p>",
-                f"  <a class=\"btn\" href=\"{href}\">Open Module</a>",
-                "</div>",
-            ])
-        )
+        parts.append(f"## Module {num}: {module_title}")
+        parts.append("")
+        parts.append(summary)
+        parts.append("")
+        parts.append(f"[Open Module →]({href})")
+        parts.append("")
 
-    parts.append("")
-    return "\n".join(parts)
+    return "\n".join(parts).rstrip() + "\n"
 
 
 def _infer_module_api_mapping_from_markdown(starter_md_text: str):
@@ -592,15 +628,23 @@ def _infer_module_api_mapping_from_markdown(starter_md_text: str):
     return module_to_api_list, api_to_modules_list
 
 
-def _inject_starterkit_backlinks_into_api_pages(*, docs_dir: Path, cfg: dict):
-    """Inject backlinks into docs/api/*.html based on starter_kits.md.
+def _inject_starterkit_backlinks_into_api_pages(*, docs_dir: Path, cfg: dict, html_root: Path):
+    """Inject backlinks into docs/html/api/*.html based on starter kits source.
 
-    This avoids hardcoding the mapping: the links are derived from the markdown itself.
+    Canonical source is docs/md/starter_kits.md (if present), fallback to legacy.
     """
+    md_root, _ = _ensure_dirs(docs_dir=docs_dir)
+
     starter_cfg = cfg.get("starter_kits") or {}
-    starter_md = docs_dir / (starter_cfg.get("source") or "starter_kits.md")
-    api_dir = docs_dir / "api"
-    if not starter_md.exists() or not api_dir.exists():
+
+    starter_md_candidates = [
+        md_root / (starter_cfg.get("source") or "starter_kits.md"),
+        docs_dir / (starter_cfg.get("source") or "starter_kits.md"),
+    ]
+    starter_md = next((p for p in starter_md_candidates if p.exists()), None)
+
+    api_dir = html_root / "api"
+    if starter_md is None or not api_dir.exists():
         return
 
     md_text = starter_md.read_text(encoding="utf-8")
@@ -614,34 +658,32 @@ def _inject_starterkit_backlinks_into_api_pages(*, docs_dir: Path, cfg: dict):
         except Exception:
             continue
 
-    def build_links(module_nums: list[int]) -> str:
+    def build_links(module_nums: list[int], *, api_page_dir: Path) -> str:
         items = []
         for n in module_nums:
             fn = num_to_file.get(n) or "index.html"
-            href = f"../starter_kits/{fn}"
+            dest_abs = (html_root / "starter_kits" / fn).resolve()
+            try:
+                href = os.path.relpath(dest_abs, api_page_dir.resolve())
+            except ValueError:
+                href = str(dest_abs)
+            href = href.replace(os.sep, "/")
             items.append(f'<li><a href="{href}">Starter Kit Module {n}</a></li>')
         return "\n".join(items)
 
     def _strip_legacy_module_nav(html: str) -> str:
-        # Some API pages previously had a hardcoded top-left back button container:
-        # <div class="module-nav"> ... </div>
-        # Remove it for consistent navigation.
         return re.sub(r"\n?\s*<div class=\"module-nav\">.*?</div>\s*\n?", "\n", html, flags=re.DOTALL)
 
     def upsert_section(html: str, section_html: str) -> str:
-        """Insert or replace a small marked block inside <main id=\"content\" ...>."""
         start_mark = "<!-- STARTERKIT_BACKLINKS_START -->"
         end_mark = "<!-- STARTERKIT_BACKLINKS_END -->"
         block = f"{start_mark}\n{section_html}\n{end_mark}"
 
-        # Always remove any legacy nav blocks first.
         html = _strip_legacy_module_nav(html)
 
         if start_mark in html and end_mark in html:
             return re.sub(rf"{re.escape(start_mark)}.*?{re.escape(end_mark)}", block, html, flags=re.DOTALL)
 
-        # default insertion point: right after the intro section or header
-        # try to insert after </header> if present, else after <main ...>
         if "</header>" in html:
             return html.replace("</header>", "</header>\n" + block, 1)
 
@@ -652,7 +694,6 @@ def _inject_starterkit_backlinks_into_api_pages(*, docs_dir: Path, cfg: dict):
 
         return html + "\n" + block
 
-    # Update each api module page that is referenced from starter_kits
     for api_name, module_nums in api_to_modules.items():
         api_path = api_dir / f"{api_name}.html"
         if not api_path.exists():
@@ -664,13 +705,83 @@ def _inject_starterkit_backlinks_into_api_pages(*, docs_dir: Path, cfg: dict):
             '<section class="starterkit-backlinks" style="margin-top:1.5rem; padding:1rem; border:1px solid #e5e7eb; border-radius:10px; background:#fff">',
             '  <h2 style="margin-top:0">Related Starter Kit(s)</h2>',
             '  <ul>',
-            build_links(module_nums),
+            build_links(module_nums, api_page_dir=api_path.parent),
             '  </ul>',
             '</section>',
         ])
 
         new_html = upsert_section(html, section_html)
         api_path.write_text(new_html, encoding="utf-8")
+
+
+def _write_text(p: Path, text: str):
+    p.parent.mkdir(parents=True, exist_ok=True)
+    p.write_text(text, encoding="utf-8")
+
+
+def _generate_starter_kits_md_pages(*, docs_dir: Path, md_root: Path, cfg: dict) -> list[Path]:
+    """Generate starter_kits markdown pages under docs/md/starter_kits/.
+
+    Canonical behavior:
+    - Use docs/md/starter_kits.md as the "single source" if it exists.
+    - Otherwise, migrate from legacy docs/starter_kits.md into docs/md/starter_kits.md first.
+
+    Output:
+      docs/md/starter_kits/index.md
+      docs/md/starter_kits/m1_gan.md ...
+    """
+    starter_cfg = cfg.get("starter_kits") or {}
+    source_rel = starter_cfg.get("source") or "starter_kits.md"
+
+    canonical_source = (md_root / source_rel)
+    legacy_source = (docs_dir / source_rel)
+
+    if canonical_source.exists():
+        src_path = canonical_source
+    elif legacy_source.exists():
+        # migrate legacy -> canonical
+        canonical_source.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(legacy_source, canonical_source)
+        src_path = canonical_source
+    else:
+        return []
+
+    md_text = src_path.read_text(encoding="utf-8")
+
+    out_dir = md_root / (starter_cfg.get("output_dir") or "starter_kits")
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    created: list[Path] = []
+
+    index_md = _starter_kits_index_landing_md(md_text, cfg=cfg)
+    index_path = out_dir / "index.md"
+    _write_text(index_path, index_md)
+    created.append(index_path)
+
+    modules = _split_starter_kits_modules(md_text)
+    if not modules:
+        return created
+
+    module_cfgs = _starter_module_config(cfg)
+    num_to_cfg = {int(m["number"]): m for m in module_cfgs if "number" in m}
+
+    for num, _module_title, module_block in modules:
+        mcfg = num_to_cfg.get(num)
+        if not mcfg:
+            continue
+
+        module_md = re.sub(r"^##\s+Module\s+\d+\s*:\s*", "# ", module_block, flags=re.MULTILINE)
+        if not module_md.endswith("\n"):
+            module_md += "\n"
+
+        html_filename = mcfg.get("filename") or f"module_{num}.html"
+        md_filename = Path(html_filename).with_suffix(".md").name
+
+        module_path = out_dir / md_filename
+        _write_text(module_path, module_md)
+        created.append(module_path)
+
+    return created
 
 
 def _render_home_cards_section(cfg: dict) -> str:
@@ -791,46 +902,85 @@ def convert_md_to_html(md_file_path, output_dir=None):
     docs_dir = Path(__file__).parent
     cfg = _load_site_config(docs_dir=docs_dir)
 
+    md_root, html_root = _ensure_dirs(docs_dir=docs_dir)
+
+    # Ensure style is available under docs/html
+    _ensure_site_css_available(docs_dir=docs_dir, html_root=html_root, cfg=cfg)
+
     md_file = Path(md_file_path)
     if not md_file.exists():
         print(f"Error: File {md_file} not found", flush=True)
         return False
 
+    # Support passing either a path under docs/md or a legacy path under docs/.
+    md_file_res = md_file.resolve()
+    if not str(md_file_res).startswith(str(md_root.resolve())):
+        # Try interpreting it as relative to md_root.
+        candidate = (md_root / md_file_path).resolve()
+        if candidate.exists():
+            md_file = candidate
+        else:
+            md_file = md_file_res
+
     # Read markdown content
     md_content = md_file.read_text(encoding='utf-8')
 
-    # Get page configuration from the tree
+    # Get page configuration from the tree (lookup by relative path under md_root)
     pages_by_source = _pages_by_source(cfg)
-    config = pages_by_source.get(md_file.name)
+
+    try:
+        source_key = _rel_to_root(md_file, md_root)
+    except Exception:
+        source_key = Path(md_file.name).as_posix()
+
+    config = pages_by_source.get(source_key)
     if not config:
-        print(f"Warning: No configuration found for {md_file.name}, using defaults", flush=True)
+        print(f"Warning: No configuration found for {source_key}, using defaults", flush=True)
         title = md_file.stem.replace('_', ' ').title()
-        html_filename = md_file.stem + '.html'
+        html_rel = Path(source_key).with_suffix(".html").as_posix()
         active_key = None
     else:
         title = config['title']
-        html_filename = config['output']
+        html_rel = config['output']
         active_key = config.get('nav_key')
 
-    # Convert markdown to HTML
-    starter_source = (cfg.get("starter_kits") or {}).get("source") or "starter_kits.md"
-    if md_file.name == starter_source:
-        md_for_index = _starter_kits_index_landing_md(md_content, cfg=cfg)
-
-        # IMPORTANT: index.html lives in docs/starter_kits/, so rewrite image paths accordingly
-        # (e.g., figs/... -> ../figs/...) and copy any referenced assets.
-        out_dir = docs_dir / ((cfg.get("starter_kits") or {}).get("output_dir") or "starter_kits")
-        out_dir.mkdir(parents=True, exist_ok=True)
-
-        md_for_index = _rewrite_relative_asset_paths(md_for_index, from_dir=docs_dir, to_dir=out_dir)
-        _copy_local_assets(md_for_index, from_dir=docs_dir, to_dir=out_dir)
-
-        html_content = _new_markdown().convert(md_for_index)
+    # Determine output path
+    if output_dir:
+        output_path = Path(output_dir) / html_rel
     else:
-        html_content = _new_markdown().convert(md_content)
+        output_path = (html_root / html_rel)
+
+    # Create output directory if needed
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+
+    # Rewrite links so they work from output HTML directory
+    md_for_render = md_content
+
+    # Rewrite things that are relative to docs/ (like api/, figs/) into correct relative paths.
+    md_for_render = _rewrite_relative_links_in_markdown(
+        md_for_render,
+        from_dir=md_file.parent,
+        to_dir=output_path.parent,
+        docs_dir=docs_dir,
+        html_root=html_root,
+    )
+
+    # Rewrite images when the html lives in a different folder than md source.
+    md_for_render = _rewrite_relative_asset_paths(
+        md_for_render,
+        from_dir=md_file.parent,
+        to_dir=output_path.parent,
+        docs_dir=docs_dir,
+    )
+
+    # Copy referenced local assets into the target html directory.
+    _copy_local_assets(md_for_render, from_dir=md_file.parent, to_dir=output_path.parent)
+
+    # Convert markdown to HTML
+    html_content = _new_markdown().convert(md_for_render)
 
     # Home page: append cards section driven by pages.json
-    if md_file.name == "index.md":
+    if source_key == "index.md":
         cards_html = _render_home_cards_section(cfg)
         if cards_html:
             html_content = "\n".join([
@@ -839,71 +989,136 @@ def convert_md_to_html(md_file_path, output_dir=None):
                 cards_html,
             ]).replace('<header></header>\n', '')
 
-    # Determine output path
-    if output_dir:
-        output_path = Path(output_dir) / html_filename
-    else:
-        # Default: output under docs/ respecting any subdirectories in html_filename.
-        output_path = md_file.parent / html_filename
-
-    # Create output directory if needed
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-
-    # Pick correct relative links for top-level vs subdir pages.
-    is_in_subdir = output_path.parent != md_file.parent
-
-    site_css = (cfg.get("site") or {}).get("css") or {}
+    base_href = _base_href_for_output(output_path=output_path, html_root=html_root)
+    css_href = _css_href_for_output(cfg=cfg, output_path=output_path, html_root=html_root, docs_dir=docs_dir)
 
     full_html = _render_html(
         cfg,
         title=title,
         html_content=html_content,
         active_key=active_key,
-        base_href="../" if is_in_subdir else "",
-        css_href=site_css.get("subdir_href") if is_in_subdir else site_css.get("top_level_href"),
+        base_href=base_href,
+        css_href=css_href,
     )
 
     # Write HTML file
     output_path.write_text(full_html, encoding='utf-8')
 
-    print(f"✓ Converted: {md_file.name} → {output_path}", flush=True)
-
-    # Special: starter_kits.md -> also generate module subpages
-    if md_file.name == starter_source:
-        _generate_starter_kits_subpages(md_file, cfg=cfg)
-        # And add backlinks from API pages back to the relevant starter kits.
-        _inject_starterkit_backlinks_into_api_pages(docs_dir=md_file.parent, cfg=cfg)
+    print(f"✓ Converted: {source_key} → {output_path}", flush=True)
 
     return True
 
 
-def convert_all_docs():
-    """Convert markdown files referenced by docs/pages.json.
+def _copy_tree(src: Path, dst: Path):
+    """Copy a directory tree to dst (overwriting changed files)."""
+    if not src.exists() or not src.is_dir():
+        return
+    for p in src.rglob("*"):
+        rel = p.relative_to(src)
+        out = dst / rel
+        if p.is_dir():
+            out.mkdir(parents=True, exist_ok=True)
+        else:
+            out.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(p, out)
 
-    This keeps the website output deterministic and avoids publishing unlisted
-    markdown files (e.g., docs/README.md) unless they are explicitly added to
-    pages.json.
+
+def _migrate_api_to_html(*, docs_dir: Path, html_root: Path):
+    """Copy docs/api -> docs/html/api.
+
+    API docs are treated as static HTML produced elsewhere, so we copy them into the site root.
     """
+    src = docs_dir / "api"
+    dst = html_root / "api"
+    dst.mkdir(parents=True, exist_ok=True)
+    _copy_tree(src, dst)
+
+
+def _ensure_site_css_available(*, docs_dir: Path, html_root: Path, cfg: dict):
+    """Copy the site CSS into docs/html so all pages can reference it reliably.
+
+    After the folder refactor, our generated pages live under docs/html/.
+    So the simplest invariant is:
+      - the stylesheet must be present at docs/html/<site.css.path>
+
+    Source of truth remains docs/docs-style.css.
+    """
+    site_css = (cfg.get("site") or {}).get("css") or {}
+    css_rel = site_css.get("path") if isinstance(site_css.get("path"), str) and site_css.get("path").strip() else "docs-style.css"
+    css_rel = css_rel.strip().lstrip("/")
+
+    src = docs_dir / "docs-style.css"
+    if not src.exists():
+        # Nothing to copy.
+        return
+
+    dst = html_root / css_rel
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(src, dst)
+
+
+def _patch_api_html_css_links(*, html_root: Path, cfg: dict):
+    """Rewrite API html pages to reference the same site stylesheet.
+
+    API pages are copied as static HTML into docs/html/api.
+    We ensure they link to ../<site.css.path>.
+    """
+    site_css = (cfg.get("site") or {}).get("css") or {}
+    css_rel = site_css.get("path") if isinstance(site_css.get("path"), str) and site_css.get("path").strip() else "docs-style.css"
+    css_rel = css_rel.strip().lstrip("/")
+
+    api_dir = html_root / "api"
+    if not api_dir.exists():
+        return
+
+    target_href = "../" + css_rel
+    pat = re.compile(
+        r'(<link\s+rel=["\']stylesheet["\']\s+href=["\'])([^"\']*docs-style\.css)(["\'])',
+        re.IGNORECASE,
+    )
+
+    for p in api_dir.glob("*.html"):
+        try:
+            html = p.read_text(encoding="utf-8", errors="replace")
+        except Exception:
+            continue
+
+        if "docs-style.css" not in html:
+            continue
+
+        new_html, n = pat.subn(r"\1" + target_href + r"\3", html, count=1)
+        if n:
+            p.write_text(new_html, encoding="utf-8")
+
+
+def convert_all_docs():
+    """Convert markdown files referenced by docs/pages.json."""
     docs_dir = Path(__file__).parent
     cfg = _load_site_config(docs_dir=docs_dir)
+
+    md_root, html_root = _ensure_dirs(docs_dir=docs_dir)
+
+    # Ensure style is available under docs/html
+    _ensure_site_css_available(docs_dir=docs_dir, html_root=html_root, cfg=cfg)
+
+    # Ensure starter kits markdown pages exist
+    _generate_starter_kits_md_pages(docs_dir=docs_dir, md_root=md_root, cfg=cfg)
+
+    # move/copy API docs under the generated site root
+    _migrate_api_to_html(docs_dir=docs_dir, html_root=html_root)
+
+    # Patch API pages to point at the unified stylesheet
+    _patch_api_html_css_links(html_root=html_root, cfg=cfg)
 
     pages_by_source = _pages_by_source(cfg)
     md_files: list[Path] = []
 
     for source in pages_by_source.keys():
-        p = docs_dir / source
+        p = md_root / source
         if p.exists():
             md_files.append(p)
         else:
-            print(f"Warning: pages.json references missing markdown: {source}", flush=True)
-
-    # Also include starter_kits source if configured but not present in pages tree
-    starter_cfg = cfg.get("starter_kits") or {}
-    starter_source = starter_cfg.get("source")
-    if isinstance(starter_source, str) and starter_source:
-        p = docs_dir / starter_source
-        if p.exists() and p not in md_files:
-            md_files.append(p)
+            print(f"Warning: pages.json references missing markdown under docs/md: {source}", flush=True)
 
     if not md_files:
         print("No markdown files found from docs/pages.json", flush=True)
@@ -917,15 +1132,16 @@ def convert_all_docs():
         if convert_md_to_html(md_file):
             success_count += 1
 
+    # Update backlinks from API pages back to the relevant starter kits.
+    _inject_starterkit_backlinks_into_api_pages(docs_dir=docs_dir, cfg=cfg, html_root=html_root)
+
     print("-" * 50, flush=True)
     print(f"Converted {success_count}/{len(md_files)} files successfully", flush=True)
 
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
-        # Convert specific file
         md_file = sys.argv[1]
         convert_md_to_html(md_file)
     else:
-        # Convert all markdown files
         convert_all_docs()

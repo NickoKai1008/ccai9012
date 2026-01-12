@@ -8,6 +8,7 @@ data/
 models/
 docs/figs/flowchart/*.xml.bkp
 docs/figs/flowchart/*.xml
+docs/md/weekly_syllabus.md
 
 starter_kits/4_cv_models/webcam_yolo/video/Live Cam Iseo _ SkylineWebcams _(9_30_16_55).mp4
 weekly_scripts/week10/video/Live Cam Iseo _ SkylineWebcams _(9_30_16_55).mp4
