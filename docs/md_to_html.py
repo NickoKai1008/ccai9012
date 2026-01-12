@@ -10,6 +10,9 @@ Extra behavior:
   the markdown on "## Module X:" headings.
 - Rewrites relative image paths so they work from subpages.
 - Optionally copies referenced local images into docs/starter_kits/.
+
+Configuration:
+- Single source of truth: docs/pages.json
 """
 
 import sys
@@ -22,90 +25,244 @@ import markdown
 from markdown.extensions.tables import TableExtension
 from markdown.extensions.fenced_code import FencedCodeExtension
 
-# HTML template with navigation
+import json
+
+# NOTE: The docs generator uses docs/pages.json only.
+# (Legacy config.yaml is no longer used.)
+
+# ----------------------------
+# Config loading / validation
+# ----------------------------
+
+def _load_site_config(*, docs_dir: Path) -> dict:
+    """Load docs/pages.json.
+
+    Single source of truth:
+    - `pages` tree defines navigation structure and markdown->html conversion.
+    - Starter kits module metadata lives under the Starter Kits node's children
+      (node.module).
+    """
+    cfg_path = docs_dir / "pages.json"
+    if not cfg_path.exists():
+        raise FileNotFoundError(f"Missing config file: {cfg_path}")
+
+    try:
+        cfg = json.loads(cfg_path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as e:
+        raise ValueError(f"Invalid JSON in {cfg_path}: {e}")
+
+    if not isinstance(cfg, dict):
+        raise ValueError("docs/pages.json must be a JSON object")
+
+    if cfg.get("version") != 1:
+        raise ValueError("docs/pages.json: unsupported or missing version (expected 1)")
+
+    if "site" not in cfg:
+        raise ValueError("docs/pages.json missing required key: site")
+    if "pages" not in cfg:
+        raise ValueError("docs/pages.json missing required key: pages")
+    if not isinstance(cfg["pages"], list):
+        raise ValueError("docs/pages.json 'pages' must be a list")
+
+    # Validate the pages tree and enforce unique keys.
+    seen_keys: set[str] = set()
+
+    def validate_nodes(nodes: list[dict]):
+        for node in nodes:
+            if not isinstance(node, dict):
+                raise ValueError("docs/pages.json pages items must be objects")
+
+            key = node.get("key")
+            if not key or not isinstance(key, str):
+                raise ValueError("docs/pages.json pages node missing string 'key'")
+            if key in seen_keys:
+                raise ValueError(f"docs/pages.json pages node key is duplicated: {key}")
+            seen_keys.add(key)
+
+            href = node.get("href")
+            source = node.get("source")
+            output = node.get("output")
+
+            if href is not None:
+                if not isinstance(href, str) or href.startswith("/") or href.startswith(".."):
+                    raise ValueError(f"docs/pages.json pages[{key}].href must be a relative path under docs/: {href!r}")
+
+            if source is not None:
+                if not isinstance(source, str):
+                    raise ValueError(f"docs/pages.json pages[{key}].source must be a string")
+                if output is not None:
+                    if not isinstance(output, str) or output.startswith("/") or output.startswith(".."):
+                        raise ValueError(f"docs/pages.json pages[{key}].output must be a relative path under docs/: {output!r}")
+
+            module = node.get("module")
+            if module is not None:
+                if not isinstance(module, dict):
+                    raise ValueError(f"docs/pages.json pages[{key}].module must be an object")
+                for req in ("number", "filename", "page_title"):
+                    if req not in module:
+                        raise ValueError(f"docs/pages.json pages[{key}].module missing '{req}'")
+
+            children = node.get("children")
+            if children is not None:
+                if not isinstance(children, list):
+                    raise ValueError(f"docs/pages.json pages[{key}].children must be a list")
+                validate_nodes(children)
+
+    validate_nodes(cfg["pages"])
+
+    # Starter kits validation (optional)
+    starter = cfg.get("starter_kits")
+    if starter is not None and not isinstance(starter, dict):
+        raise ValueError("docs/pages.json starter_kits must be an object")
+
+    return cfg
+
+
+def _flatten_pages_tree(cfg: dict) -> list[dict]:
+    """Flatten the pages tree into pre-order list with level + parent information."""
+    flat: list[dict] = []
+
+    def walk(nodes: list[dict], *, level: int, parent_key: str | None, inherited_child_class: str | None):
+        for node in nodes:
+            child_class = node.get("nav_children_class") if isinstance(node.get("nav_children_class"), str) else None
+            node_child_class_for_desc = child_class or inherited_child_class
+            flat.append({
+                "node": node,
+                "level": level,
+                "parent_key": parent_key,
+                "children_class": node_child_class_for_desc,
+            })
+            children = node.get("children")
+            if isinstance(children, list) and children:
+                walk(children, level=level + 1, parent_key=node.get("key"), inherited_child_class=node_child_class_for_desc)
+
+    walk(cfg.get("pages", []), level=0, parent_key=None, inherited_child_class=None)
+    return flat
+
+
+def _pages_by_source(cfg: dict) -> dict[str, dict]:
+    """Build mapping: markdown source filename -> page config used for conversion."""
+    out: dict[str, dict] = {}
+    for entry in _flatten_pages_tree(cfg):
+        node = entry["node"]
+        source = node.get("source")
+        if not isinstance(source, str):
+            continue
+        if source in out:
+            raise ValueError(f"docs/pages.json: duplicated source in pages tree: {source}")
+
+        output = node.get("output")
+        if not isinstance(output, str) or not output:
+            # default output: replace .md with .html at docs root
+            output = Path(source).with_suffix(".html").name
+
+        out[source] = {
+            "title": node.get("title") or Path(source).stem.replace("_", " ").title(),
+            "output": output,
+            "nav_key": node.get("key"),
+        }
+
+    return out
+
+
+def _parent_active_map(cfg: dict) -> dict[str, set[str]]:
+    """Map a page key -> set of its ancestor keys (for parent highlighting)."""
+    ancestors: dict[str, set[str]] = {}
+
+    def walk(nodes: list[dict], stack: list[str]):
+        for node in nodes:
+            key = node.get("key")
+            if isinstance(key, str):
+                ancestors[key] = set(stack)
+                children = node.get("children")
+                if isinstance(children, list) and children:
+                    walk(children, stack + [key])
+
+    walk(cfg.get("pages", []), [])
+    return ancestors
+
+
+def _starter_module_config(cfg: dict) -> list[dict]:
+    """Return module configs from the Starter Kits subtree.
+
+    Expected structure:
+      pages[].key == 'starter' -> children[].module
+    """
+    starter_node = None
+    for entry in _flatten_pages_tree(cfg):
+        node = entry["node"]
+        if node.get("key") == "starter":
+            starter_node = node
+            break
+
+    if not starter_node:
+        return []
+
+    out: list[dict] = []
+    for child in starter_node.get("children", []) or []:
+        if not isinstance(child, dict):
+            continue
+        module = child.get("module")
+        if not isinstance(module, dict):
+            continue
+
+        try:
+            num = int(module.get("number"))
+        except Exception:
+            continue
+        filename = module.get("filename")
+        page_title = module.get("page_title")
+        if not isinstance(filename, str) or not filename:
+            continue
+        if not isinstance(page_title, str) or not page_title:
+            continue
+
+        out.append({
+            "number": num,
+            "nav_key": child.get("key"),
+            "filename": filename,
+            "page_title": page_title,
+            "index_summary": module.get("index_summary"),
+        })
+
+    # Stable order by module number
+    out.sort(key=lambda m: m.get("number", 0))
+    return out
+
+
+# ----------------------------
+# HTML template + rendering
+# ----------------------------
+
+# NOTE:
+# We keep the overall page structure consistent but render the sidebar items
+# from docs/pages.json.
 HTML_TEMPLATE = """<!DOCTYPE html>
-<html lang="en">
+<html lang=\"en\">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CCAI9012 - {title}</title>
-    <link rel="stylesheet" href="{css_href}">
+    <meta charset=\"UTF-8\">
+    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+    <title>{title_full}</title>
+    <link rel=\"stylesheet\" href=\"{css_href}\">
 </head>
 <body>
-    <div class="container">
-        <nav id="sidebar">
-            <div class="sidebar-header">
-                <h2>CCAI9012</h2>
+    <div class=\"container\">
+        <nav id=\"sidebar\">
+            <div class=\"sidebar-header\">
+                <h2>{site_name}</h2>
             </div>
-            <ul class="nav-menu">
-                <li><a href="{base_href}index.html"{home_active}>Home</a></li>
-                <li><a href="{base_href}timetable.html"{timetable_active}>Timetable</a></li>
-                <li><a href="{base_href}installation.html"{installation_active}>Installation Guide</a></li>
-                <li><a href="{base_href}starter_kits/index.html"{starter_active}>Starter Kits</a></li>
-                <li class="sub-item"><a href="{base_href}starter_kits/m1_gan.html"{m1_active}>Module 1: Traditional Generative ML</a></li>
-                <li class="sub-item"><a href="{base_href}starter_kits/m2_llm.html"{m2_active}>Module 2: LLM for Structuring Information</a></li>
-                <li class="sub-item"><a href="{base_href}starter_kits/m3_mm.html"{m3_active}>Module 3: Multimodal Reasoning</a></li>
-                <li class="sub-item"><a href="{base_href}starter_kits/m4_cv.html"{m4_active}>Module 4: CV Models</a></li>
-                <li class="sub-item"><a href="{base_href}starter_kits/m5_bias.html"{m5_active}>Module 5: Bias & Interpretability</a></li>
-                <li><a href="{base_href}reading_material.html"{reading_active}>Reading Materials</a></li>
-                <li><a href="{base_href}datasets.html"{datasets_active}>Datasets Reference</a></li>
-                <li><a href="{base_href}api/index.html">API Documentation</a></li>
+            <ul class=\"nav-menu\">
+{nav_items}
             </ul>
         </nav>
 
-        <main id="content">
+        <main id=\"content\">
 {content}
         </main>
     </div>
 </body>
 </html>
 """
-
-# Page titles and active states
-PAGE_CONFIG = {
-    'installation.md': {
-        'title': 'Installation Guide',
-        'html_file': 'installation.html',
-        'active': 'installation_active'
-    },
-    'starter_kits.md': {
-        'title': 'Starter Kits',
-        'html_file': 'starter_kits/index.html',
-        'active': 'starter_active'
-    },
-    'reading_material.md': {
-        'title': 'Reading Materials',
-        'html_file': 'reading_material.html',
-        'active': 'reading_active'
-    },
-    'datasets.md': {
-        'title': 'Datasets Reference',
-        'html_file': 'datasets.html',
-        'active': 'datasets_active'
-    },
-    'timetable.md': {
-        'title': 'Course Timetable',
-        'html_file': 'timetable.html',
-        'active': 'timetable_active'
-    }
-}
-
-MODULE_SUBPAGES = [
-    {"key": "m1_active", "title": "Module 1 - Traditional Generative ML", "filename": "m1_gan.html", "heading": "Module 1"},
-    {"key": "m2_active", "title": "Module 2 - LLM for Structuring Information", "filename": "m2_llm.html", "heading": "Module 2"},
-    {"key": "m3_active", "title": "Module 3 - Multimodal Reasoning", "filename": "m3_mm.html", "heading": "Module 3"},
-    {"key": "m4_active", "title": "Module 4 - CV Models", "filename": "m4_cv.html", "heading": "Module 4"},
-    {"key": "m5_active", "title": "Module 5 - Bias Detection & Interpretability", "filename": "m5_bias.html", "heading": "Module 5"},
-]
-
-# Short one-line descriptions used ONLY for docs/starter_kits/index.html
-MODULE_INDEX_SUMMARY = {
-    1: "Traditional generative ML for synthetic data generation and prediction.",
-    2: "LLMs to structure unstructured text into analyzable formats.",
-    3: "Multimodal (vision-language) reasoning over images and text.",
-    4: "Computer vision: detection, segmentation, tracking, and visual analytics.",
-    5: "Bias detection, fairness evaluation, and interpretability tooling.",
-}
 
 
 def _new_markdown():
@@ -120,37 +277,70 @@ def _new_markdown():
     ])
 
 
-def _build_nav_states(active_key: str | None):
-    nav_states = {
-        'home_active': '',
-        'installation_active': '',
-        'starter_active': '',
-        'reading_active': '',
-        'datasets_active': '',
-        'timetable_active': '',
-        'm1_active': '',
-        'm2_active': '',
-        'm3_active': '',
-        'm4_active': '',
-        'm5_active': '',
-    }
+def _nav_active_classes(cfg: dict, *, active_key: str | None) -> dict[str, str]:
+    """Compute which nav keys should have class=active.
+
+    Uses tree structure to also highlight ancestor items (e.g. Starter Kits parent
+    is highlighted when a module subpage is active).
+    """
+    active: set[str] = set()
     if active_key:
-        nav_states[active_key] = ' class="active"'
+        active.add(active_key)
 
-    # If any module subpage is active, keep the parent "Starter Kits" highlighted too.
-    if active_key and active_key.startswith('m'):
-        nav_states['starter_active'] = ' class="active"'
+    # Highlight ancestor nodes too.
+    ancestors = _parent_active_map(cfg)
+    if active_key and active_key in ancestors:
+        active |= ancestors[active_key]
 
-    return nav_states
+    return {k: ' class="active"' for k in active}
 
 
-def _render_html(title: str, html_content: str, active_key: str | None, *, base_href: str, css_href: str):
+def _render_nav_items(cfg: dict, *, base_href: str, active_key: str | None) -> str:
+    active_classes = _nav_active_classes(cfg, active_key=active_key)
+
+    lines: list[str] = []
+    for entry in _flatten_pages_tree(cfg):
+        node = entry["node"]
+        key = node.get("key")
+        label = node.get("label") or node.get("title") or key
+
+        href = node.get("href")
+        if not isinstance(href, str) or not href:
+            # If this node is a markdown-converted page, default its href to output.
+            if isinstance(node.get("output"), str) and node.get("output"):
+                href = node.get("output")
+            elif isinstance(node.get("source"), str) and node.get("source"):
+                href = Path(node.get("source")).with_suffix(".html").name
+            else:
+                # Non-link placeholder: skip it from nav.
+                continue
+
+        # Ensure we remain relative.
+        if href.startswith("/") or href.startswith(".."):
+            continue
+
+        li_class = None
+        if entry["level"] > 0:
+            li_class = entry.get("children_class")
+        li_attr = f' class="{li_class}"' if isinstance(li_class, str) and li_class else ""
+
+        a_active = active_classes.get(key, "") if isinstance(key, str) else ""
+        lines.append(f"                <li{li_attr}><a href=\"{base_href}{href}\"{a_active}>{label}</a></li>")
+
+    return "\n".join(lines)
+
+
+def _render_html(cfg: dict, *, title: str, html_content: str, active_key: str | None, base_href: str, css_href: str):
+    site = cfg.get("site") or {}
+    site_name = site.get("name") or "CCAI9012"
+    title_prefix = site.get("title_prefix") or ""
+
     return HTML_TEMPLATE.format(
-        title=title,
+        site_name=site_name,
+        title_full=f"{title_prefix}{title}" if title_prefix else title,
         content=html_content,
-        base_href=base_href,
+        nav_items=_render_nav_items(cfg, base_href=base_href, active_key=active_key),
         css_href=css_href,
-        **_build_nav_states(active_key)
     )
 
 
@@ -237,16 +427,20 @@ def _split_starter_kits_modules(md_text: str):
     return modules
 
 
-def _generate_starter_kits_subpages(starter_md_path: Path):
+def _generate_starter_kits_subpages(starter_md_path: Path, *, cfg: dict):
     docs_dir = starter_md_path.parent
-    out_dir = docs_dir / "starter_kits"
+    starter_cfg = cfg.get("starter_kits") or {}
+    out_dir = docs_dir / (starter_cfg.get("output_dir") or "starter_kits")
     out_dir.mkdir(parents=True, exist_ok=True)
 
     md_text = starter_md_path.read_text(encoding="utf-8")
     modules = _split_starter_kits_modules(md_text)
     if not modules:
-        print("Warning: No '## Module X:' sections found; skipping starter_kits subpages")
+        print("Warning: No '## Module X:' sections found; skipping starter_kits subpages", flush=True)
         return
+
+    module_cfgs = _starter_module_config(cfg)
+    num_to_cfg = {int(m["number"]): m for m in module_cfgs if isinstance(m.get("number"), int) or isinstance(m.get("number"), bool) is False}
 
     # From docs/ to docs/starter_kits/
     from_dir = docs_dir
@@ -261,8 +455,8 @@ def _generate_starter_kits_subpages(starter_md_path: Path):
         return s
 
     for num, module_title, module_block in modules:
-        sub = next((x for x in MODULE_SUBPAGES if x["heading"] == f"Module {num}"), None)
-        if not sub:
+        mcfg = num_to_cfg.get(num)
+        if not mcfg:
             continue
 
         # Make module page content self-contained: keep heading as H1
@@ -280,18 +474,20 @@ def _generate_starter_kits_subpages(starter_md_path: Path):
         html_body = _new_markdown().convert(module_md)
 
         full_html = _render_html(
-            title=sub["title"],
+            cfg,
+            title=mcfg.get("page_title") or f"Module {num}",
             html_content=html_body,
-            active_key=sub["key"],
+            active_key=mcfg.get("nav_key"),
             base_href="../",
-            css_href="../docs-style.css",
+            css_href=((cfg.get("site") or {}).get("css") or {}).get("subdir_href") or "../docs-style.css",
         )
 
-        (out_dir / sub["filename"]).write_text(full_html, encoding="utf-8")
-        print(f"✓ Generated subpage: starter_kits/{sub['filename']}")
+        filename = mcfg.get("filename") or f"module_{num}.html"
+        (out_dir / filename).write_text(full_html, encoding="utf-8")
+        print(f"✓ Generated subpage: starter_kits/{filename}", flush=True)
 
 
-def _starter_kits_index_landing_md(md_text: str) -> str:
+def _starter_kits_index_landing_md(md_text: str, *, cfg: dict) -> str:
     """Generate a landing page markdown for docs/starter_kits/index.html.
 
     Requirement:
@@ -322,8 +518,8 @@ def _starter_kits_index_landing_md(md_text: str) -> str:
             (5, "Bias Detection & Interpretability", ""),
         ]
 
-    # Map module number -> subpage filename
-    num_to_file = {i + 1: MODULE_SUBPAGES[i]["filename"] for i in range(min(len(MODULE_SUBPAGES), 5))}
+    module_cfgs = _starter_module_config(cfg)
+    num_to_cfg = {int(m["number"]): m for m in module_cfgs if "number" in m}
 
     parts: list[str] = [
         f"# {title}",
@@ -346,8 +542,9 @@ def _starter_kits_index_landing_md(md_text: str) -> str:
     ])
 
     for num, module_title, _ in modules:
-        summary = MODULE_INDEX_SUMMARY.get(num, "Module overview.")
-        href = num_to_file.get(num, "index.html")
+        mcfg = num_to_cfg.get(num, {})
+        summary = mcfg.get("index_summary") or "Module overview."
+        href = mcfg.get("filename") or "index.html"
         parts.append(
             "\n".join([
                 '<div class="module-card">',
@@ -395,12 +592,13 @@ def _infer_module_api_mapping_from_markdown(starter_md_text: str):
     return module_to_api_list, api_to_modules_list
 
 
-def _inject_starterkit_backlinks_into_api_pages(*, docs_dir: Path):
+def _inject_starterkit_backlinks_into_api_pages(*, docs_dir: Path, cfg: dict):
     """Inject backlinks into docs/api/*.html based on starter_kits.md.
 
     This avoids hardcoding the mapping: the links are derived from the markdown itself.
     """
-    starter_md = docs_dir / "starter_kits.md"
+    starter_cfg = cfg.get("starter_kits") or {}
+    starter_md = docs_dir / (starter_cfg.get("source") or "starter_kits.md")
     api_dir = docs_dir / "api"
     if not starter_md.exists() or not api_dir.exists():
         return
@@ -408,13 +606,19 @@ def _inject_starterkit_backlinks_into_api_pages(*, docs_dir: Path):
     md_text = starter_md.read_text(encoding="utf-8")
     _, api_to_modules = _infer_module_api_mapping_from_markdown(md_text)
 
-    # Map module number -> starter_kits subpage filename (from existing config)
-    num_to_file = {i + 1: MODULE_SUBPAGES[i]["filename"] for i in range(min(len(MODULE_SUBPAGES), 5))}
+    # Map module number -> starter_kits subpage filename (from config)
+    num_to_file = {}
+    for m in _starter_module_config(cfg):
+        try:
+            num_to_file[int(m.get("number"))] = m.get("filename")
+        except Exception:
+            continue
 
     def build_links(module_nums: list[int]) -> str:
         items = []
         for n in module_nums:
-            href = f"../starter_kits/{num_to_file.get(n, 'index.html')}"
+            fn = num_to_file.get(n) or "index.html"
+            href = f"../starter_kits/{fn}"
             items.append(f'<li><a href="{href}">Starter Kit Module {n}</a></li>')
         return "\n".join(items)
 
@@ -469,37 +673,153 @@ def _inject_starterkit_backlinks_into_api_pages(*, docs_dir: Path):
         api_path.write_text(new_html, encoding="utf-8")
 
 
+def _render_home_cards_section(cfg: dict) -> str:
+    """Render the Home page 'quick links' card grid from the pages tree.
+
+    pages.json is the single source of truth:
+    - Any page node can opt in by setting:
+        "home_card": {"show": true, "order": 1, ...}
+    - The section heading is controlled by the Home node:
+        pages[key=="home"].home_cards_title
+    """
+
+    # Find Home node to get title
+    home_title = "Documentation"
+    for entry in _flatten_pages_tree(cfg):
+        node = entry["node"]
+        if node.get("key") == "home":
+            t = node.get("home_cards_title")
+            if isinstance(t, str) and t.strip():
+                home_title = t.strip()
+            break
+
+    # Build mapping from page key -> href (output/href)
+    key_to_href: dict[str, str] = {}
+    key_to_node: dict[str, dict] = {}
+    for entry in _flatten_pages_tree(cfg):
+        node = entry["node"]
+        key = node.get("key")
+        if not isinstance(key, str):
+            continue
+
+        href = node.get("href")
+        if not isinstance(href, str) or not href:
+            if isinstance(node.get("output"), str) and node.get("output"):
+                href = node.get("output")
+            elif isinstance(node.get("source"), str) and node.get("source"):
+                href = Path(node.get("source")).with_suffix(".html").name
+            else:
+                href = ""
+
+        # keep only safe relative links
+        if href and (href.startswith("/") or href.startswith("..")):
+            href = ""
+
+        if href:
+            key_to_href[key] = href
+            key_to_node[key] = node
+
+    # Collect card nodes
+    cards: list[dict] = []
+    for entry in _flatten_pages_tree(cfg):
+        node = entry["node"]
+        key = node.get("key")
+        if not isinstance(key, str):
+            continue
+
+        hc = node.get("home_card")
+        if not isinstance(hc, dict) or not hc.get("show"):
+            continue
+
+        href = key_to_href.get(key)
+        if not href:
+            # no link target; silently skip
+            continue
+
+        order = hc.get("order")
+        try:
+            order_val = int(order) if order is not None else 10_000
+        except Exception:
+            order_val = 10_000
+
+        # home_card.title is optional and can inherit from page metadata.
+        # Treat empty/whitespace as missing.
+        hc_title = hc.get("title")
+        if isinstance(hc_title, str):
+            hc_title = hc_title.strip()
+        if not hc_title:
+            hc_title = node.get("title") or node.get("label") or key
+
+        cards.append({
+            "key": key,
+            "order": order_val,
+            "icon": hc.get("icon") if isinstance(hc.get("icon"), str) else "",
+            "title": hc_title,
+            "description": hc.get("description") if isinstance(hc.get("description"), str) else "",
+            "button": hc.get("button") if isinstance(hc.get("button"), str) else "Open →",
+            "href": href,
+        })
+
+    if not cards:
+        return ""
+
+    cards.sort(key=lambda c: (c["order"], c["key"]))
+
+    # Render
+    lines: list[str] = []
+    lines.append('<section class="quick-links">')
+    lines.append(f"  <h2>{home_title}</h2>")
+    lines.append('  <div class="card-grid">')
+
+    for c in cards:
+        lines.append('    <div class="card">')
+        lines.append(f"      <h3>{c['icon']} {c['title']}</h3>".replace("  ", " "))
+        if c["description"]:
+            lines.append(f"      <p>{c['description']}</p>")
+        lines.append(f"      <a href=\"{c['href']}\" class=\"btn\">{c['button']}</a>")
+        lines.append("    </div>")
+
+    lines.append("  </div>")
+    lines.append("</section>")
+
+    return "\n".join(lines)
+
+
 def convert_md_to_html(md_file_path, output_dir=None):
     """Convert a markdown file to HTML with styling"""
 
+    docs_dir = Path(__file__).parent
+    cfg = _load_site_config(docs_dir=docs_dir)
+
     md_file = Path(md_file_path)
     if not md_file.exists():
-        print(f"Error: File {md_file} not found")
+        print(f"Error: File {md_file} not found", flush=True)
         return False
 
     # Read markdown content
     md_content = md_file.read_text(encoding='utf-8')
 
-    # Get page configuration
-    config = PAGE_CONFIG.get(md_file.name)
+    # Get page configuration from the tree
+    pages_by_source = _pages_by_source(cfg)
+    config = pages_by_source.get(md_file.name)
     if not config:
-        print(f"Warning: No configuration found for {md_file.name}, using defaults")
+        print(f"Warning: No configuration found for {md_file.name}, using defaults", flush=True)
         title = md_file.stem.replace('_', ' ').title()
         html_filename = md_file.stem + '.html'
         active_key = None
     else:
         title = config['title']
-        html_filename = config['html_file']
-        active_key = config['active']
+        html_filename = config['output']
+        active_key = config.get('nav_key')
 
     # Convert markdown to HTML
-    if md_file.name == "starter_kits.md":
-        md_for_index = _starter_kits_index_landing_md(md_content)
+    starter_source = (cfg.get("starter_kits") or {}).get("source") or "starter_kits.md"
+    if md_file.name == starter_source:
+        md_for_index = _starter_kits_index_landing_md(md_content, cfg=cfg)
 
         # IMPORTANT: index.html lives in docs/starter_kits/, so rewrite image paths accordingly
         # (e.g., figs/... -> ../figs/...) and copy any referenced assets.
-        docs_dir = md_file.parent
-        out_dir = docs_dir / "starter_kits"
+        out_dir = docs_dir / ((cfg.get("starter_kits") or {}).get("output_dir") or "starter_kits")
         out_dir.mkdir(parents=True, exist_ok=True)
 
         md_for_index = _rewrite_relative_asset_paths(md_for_index, from_dir=docs_dir, to_dir=out_dir)
@@ -508,6 +828,16 @@ def convert_md_to_html(md_file_path, output_dir=None):
         html_content = _new_markdown().convert(md_for_index)
     else:
         html_content = _new_markdown().convert(md_content)
+
+    # Home page: append cards section driven by pages.json
+    if md_file.name == "index.md":
+        cards_html = _render_home_cards_section(cfg)
+        if cards_html:
+            html_content = "\n".join([
+                '<header></header>' if not html_content.strip().startswith('<header') else "",
+                html_content,
+                cards_html,
+            ]).replace('<header></header>\n', '')
 
     # Determine output path
     if output_dir:
@@ -522,47 +852,73 @@ def convert_md_to_html(md_file_path, output_dir=None):
     # Pick correct relative links for top-level vs subdir pages.
     is_in_subdir = output_path.parent != md_file.parent
 
+    site_css = (cfg.get("site") or {}).get("css") or {}
+
     full_html = _render_html(
+        cfg,
         title=title,
         html_content=html_content,
         active_key=active_key,
         base_href="../" if is_in_subdir else "",
-        css_href="../docs-style.css" if is_in_subdir else "docs-style.css",
+        css_href=site_css.get("subdir_href") if is_in_subdir else site_css.get("top_level_href"),
     )
 
     # Write HTML file
     output_path.write_text(full_html, encoding='utf-8')
 
-    print(f"✓ Converted: {md_file.name} → {output_path}")
+    print(f"✓ Converted: {md_file.name} → {output_path}", flush=True)
 
     # Special: starter_kits.md -> also generate module subpages
-    if md_file.name == "starter_kits.md":
-        _generate_starter_kits_subpages(md_file)
+    if md_file.name == starter_source:
+        _generate_starter_kits_subpages(md_file, cfg=cfg)
         # And add backlinks from API pages back to the relevant starter kits.
-        _inject_starterkit_backlinks_into_api_pages(docs_dir=md_file.parent)
+        _inject_starterkit_backlinks_into_api_pages(docs_dir=md_file.parent, cfg=cfg)
 
     return True
 
 
 def convert_all_docs():
-    """Convert all markdown files in docs/ directory"""
+    """Convert markdown files referenced by docs/pages.json.
+
+    This keeps the website output deterministic and avoids publishing unlisted
+    markdown files (e.g., docs/README.md) unless they are explicitly added to
+    pages.json.
+    """
     docs_dir = Path(__file__).parent
-    md_files = list(docs_dir.glob('*.md'))
+    cfg = _load_site_config(docs_dir=docs_dir)
+
+    pages_by_source = _pages_by_source(cfg)
+    md_files: list[Path] = []
+
+    for source in pages_by_source.keys():
+        p = docs_dir / source
+        if p.exists():
+            md_files.append(p)
+        else:
+            print(f"Warning: pages.json references missing markdown: {source}", flush=True)
+
+    # Also include starter_kits source if configured but not present in pages tree
+    starter_cfg = cfg.get("starter_kits") or {}
+    starter_source = starter_cfg.get("source")
+    if isinstance(starter_source, str) and starter_source:
+        p = docs_dir / starter_source
+        if p.exists() and p not in md_files:
+            md_files.append(p)
 
     if not md_files:
-        print("No markdown files found in docs/ directory")
+        print("No markdown files found from docs/pages.json", flush=True)
         return
 
-    print(f"Found {len(md_files)} markdown file(s)")
-    print("-" * 50)
+    print(f"Found {len(md_files)} markdown file(s) from pages.json", flush=True)
+    print("-" * 50, flush=True)
 
     success_count = 0
     for md_file in md_files:
         if convert_md_to_html(md_file):
             success_count += 1
 
-    print("-" * 50)
-    print(f"Converted {success_count}/{len(md_files)} files successfully")
+    print("-" * 50, flush=True)
+    print(f"Converted {success_count}/{len(md_files)} files successfully", flush=True)
 
 
 if __name__ == "__main__":

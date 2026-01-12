@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCAI9012 - Instructions</title>
+    <link rel="stylesheet" href="docs-style.css">
+</head>
+<body>
+    <div class="container">
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h2>CCAI9012</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="timetable.html">Timetable</a></li>
+                <li><a href="installation.html">Installation Guide</a></li>
+                <li><a href="instructions.html" class="active">Instructions</a></li>
+                <li><a href="starter_kits/index.html">Starter Kits</a></li>
+                <li class="sub-item"><a href="starter_kits/m1_gan.html">Module 1: Traditional Generative ML</a></li>
+                <li class="sub-item"><a href="starter_kits/m2_llm.html">Module 2: LLM for Structuring Information</a></li>
+                <li class="sub-item"><a href="starter_kits/m3_mm.html">Module 3: Multimodal Reasoning</a></li>
+                <li class="sub-item"><a href="starter_kits/m4_cv.html">Module 4: CV Models</a></li>
+                <li class="sub-item"><a href="starter_kits/m5_bias.html">Module 5: Bias & Interpretability</a></li>
+                <li><a href="reading_material.html">Reading Materials</a></li>
+                <li><a href="datasets.html">Datasets Reference</a></li>
+                <li><a href="api/index.html">API Documentation</a></li>
+            </ul>
+        </nav>
+
+        <main id="content">
+<h1>TA / Maintainer Handover Instructions</h1>
+<blockquote>
+<p>Target audience: future TAs / maintainers (TA / course staff).</p>
+<p>This document answers:
+1) How to install and verify the environment from scratch;
+2) Repository structure and “where to find what”;
+3) The role and usage of <code>weekly_scripts/</code> and <code>starter_kits/</code>;
+4) How to update the documentation system.</p>
+</blockquote>
+<hr />
+<h2>0. Quick Navigation (the 5 entry points you’ll use most)</h2>
+<ol>
+<li><strong>Environment setup (for students/TAs)</strong>: <code>docs/installation.md</code> (the same content is also converted to <code>docs/installation.html</code>)</li>
+<li><strong>Repository overview</strong>: root <code>README.md</code></li>
+<li><strong>Weekly exercises / in-class code</strong>: <code>weekly_scripts/week*/</code></li>
+<li><strong>Final project Starter Kits</strong>: <code>starter_kits/</code> (overview doc: <code>docs/starter_kits.md</code>)</li>
+<li><strong>Toolkit API</strong>: <code>ccai9012/</code> source; corresponding HTML: <code>docs/api/*.html</code></li>
+</ol>
+<hr />
+<h2>1. Environment Setup (macOS / Windows / Linux)</h2>
+<p>This repository recommends using a Conda environment (default name: <code>ccai9012</code>). The repo provides both <code>environment.yml</code> and <code>requirements.txt</code>; prefer <code>environment.yml</code>.</p>
+<h3>1.1 Prerequisite: Install Anaconda / Miniconda</h3>
+<ul>
+<li>Student-friendly: Anaconda (larger but fewer pitfalls)</li>
+<li>TA/developer: Miniconda is also fine</li>
+</ul>
+<p>Verification:
+- Run <code>conda --version</code> in a terminal; it should print a version.</p>
+<h3>1.2 Create the environment (main flow)</h3>
+<p>From the repository root (where <code>environment.yml</code> is located), run:</p>
+<ol>
+<li>Create environment: <code>conda env create -f environment.yml</code></li>
+<li>Activate environment: <code>conda activate ccai9012</code></li>
+<li>Install this repo as an editable package: <code>pip install -e .</code></li>
+</ol>
+<p>Why <code>pip install -e .</code> is needed:
+- This allows notebooks/scripts to <code>import ccai9012</code> directly without relying on the working directory.</p>
+<h3>1.3 Add a Jupyter Kernel</h3>
+<p>With the environment activated, run:</p>
+<ul>
+<li><code>python -m ipykernel install --user --name ccai9012 --display-name "ccai9012"</code></li>
+</ul>
+<p>Then, when opening notebooks, select the <code>ccai9012</code> kernel.</p>
+<h3>1.4 Verify the environment (strongly recommended after every release)</h3>
+<p>The repository provides a one-command self-check:</p>
+<ul>
+<li><code>python test_environment.py</code></li>
+</ul>
+<p>It attempts to import core dependencies (scientific stack, CV, LLM, diffusers, ultralytics, etc.) and reports missing/failed items.</p>
+<h3>1.5 Common pitfalls (quick reference for TA support)</h3>
+<ul>
+<li><strong>pip/conda conflicts</strong>: Prefer rebuilding from <code>environment.yml</code>; do not install packages into the base environment.</li>
+<li><strong>Model/data size</strong>: <code>models/</code> and some datasets can be large; avoid committing them to git. In course instructions, tell students to “download on demand”.</li>
+<li><strong>GPU/CUDA</strong>: This repo should run on CPU by default. If students have an NVIDIA GPU, install a matching PyTorch/CUDA version as needed (see the CUDA notes in <code>docs/installation.md</code>).</li>
+</ul>
+<hr />
+<h2>2. Repository Structure (“where to find what”)</h2>
+<p>Below are the directories TAs most commonly maintain:</p>
+<h3>2.1 <code>weekly_scripts/</code> (weekly course code)</h3>
+<ul>
+<li>Organized by teaching schedule: one folder per week (e.g., <code>week1/</code>, <code>week2/</code>, …)</li>
+<li>Typically includes:</li>
+<li>Lecture notebooks/scripts</li>
+<li>Weekly demos, exercises, runnable examples</li>
+<li>Possibly small datasets/assets needed for that week (if any)</li>
+</ul>
+<p>The root README provides a week-by-week theme overview (e.g., week1 Python basics, week6 CNN/SVI, week10 YOLO, etc.).</p>
+<p><strong>TA maintenance tips</strong>:
+- Aim for each week’s materials to be “independently runnable” (minimize dependencies on files from other weeks).
+- Consider clear naming conventions: <code>lecture_*.ipynb</code>, <code>demo_*.ipynb</code>, <code>exercise_*.ipynb</code> (if you want to gradually standardize).</p>
+<h3>2.2 <code>starter_kits/</code> (final project templates / modular toolbox)</h3>
+<ul>
+<li>Organized by project direction: grouped by topic modules rather than weeks.</li>
+<li>There are currently 5 modules (see <code>docs/starter_kits.md</code> for full explanations and example figures):
+  1. <code>1_traditional_generative_ml/</code>: Traditional generative ML / GAN (see <code>ccai9012.gan_utils</code>)
+  2. <code>2_llm_structure_output/</code>: LLM structured output (see <code>ccai9012.llm_utils</code>, <code>ccai9012.viz_utils</code>)
+  3. <code>3_multimodal_reasoning/</code>: Multimodal reasoning (see <code>ccai9012.multi_modal_utils</code>, <code>ccai9012.svi_utils</code>)
+  4. <code>4_cv_models/</code>: Detection/segmentation/tracking (see <code>ccai9012.yolo_utils</code>, etc.)
+  5. <code>5_bias_detection_interpretability/</code>: Bias detection and interpretability (SHAP/AIF360, etc.)</li>
+</ul>
+<p><strong>TA maintenance tips</strong>:
+- For each starter kit, try to provide:
+  - A minimal runnable pipeline
+  - A clear data placement convention (e.g., a <code>data/</code> subdirectory)
+  - Comments on key parameters (e.g., API keys, model names, input formats)</p>
+<h3>2.3 <code>ccai9012/</code> (course toolkit source)</h3>
+<ul>
+<li>Core reusable code for weekly scripts / starter kits.</li>
+<li>Files are roughly organized by function:</li>
+<li><code>llm_utils.py</code>: LLM calls, structured output, embeddings, etc.</li>
+<li><code>multi_modal_utils.py</code>: Multimodal utilities</li>
+<li><code>yolo_utils.py</code>: YOLO detection and other CV tools</li>
+<li><code>sd_utils.py</code>: Stable Diffusion / image generation</li>
+<li><code>svi_utils.py</code>: Street View Imagery utilities</li>
+<li><code>viz_utils.py</code>: Visualization helpers</li>
+<li><code>nn_utils.py</code>: Neural network utilities</li>
+</ul>
+<p>After updating code here, TAs should:
+- Run <code>python test_environment.py</code>
+- Spot-check 1–2 weekly notebooks (or at least do an import + key-function smoke test)</p>
+<h3>2.4 <code>docs/</code> (documentation &amp; static site generation)</h3>
+<ul>
+<li><code>.md</code> are source files; <code>.html</code> are generated pages.</li>
+<li>Main entry points:</li>
+<li><code>docs/index.md</code> / <code>docs/index.html</code></li>
+<li><code>docs/installation.md</code> / <code>docs/installation.html</code></li>
+<li><code>docs/starter_kits.md</code> / <code>docs/starter_kits.html</code></li>
+<li><code>docs/datasets.md</code> / <code>docs/datasets.html</code></li>
+<li><code>docs/reading_material.md</code> / <code>docs/reading_material.html</code></li>
+<li><code>docs/timetable.md</code> / <code>docs/timetable.html</code></li>
+</ul>
+<p>Doc generation script: <code>docs/md_to_html.py</code></p>
+<hr />
+<h2>3. Documentation Update Workflow (how to publish HTML after editing Markdown)</h2>
+<ol>
+<li>Edit content in <code>docs/*.md</code></li>
+<li>Run <code>python docs/md_to_html.py</code> (batch-generates corresponding HTML under <code>docs/</code>, plus <code>docs/api/</code>, etc.)</li>
+<li>Open <code>docs/index.html</code> locally to quickly check links/styles</li>
+</ol>
+<blockquote>
+<p>Note: <code>docs/README.md</code> already describes md-&gt;html usage and conventions.</p>
+</blockquote>
+<hr />
+<h2>4. Data and Models (most common in TA Q&amp;A)</h2>
+<h3>4.1 <code>data/</code></h3>
+<ul>
+<li>Stores course example data (e.g., <code>housing_price_california.csv</code>, <code>compas.db</code>, <code>german_credits/</code>, <code>yelp_reviews/</code>).</li>
+<li>General principles:</li>
+<li>Small datasets can be shipped with the repo</li>
+<li>Very large datasets should be provided via download links + a documented placement path</li>
+</ul>
+<h3>4.2 <code>models/</code></h3>
+<ul>
+<li>Used to cache/store pretrained models (often in a HuggingFace-cache-style directory layout).</li>
+<li>Can be very large; to ensure stable in-class demos, TAs may want to warm up by downloading ahead of time on TA machines.</li>
+</ul>
+<hr />
+<h2>5. Checklist for New TAs (follow as-is)</h2>
+<h3>5.1 First-time setup (30 minutes)</h3>
+<ul>
+<li>[ ] Clone the repo</li>
+<li>[ ] <code>conda env create -f environment.yml</code></li>
+<li>[ ] <code>conda activate ccai9012</code></li>
+<li>[ ] <code>pip install -e .</code></li>
+<li>[ ] <code>python test_environment.py</code></li>
+<li>[ ] Open 1 notebook (e.g., week1) to confirm it runs</li>
+</ul>
+<h3>5.2 After any changes to environment/dependencies/core toolkit</h3>
+<ul>
+<li>[ ] Rebuild the environment (or at least validate once in a fresh environment)</li>
+<li>[ ] Run <code>test_environment.py</code></li>
+<li>[ ] Spot-check:</li>
+<li>1 LLM-related item</li>
+<li>1 CV/YOLO-related item</li>
+<li>1 diffusion / multimodal item (if used in the current offering)</li>
+</ul>
+<hr />
+        </main>
+    </div>
+</body>
+</html>

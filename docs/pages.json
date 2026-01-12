@@ -1,0 +1,166 @@
+{
+  "version": 1,
+  "site": {
+    "name": "CCAI9012",
+    "title_prefix": "CCAI9012 - ",
+    "css": {
+      "top_level_href": "docs-style.css",
+      "subdir_href": "../docs-style.css"
+    }
+  },
+  "pages": [
+    {
+      "key": "home",
+      "label": "Home",
+      "title": "Home",
+      "source": "index.md",
+      "output": "index.html",
+      "home_cards_title": "Documentation"
+    },
+    {
+      "key": "timetable",
+      "label": "Timetable",
+      "title": "Course Timetable",
+      "source": "timetable.md",
+      "output": "timetable.html",
+      "home_card": {
+        "show": true,
+        "order": 1,
+        "icon": "📅",
+        "description": "View the complete course schedule with weekly topics, assignments, and activities.",
+        "button": "View Schedule →"
+      }
+    },
+    {
+      "key": "installation",
+      "label": "Installation Guide",
+      "title": "Installation Guide",
+      "source": "installation.md",
+      "output": "installation.html",
+      "home_card": {
+        "show": true,
+        "order": 2,
+        "icon": "📦",
+        "description": "Set up your development environment with Anaconda and all required dependencies.",
+        "button": "Get Started →"
+      }
+    },
+    {
+      "key": "starter",
+      "label": "Starter Kits",
+      "title": "Starter Kits",
+      "source": "starter_kits.md",
+      "output": "starter_kits/index.html",
+      "nav_children_class": "sub-item",
+      "home_card": {
+        "show": true,
+        "order": 3,
+        "icon": "🚀",
+        "description": "Explore five comprehensive modules for your AI projects, from GANs to bias detection.",
+        "button": "View Kits →"
+      },
+      "children": [
+        {
+          "key": "m1",
+          "label": "Module 1: Traditional Generative ML",
+          "href": "starter_kits/m1_gan.html",
+          "module": {
+            "number": 1,
+            "filename": "m1_gan.html",
+            "page_title": "Module 1 - Traditional Generative ML",
+            "index_summary": "Traditional generative ML for synthetic data generation and prediction."
+          }
+        },
+        {
+          "key": "m2",
+          "label": "Module 2: LLM for Structuring Information",
+          "href": "starter_kits/m2_llm.html",
+          "module": {
+            "number": 2,
+            "filename": "m2_llm.html",
+            "page_title": "Module 2 - LLM for Structuring Information",
+            "index_summary": "LLMs to structure unstructured text into analyzable formats."
+          }
+        },
+        {
+          "key": "m3",
+          "label": "Module 3: Multimodal Reasoning",
+          "href": "starter_kits/m3_mm.html",
+          "module": {
+            "number": 3,
+            "filename": "m3_mm.html",
+            "page_title": "Module 3 - Multimodal Reasoning",
+            "index_summary": "Multimodal (vision-language) reasoning over images and text."
+          }
+        },
+        {
+          "key": "m4",
+          "label": "Module 4: CV Models",
+          "href": "starter_kits/m4_cv.html",
+          "module": {
+            "number": 4,
+            "filename": "m4_cv.html",
+            "page_title": "Module 4 - CV Models",
+            "index_summary": "Computer vision: detection, segmentation, tracking, and visual analytics."
+          }
+        },
+        {
+          "key": "m5",
+          "label": "Module 5: Bias & Interpretability",
+          "href": "starter_kits/m5_bias.html",
+          "module": {
+            "number": 5,
+            "filename": "m5_bias.html",
+            "page_title": "Module 5 - Bias Detection & Interpretability",
+            "index_summary": "Bias detection, fairness evaluation, and interpretability tooling."
+          }
+        }
+      ]
+    },
+    {
+      "key": "reading",
+      "label": "Reading Materials",
+      "title": "Reading Materials",
+      "source": "reading_material.md",
+      "output": "reading_material.html",
+      "home_card": {
+        "show": true,
+        "order": 4,
+        "icon": "📚",
+        "description": "Curated academic papers and resources organized by learning modules.",
+        "button": "Read More →"
+      }
+    },
+    {
+      "key": "datasets",
+      "label": "Datasets Reference",
+      "title": "Datasets Reference",
+      "source": "datasets.md",
+      "output": "datasets.html",
+      "home_card": {
+        "show": true,
+        "order": 5,
+        "icon": "💾",
+        "description": "Access 40+ datasets with direct download links for your projects.",
+        "button": "Browse Datasets →"
+      }
+    },
+    {
+      "key": "api",
+      "label": "API Documentation",
+      "href": "api/index.html",
+      "home_card": {
+        "show": true,
+        "order": 6,
+        "icon": "🔧",
+        "description": "Detailed documentation for the ccai9012 utility library.",
+        "button": "View API Docs →"
+      }
+    }
+  ],
+  "starter_kits": {
+    "source": "starter_kits.md",
+    "output_dir": "starter_kits",
+    "index_output": "starter_kits/index.html"
+  }
+}

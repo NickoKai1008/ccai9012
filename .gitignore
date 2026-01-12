@@ -1,10 +1,11 @@
-data/
-model/
 ccai9012.egg-info/
 .ipynb_checkpoints
 __pycache__/
 .DS_Store
+.idea/
 
+data/
+models/
 docs/figs/flowchart/*.xml.bkp
 docs/figs/flowchart/*.xml
 
