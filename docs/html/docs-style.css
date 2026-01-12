@@ -339,6 +339,61 @@ a:hover {
     border-radius: 4px;
 }
 
+/* ----------------------------
+   API documentation tweaks
+   ---------------------------- */
+
+.api-content {
+    max-width: 1200px;
+}
+
+/* pdoc emits <article class="api-doc"> ... */
+.api-doc header h1.title {
+    margin-bottom: 1rem;
+}
+
+/* Related starter kits block under the API title */
+.api-related-block {
+    margin: 1rem 0 2rem;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background: var(--content-bg);
+    box-shadow: var(--card-shadow);
+}
+
+.api-related-block__title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: #475569;
+    margin-bottom: 0.75rem;
+}
+
+.api-related-block ul {
+    margin: 0;
+    padding-left: 1.25rem;
+}
+
+/* pdoc definition lists can get very wide; keep them readable */
+.api-doc dl {
+    margin-bottom: 2rem;
+}
+
+.api-doc dd {
+    margin-left: 1.5rem;
+}
+
+.api-doc pre {
+    border: 1px solid var(--border-color);
+}
+
+/* Avoid pdoc's legacy flex helpers causing surprises if present */
+.api-doc .flex {
+    display: block;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     #sidebar {

@@ -1,117 +1,48 @@
+<!-- START PDOC WRAPPER -->
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-<meta name="generator" content="pdoc3 0.11.6">
-<title>ccai9012.llm_utils API documentation</title>
-<meta name="description" content="CCAI9012 Toolkit">
-<link rel="stylesheet" href="../docs-style.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
-<style>
-/* Additional styles for API documentation content */
-.api-content {
-    max-width: none;
-}
-.api-content code {
-    background-color: var(--code-bg);
-    padding: 0.2rem 0.4rem;
-    border-radius: 3px;
-    font-family: 'Courier New', monospace;
-    font-size: 0.875rem;
-    color: #e11d48;
-}
-.api-content pre code {
-    background: var(--code-bg);
-    padding: 1rem;
-    display: block;
-    color: var(--text-color);
-}
-.api-content .name {
-    background: #eee;
-    font-size: 0.85em;
-    padding: 5px 10px;
-    display: inline-block;
-    border-radius: 4px;
-}
-.api-content .name:hover {
-    background: #e0e0e0;
-}
-.api-content dl {
-    margin-bottom: 2em;
-}
-.api-content dd {
-    margin: 0 0 1em 2em;
-}
-.api-content .desc {
-    margin-top: 1em;
-}
-.api-content h2 {
-    margin-top: 2em;
-}
-.api-content .ident {
-    color: #900;
-    font-weight: bold;
-}
-</style>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" crossorigin></script>
-<script>window.addEventListener('DOMContentLoaded', () => {
-hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
-hljs.highlightAll();
-/* Collapse source docstrings */
-setTimeout(() => {
-[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
-.filter(el => el.innerHTML.length > 200 && ['"' + '"' + '"', "'" + "'" + "'"].includes(el.innerHTML.substring(0, 3)))
-.forEach(el => {
-let d = document.createElement('details');
-d.classList.add('hljs-string');
-d.innerHTML = '<summary>"' + '"' + '"</summary>' + el.innerHTML.substring(3);
-el.replaceWith(d);
-});
-}, 100);
-})</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Module ccai9012.llm_utils</title>
+  <link rel="stylesheet" href="../../docs-style.css">
 </head>
 <body>
-    <div class="container">
-        <nav id="sidebar">
-            <div class="sidebar-header">
-                <h2>CCAI9012</h2>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../installation.html">Installation Guide</a></li>
-                <li><a href="../starter_kits/index.html">Starter Kits</a></li>
-                <li><a href="../starter_kits/m2_llm.html">Starter Kit: Module 2 (LLM)</a></li>
-                <li><a href="../reading_material.html">Reading Materials</a></li>
-                <li><a href="../datasets.html">Datasets Reference</a></li>
-                <li><a href="index.html">API Documentation</a></li>
-                <li style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--sidebar-hover);">
-                    <span style="color: #94a3b8; font-size: 0.875rem; padding-left: 1.5rem; display: block; margin-bottom: 0.5rem;">API Modules</span>
-                </li>
-                <li style="padding-left: 1rem;"><a href="gan_utils.html">gan_utils</a></li>
-                <li style="padding-left: 1rem;"><a href="llm_utils.html">llm_utils</a></li>
-                <li style="padding-left: 1rem;"><a href="multi_modal_utils.html">multi_modal_utils</a></li>
-                <li style="padding-left: 1rem;"><a href="nn_utils.html">nn_utils</a></li>
-                <li style="padding-left: 1rem;"><a href="sd_utils.html">sd_utils</a></li>
-                <li style="padding-left: 1rem;"><a href="svi_utils.html">svi_utils</a></li>
-                <li style="padding-left: 1rem;"><a href="viz_utils.html">viz_utils</a></li>
-                <li style="padding-left: 1rem;"><a href="yolo_utils.html">yolo_utils</a></li>
-            </ul>
-        </nav>
+  <div class="container">
+    <nav id="sidebar">
+      <div class="sidebar-header">
+        <h2>CCAI9012</h2>
+      </div>
+      <ul class="nav-menu">
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../../timetable.html">Timetable</a></li>
+                <li><a href="../../installation.html">Installation Guide</a></li>
+                <li><a href="../../starter_kits/index.html">Starter Kits</a></li>
+                <li class="sub-item"><a href="../../starter_kits/m1_gan.html">Module 1: Traditional Generative ML</a></li>
+                <li class="sub-item"><a href="../../starter_kits/m2_llm.html">Module 2: LLM for Structuring Information</a></li>
+                <li class="sub-item"><a href="../../starter_kits/m3_mm.html">Module 3: Multimodal Reasoning</a></li>
+                <li class="sub-item"><a href="../../starter_kits/m4_cv.html">Module 4: CV Models</a></li>
+                <li class="sub-item"><a href="../../starter_kits/m5_bias.html">Module 5: Bias & Interpretability</a></li>
+                <li><a href="../../reading_material.html">Reading Materials</a></li>
+                <li><a href="../../datasets.html">Datasets Reference</a></li>
+                <li><a href="../../api/ccai9012/index.html" class="active">API Documentation</a></li>
+      </ul>
+    </nav>
 
-        <main id="content" class="api-content">
-<article id="content">
-<header>
-<h1 class="title">Module <code>ccai9012.llm_utils</code></h1>
-</header>
+    <main id="content" class="api-content">
 <!-- STARTERKIT_BACKLINKS_START -->
-<section class="starterkit-backlinks" style="margin-top:1.5rem; padding:1rem; border:1px solid #e5e7eb; border-radius:10px; background:#fff">
-  <h2 style="margin-top:0">Related Starter Kit(s)</h2>
+<section class="starterkit-backlinks api-related-block">
+  <div class="api-related-block__title">Related Starter Kit(s)</div>
   <ul>
-<li><a href="../starter_kits/m2_llm.html">Starter Kit Module 2</a></li>
+<li><a href="../../starter_kits/m2_llm.html">Starter Kit Module 2</a></li>
   </ul>
 </section>
 <!-- STARTERKIT_BACKLINKS_END -->
+      <!-- API content extracted from pdoc -->
+<article class="api-doc">
+<header>
+<h1 class="title">Module <code>ccai9012.llm_utils</code></h1>
+</header>
 <section id="section-intro">
 <h1 id="large-language-model-llm-utilities-module">Large Language Model (LLM) Utilities Module</h1>
 <p>This module provides a comprehensive set of utilities for working with Large Language Models (LLMs),
@@ -430,21 +361,21 @@ polarity, sentiment, keywords, and any metadata from the original reviews.</dd>
 <h2 id="example">Example</h2>
 <pre><code class="language-python-repl">&gt;&gt;&gt; # First load reviews from a city
 &gt;&gt;&gt; reviews = load_reviews_by_city(
-&gt;&gt;&gt;     &#34;data/yelp_reviews/business.json&#34;,
-&gt;&gt;&gt;     &#34;data/yelp_reviews/review.json&#34;,
-&gt;&gt;&gt;     &#34;San Francisco&#34;,
+&gt;&gt;&gt;     &quot;data/yelp_reviews/business.json&quot;,
+&gt;&gt;&gt;     &quot;data/yelp_reviews/review.json&quot;,
+&gt;&gt;&gt;     &quot;San Francisco&quot;,
 &gt;&gt;&gt;     max_reviews=200
 &gt;&gt;&gt; )
 &gt;&gt;&gt; # Then analyze them
 &gt;&gt;&gt; llm = initialize_llm()
-&gt;&gt;&gt; results_df = analyze_reviews(reviews, llm, &#34;sf_review_analysis.csv&#34;, max_reviews=100)
+&gt;&gt;&gt; results_df = analyze_reviews(reviews, llm, &quot;sf_review_analysis.csv&quot;, max_reviews=100)
 &gt;&gt;&gt;
 &gt;&gt;&gt; # Visualize results
 &gt;&gt;&gt; import matplotlib.pyplot as plt
 &gt;&gt;&gt; plt.figure(figsize=(10, 6))
-&gt;&gt;&gt; results_df[&#39;polarity&#39;].value_counts().plot(kind=&#39;bar&#39;)
-&gt;&gt;&gt; plt.title(&#39;Sentiment Distribution in San Francisco Reviews&#39;)
-&gt;&gt;&gt; plt.ylabel(&#39;Number of Reviews&#39;)
+&gt;&gt;&gt; results_df['polarity'].value_counts().plot(kind='bar')
+&gt;&gt;&gt; plt.title('Sentiment Distribution in San Francisco Reviews')
+&gt;&gt;&gt; plt.ylabel('Number of Reviews')
 </code></pre></div>
 </dd>
 <dt id="ccai9012.llm_utils.ask_llm"><code class="name flex">
@@ -1251,38 +1182,8 @@ If None, results are not saved. Defaults to None.</p>
 <section>
 </section>
 </article>
-<nav id="sidebar">
-<div class="toc">
-<ul>
-<li><a href="#large-language-model-llm-utilities-module">Large Language Model (LLM) Utilities Module</a></li>
-</ul>
-</div>
-<ul id="index">
-<li><h3>Super-module</h3>
-<ul>
-<li><code><a title="ccai9012" href="index.html">ccai9012</a></code></li>
-</ul>
-</li>
-<li><h3><a href="#header-functions">Functions</a></h3>
-<ul class="">
-<li><code><a title="ccai9012.llm_utils.analyze_airbnb_reviews" href="#ccai9012.llm_utils.analyze_airbnb_reviews">analyze_airbnb_reviews</a></code></li>
-<li><code><a title="ccai9012.llm_utils.analyze_reviews" href="#ccai9012.llm_utils.analyze_reviews">analyze_reviews</a></code></li>
-<li><code><a title="ccai9012.llm_utils.ask_llm" href="#ccai9012.llm_utils.ask_llm">ask_llm</a></code></li>
-<li><code><a title="ccai9012.llm_utils.build_pdf_retriever" href="#ccai9012.llm_utils.build_pdf_retriever">build_pdf_retriever</a></code></li>
-<li><code><a title="ccai9012.llm_utils.generate_multiple_outputs" href="#ccai9012.llm_utils.generate_multiple_outputs">generate_multiple_outputs</a></code></li>
-<li><code><a title="ccai9012.llm_utils.get_deepseek_api_key" href="#ccai9012.llm_utils.get_deepseek_api_key">get_deepseek_api_key</a></code></li>
-<li><code><a title="ccai9012.llm_utils.initialize_llm" href="#ccai9012.llm_utils.initialize_llm">initialize_llm</a></code></li>
-<li><code><a title="ccai9012.llm_utils.load_business_locations" href="#ccai9012.llm_utils.load_business_locations">load_business_locations</a></code></li>
-<li><code><a title="ccai9012.llm_utils.load_reviews_by_city" href="#ccai9012.llm_utils.load_reviews_by_city">load_reviews_by_city</a></code></li>
-<li><code><a title="ccai9012.llm_utils.parse_markdown_table" href="#ccai9012.llm_utils.parse_markdown_table">parse_markdown_table</a></code></li>
-<li><code><a title="ccai9012.llm_utils.run_qa_chain" href="#ccai9012.llm_utils.run_qa_chain">run_qa_chain</a></code></li>
-</ul>
-</li>
-</ul>
-</nav>
-
-        </main>
-    </div>
+    </main>
+  </div>
 </body>
 </html>
-
+<!-- END PDOC WRAPPER -->

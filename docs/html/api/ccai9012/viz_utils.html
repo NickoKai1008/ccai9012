@@ -1,118 +1,49 @@
+<!-- START PDOC WRAPPER -->
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-<meta name="generator" content="pdoc3 0.11.6">
-<title>ccai9012.viz_utils API documentation</title>
-<meta name="description" content="CCAI9012 Toolkit">
-<link rel="stylesheet" href="../docs-style.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
-<style>
-/* Additional styles for API documentation content */
-.api-content {
-    max-width: none;
-}
-.api-content code {
-    background-color: var(--code-bg);
-    padding: 0.2rem 0.4rem;
-    border-radius: 3px;
-    font-family: 'Courier New', monospace;
-    font-size: 0.875rem;
-    color: #e11d48;
-}
-.api-content pre code {
-    background: var(--code-bg);
-    padding: 1rem;
-    display: block;
-    color: var(--text-color);
-}
-.api-content .name {
-    background: #eee;
-    font-size: 0.85em;
-    padding: 5px 10px;
-    display: inline-block;
-    border-radius: 4px;
-}
-.api-content .name:hover {
-    background: #e0e0e0;
-}
-.api-content dl {
-    margin-bottom: 2em;
-}
-.api-content dd {
-    margin: 0 0 1em 2em;
-}
-.api-content .desc {
-    margin-top: 1em;
-}
-.api-content h2 {
-    margin-top: 2em;
-}
-.api-content .ident {
-    color: #900;
-    font-weight: bold;
-}
-</style>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" crossorigin></script>
-<script>window.addEventListener('DOMContentLoaded', () => {
-hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
-hljs.highlightAll();
-/* Collapse source docstrings */
-setTimeout(() => {
-[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
-.filter(el => el.innerHTML.length > 200 && ['"' + '"' + '"', "'" + "'" + "'"].includes(el.innerHTML.substring(0, 3)))
-.forEach(el => {
-let d = document.createElement('details');
-d.classList.add('hljs-string');
-d.innerHTML = '<summary>"' + '"' + '"</summary>' + el.innerHTML.substring(3);
-el.replaceWith(d);
-});
-}, 100);
-})</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Module ccai9012.viz_utils</title>
+  <link rel="stylesheet" href="../../docs-style.css">
 </head>
 <body>
-    <div class="container">
-        <nav id="sidebar">
-            <div class="sidebar-header">
-                <h2>CCAI9012</h2>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../installation.html">Installation Guide</a></li>
-                <li><a href="../starter_kits/index.html">Starter Kits</a></li>
-                <li><a href="../reading_material.html">Reading Materials</a></li>
-                <li><a href="../datasets.html">Datasets Reference</a></li>
-                <li><a href="index.html">API Documentation</a></li>
-                <li style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--sidebar-hover);">
-                    <span style="color: #94a3b8; font-size: 0.875rem; padding-left: 1.5rem; display: block; margin-bottom: 0.5rem;">API Modules</span>
-                </li>
-                <li style="padding-left: 1rem;"><a href="gan_utils.html">gan_utils</a></li>
-                <li style="padding-left: 1rem;"><a href="llm_utils.html">llm_utils</a></li>
-                <li style="padding-left: 1rem;"><a href="multi_modal_utils.html">multi_modal_utils</a></li>
-                <li style="padding-left: 1rem;"><a href="nn_utils.html">nn_utils</a></li>
-                <li style="padding-left: 1rem;"><a href="sd_utils.html">sd_utils</a></li>
-                <li style="padding-left: 1rem;"><a href="svi_utils.html">svi_utils</a></li>
-                <li style="padding-left: 1rem;"><a href="viz_utils.html">viz_utils</a></li>
-                <li style="padding-left: 1rem;"><a href="yolo_utils.html">yolo_utils</a></li>
-            </ul>
-        </nav>
+  <div class="container">
+    <nav id="sidebar">
+      <div class="sidebar-header">
+        <h2>CCAI9012</h2>
+      </div>
+      <ul class="nav-menu">
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../../timetable.html">Timetable</a></li>
+                <li><a href="../../installation.html">Installation Guide</a></li>
+                <li><a href="../../starter_kits/index.html">Starter Kits</a></li>
+                <li class="sub-item"><a href="../../starter_kits/m1_gan.html">Module 1: Traditional Generative ML</a></li>
+                <li class="sub-item"><a href="../../starter_kits/m2_llm.html">Module 2: LLM for Structuring Information</a></li>
+                <li class="sub-item"><a href="../../starter_kits/m3_mm.html">Module 3: Multimodal Reasoning</a></li>
+                <li class="sub-item"><a href="../../starter_kits/m4_cv.html">Module 4: CV Models</a></li>
+                <li class="sub-item"><a href="../../starter_kits/m5_bias.html">Module 5: Bias & Interpretability</a></li>
+                <li><a href="../../reading_material.html">Reading Materials</a></li>
+                <li><a href="../../datasets.html">Datasets Reference</a></li>
+                <li><a href="../../api/ccai9012/index.html" class="active">API Documentation</a></li>
+      </ul>
+    </nav>
 
-        <main id="content" class="api-content">
-
-<article id="content">
-<header>
-<h1 class="title">Module <code>ccai9012.viz_utils</code></h1>
-</header>
+    <main id="content" class="api-content">
 <!-- STARTERKIT_BACKLINKS_START -->
-<section class="starterkit-backlinks" style="margin-top:1.5rem; padding:1rem; border:1px solid #e5e7eb; border-radius:10px; background:#fff">
-  <h2 style="margin-top:0">Related Starter Kit(s)</h2>
+<section class="starterkit-backlinks api-related-block">
+  <div class="api-related-block__title">Related Starter Kit(s)</div>
   <ul>
-<li><a href="../starter_kits/m2_llm.html">Starter Kit Module 2</a></li>
-<li><a href="../starter_kits/m3_mm.html">Starter Kit Module 3</a></li>
+<li><a href="../../starter_kits/m2_llm.html">Starter Kit Module 2</a></li>
+<li><a href="../../starter_kits/m3_mm.html">Starter Kit Module 3</a></li>
   </ul>
 </section>
 <!-- STARTERKIT_BACKLINKS_END -->
+      <!-- API content extracted from pdoc -->
+<article class="api-doc">
+<header>
+<h1 class="title">Module <code>ccai9012.viz_utils</code></h1>
+</header>
 <section id="section-intro">
 <h1 id="visualization-utilities-module">Visualization Utilities Module</h1>
 <p>This module provides a comprehensive set of visualization tools for data science and machine learning applications.
@@ -124,6 +55,8 @@ geospatial data, and various other types of data visualizations.</p>
 - Geospatial visualization: Functions for creating maps, heatmaps, and plotting geo-located data points
 - Word cloud visualization: Utilities for generating word clouds from text data
 - General data visualization: Additional visualization tools for various data types</p>
+</section>
+<section>
 </section>
 <section>
 </section>
@@ -1330,43 +1263,8 @@ counts their frequency, and visualizes the results as a bar chart.</p>
 <section>
 </section>
 </article>
-<nav id="sidebar">
-<div class="toc">
-<ul>
-<li><a href="#visualization-utilities-module">Visualization Utilities Module</a></li>
-</ul>
-</div>
-<ul id="index">
-<li><h3>Super-module</h3>
-<ul>
-<li><code><a title="ccai9012" href="index.html">ccai9012</a></code></li>
-</ul>
-</li>
-<li><h3><a href="#header-functions">Functions</a></h3>
-<ul class="">
-<li><code><a title="ccai9012.viz_utils.draw_simple_mlp" href="#ccai9012.viz_utils.draw_simple_mlp">draw_simple_mlp</a></code></li>
-<li><code><a title="ccai9012.viz_utils.occupation_comparison" href="#ccai9012.viz_utils.occupation_comparison">occupation_comparison</a></code></li>
-<li><code><a title="ccai9012.viz_utils.plot_bar_bias" href="#ccai9012.viz_utils.plot_bar_bias">plot_bar_bias</a></code></li>
-<li><code><a title="ccai9012.viz_utils.plot_cooccurrence_heatmap" href="#ccai9012.viz_utils.plot_cooccurrence_heatmap">plot_cooccurrence_heatmap</a></code></li>
-<li><code><a title="ccai9012.viz_utils.plot_heatmap" href="#ccai9012.viz_utils.plot_heatmap">plot_heatmap</a></code></li>
-<li><code><a title="ccai9012.viz_utils.plot_loss_curve" href="#ccai9012.viz_utils.plot_loss_curve">plot_loss_curve</a></code></li>
-<li><code><a title="ccai9012.viz_utils.plot_poi_sampled" href="#ccai9012.viz_utils.plot_poi_sampled">plot_poi_sampled</a></code></li>
-<li><code><a title="ccai9012.viz_utils.plot_points" href="#ccai9012.viz_utils.plot_points">plot_points</a></code></li>
-<li><code><a title="ccai9012.viz_utils.plot_review_heatmap" href="#ccai9012.viz_utils.plot_review_heatmap">plot_review_heatmap</a></code></li>
-<li><code><a title="ccai9012.viz_utils.plot_review_map" href="#ccai9012.viz_utils.plot_review_map">plot_review_map</a></code></li>
-<li><code><a title="ccai9012.viz_utils.plot_star_distribution" href="#ccai9012.viz_utils.plot_star_distribution">plot_star_distribution</a></code></li>
-<li><code><a title="ccai9012.viz_utils.plot_tsne_words" href="#ccai9012.viz_utils.plot_tsne_words">plot_tsne_words</a></code></li>
-<li><code><a title="ccai9012.viz_utils.plot_wordclouds" href="#ccai9012.viz_utils.plot_wordclouds">plot_wordclouds</a></code></li>
-<li><code><a title="ccai9012.viz_utils.plot_wordclouds_by_aspect_opinion" href="#ccai9012.viz_utils.plot_wordclouds_by_aspect_opinion">plot_wordclouds_by_aspect_opinion</a></code></li>
-<li><code><a title="ccai9012.viz_utils.sample_street_points_map" href="#ccai9012.viz_utils.sample_street_points_map">sample_street_points_map</a></code></li>
-<li><code><a title="ccai9012.viz_utils.viz_keywords_freq" href="#ccai9012.viz_utils.viz_keywords_freq">viz_keywords_freq</a></code></li>
-</ul>
-</li>
-</ul>
-</nav>
-
-        </main>
-    </div>
+    </main>
+  </div>
 </body>
 </html>
-
+<!-- END PDOC WRAPPER -->

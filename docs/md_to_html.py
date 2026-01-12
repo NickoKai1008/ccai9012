@@ -99,6 +99,15 @@ def _rewrite_relative_links_in_markdown(md_text: str, *, from_dir: Path, to_dir:
         if path_str.startswith("#"):
             return path_str
 
+        # API landing page moved to api/ccai9012/index.html
+        if path_str == "api/index.html":
+            path_str = "api/ccai9012/index.html"
+
+        # Keep authoring shorthand stable: in markdown we reference api/<module>.html,
+        # but the generated-site layout is docs/html/api/ccai9012/<module>.html.
+        if re.match(r"^api/[A-Za-z0-9_]+\.html$", path_str):
+            path_str = "api/ccai9012/" + Path(path_str).name
+
         if path_str.startswith("api/") or path_str.startswith("figs/"):
             src_abs = (docs_dir / path_str).resolve()
             try:
@@ -629,7 +638,13 @@ def _infer_module_api_mapping_from_markdown(starter_md_text: str):
 
 
 def _inject_starterkit_backlinks_into_api_pages(*, docs_dir: Path, cfg: dict, html_root: Path):
-    """Inject backlinks into docs/html/api/*.html based on starter kits source.
+    """Inject backlinks into docs/html/api/**/*.html based on starter kits source.
+
+    We infer the mapping from Starter Kits markdown by looking for links like:
+      (api/<name>.html)
+
+    Then we post-process the generated API HTML pages (produced by pdoc) and add a
+    simple section with links back to the relevant starter kit module pages.
 
     Canonical source is docs/md/starter_kits.md (if present), fallback to legacy.
     """
@@ -684,34 +699,48 @@ def _inject_starterkit_backlinks_into_api_pages(*, docs_dir: Path, cfg: dict, ht
         if start_mark in html and end_mark in html:
             return re.sub(rf"{re.escape(start_mark)}.*?{re.escape(end_mark)}", block, html, flags=re.DOTALL)
 
-        if "</header>" in html:
-            return html.replace("</header>", "</header>\n" + block, 1)
-
-        m = re.search(r"(<main[^>]*id=\"content\"[^>]*>)", html)
+        # Prefer inserting near the top of the main content if we can.
+        m = re.search(r"(<main[^>]*>)", html, flags=re.IGNORECASE)
         if m:
             insert_at = m.end()
             return html[:insert_at] + "\n" + block + html[insert_at:]
 
+        # Fallback: after <header>
+        if "</header>" in html:
+            return html.replace("</header>", "</header>\n" + block, 1)
+
         return html + "\n" + block
 
-    for api_name, module_nums in api_to_modules.items():
-        api_path = api_dir / f"{api_name}.html"
-        if not api_path.exists():
+    # pdoc emits nested pages (e.g. api/ccai9012/gan_utils.html + index.html).
+    # So we walk recursively.
+    for p in api_dir.rglob("*.html"):
+        try:
+            html = p.read_text(encoding="utf-8", errors="replace")
+        except Exception:
             continue
 
-        html = api_path.read_text(encoding="utf-8", errors="replace")
+        # Try to match either:
+        #   - .../gan_utils.html
+        #   - .../gan_utils/index.html
+        slug = p.stem
+        if p.name == "index.html":
+            slug = p.parent.name
+
+        module_nums = api_to_modules.get(slug)
+        if not module_nums:
+            continue
 
         section_html = "\n".join([
-            '<section class="starterkit-backlinks" style="margin-top:1.5rem; padding:1rem; border:1px solid #e5e7eb; border-radius:10px; background:#fff">',
-            '  <h2 style="margin-top:0">Related Starter Kit(s)</h2>',
+            '<section class="starterkit-backlinks api-related-block">',
+            '  <div class="api-related-block__title">Related Starter Kit(s)</div>',
             '  <ul>',
-            build_links(module_nums, api_page_dir=api_path.parent),
+            build_links(module_nums, api_page_dir=p.parent),
             '  </ul>',
             '</section>',
         ])
 
         new_html = upsert_section(html, section_html)
-        api_path.write_text(new_html, encoding="utf-8")
+        p.write_text(new_html, encoding="utf-8")
 
 
 def _write_text(p: Path, text: str):
@@ -1024,14 +1053,40 @@ def _copy_tree(src: Path, dst: Path):
 
 
 def _migrate_api_to_html(*, docs_dir: Path, html_root: Path):
-    """Copy docs/api -> docs/html/api.
+    """(Legacy/compat) Copy pre-built API HTML into docs/html/api.
 
-    API docs are treated as static HTML produced elsewhere, so we copy them into the site root.
+    New default pipeline generates API docs directly into:
+      docs/html/api/ccai9012/...
+
+    So in the normal case there's nothing to migrate.
+
+    We keep this function only for backward compatibility:
+    - If someone still generates pdoc output into repo_root/tmp_2/ccai9012/, we copy it.
+    - If someone still has legacy docs/api/, we copy it.
+
+    We *never* overwrite an existing docs/html/api/ccai9012 unless a legacy source is present.
     """
-    src = docs_dir / "api"
+
     dst = html_root / "api"
     dst.mkdir(parents=True, exist_ok=True)
-    _copy_tree(src, dst)
+
+    # If the new-layout output already exists, do nothing.
+    if (dst / "ccai9012" / "index.html").exists():
+        return
+
+    repo_root = docs_dir.parent
+
+    # Backward compat: pdoc output root
+    pdoc_root = repo_root / "tmp_2"
+    pkg_dir = pdoc_root / "ccai9012"
+    if pkg_dir.exists():
+        _copy_tree(pkg_dir, dst / "ccai9012")
+        return
+
+    # Backward compat: legacy docs/api tree
+    legacy = docs_dir / "api"
+    if legacy.exists():
+        _copy_tree(legacy, dst)
 
 
 def _ensure_site_css_available(*, docs_dir: Path, html_root: Path, cfg: dict):
@@ -1058,10 +1113,12 @@ def _ensure_site_css_available(*, docs_dir: Path, html_root: Path, cfg: dict):
 
 
 def _patch_api_html_css_links(*, html_root: Path, cfg: dict):
-    """Rewrite API html pages to reference the same site stylesheet.
+    """Ensure pdoc-generated API pages use the site-wide CSS.
 
-    API pages are copied as static HTML into docs/html/api.
-    We ensure they link to ../<site.css.path>.
+    We don't want to reshape pdoc's HTML. We only:
+    - remove any existing <link rel="stylesheet" ...> tags in <head>
+    - insert a single <link> pointing at our site CSS, using a relative path that
+      depends on the file's nesting depth.
     """
     site_css = (cfg.get("site") or {}).get("css") or {}
     css_rel = site_css.get("path") if isinstance(site_css.get("path"), str) and site_css.get("path").strip() else "docs-style.css"
@@ -1071,24 +1128,233 @@ def _patch_api_html_css_links(*, html_root: Path, cfg: dict):
     if not api_dir.exists():
         return
 
-    target_href = "../" + css_rel
-    pat = re.compile(
-        r'(<link\s+rel=["\']stylesheet["\']\s+href=["\'])([^"\']*docs-style\.css)(["\'])',
-        re.IGNORECASE,
-    )
+    link_pat = re.compile(r"\n?\s*<link[^>]+rel=[\"']stylesheet[\"'][^>]*>\s*\n?", re.IGNORECASE)
 
-    for p in api_dir.glob("*.html"):
+    for p in api_dir.rglob("*.html"):
         try:
             html = p.read_text(encoding="utf-8", errors="replace")
         except Exception:
             continue
 
-        if "docs-style.css" not in html:
+        m = re.search(r"</head>", html, flags=re.IGNORECASE)
+        if not m:
             continue
 
-        new_html, n = pat.subn(r"\1" + target_href + r"\3", html, count=1)
-        if n:
-            p.write_text(new_html, encoding="utf-8")
+        # Compute relative href from this page to docs/html/<css_rel>
+        try:
+            rel = os.path.relpath((html_root / css_rel).resolve(), p.parent.resolve())
+        except ValueError:
+            rel = str((html_root / css_rel).resolve())
+        rel = rel.replace(os.sep, "/")
+
+        # Strip any existing stylesheet links inside <head>
+        head_start = re.search(r"<head[^>]*>", html, flags=re.IGNORECASE)
+        if head_start:
+            hs = head_start.end()
+            he = m.start()
+            head_block = html[hs:he]
+            head_block = link_pat.sub("\n", head_block)
+            html = html[:hs] + head_block + html[he:]
+
+        inject = f'\n<link rel="stylesheet" href="{rel}">\n'
+        html = re.sub(r"</head>", inject + "</head>", html, flags=re.IGNORECASE, count=1)
+
+        p.write_text(html, encoding="utf-8")
+
+
+def _finalize_api_output_layout(*, html_root: Path):
+    """Ensure the on-disk API output layout is consistent.
+
+    Canonical API output is produced by pdoc under:
+      docs/html/api/ccai9012/...
+
+    Historically, the repo also had a second (flat) set of API pages under:
+      docs/html/api/<module>.html
+
+    Those flat pages use a different template and confuse navigation.
+
+    Behavior:
+    - Delete html_root/api/*.html (flat pages) except html_root/api/index.html.
+    - Ensure html_root/api/index.html exists and redirects to api/ccai9012/index.html.
+
+    We do *not* touch html_root/api/ccai9012/**.
+    """
+
+    api_dir = html_root / "api"
+    if not api_dir.exists():
+        return
+
+    # Remove legacy flat .html pages.
+    for p in api_dir.glob("*.html"):
+        if p.name == "index.html":
+            continue
+        try:
+            p.unlink()
+        except Exception:
+            pass
+
+    # Ensure a simple redirect landing page exists at api/index.html
+    index_path = api_dir / "index.html"
+    target = "ccai9012/index.html"
+    redirect_html = "\n".join([
+        "<!doctype html>",
+        "<html lang=\"en\">",
+        "<head>",
+        "  <meta charset=\"utf-8\">",
+        "  <meta http-equiv=\"refresh\" content=\"0; url=" + target + "\">",
+        "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">",
+        "  <title>API Documentation</title>",
+        "</head>",
+        "<body>",
+        "  <p>Redirecting to <a href=\"" + target + "\">API Documentation</a>…</p>",
+        "  <script>location.replace('" + target + "');</script>",
+        "</body>",
+        "</html>",
+        "",
+    ])
+    try:
+        index_path.write_text(redirect_html, encoding="utf-8")
+    except Exception:
+        pass
+
+
+def _wrap_api_pages_with_site_chrome(*, docs_dir: Path, cfg: dict, html_root: Path):
+    """Wrap pdoc-generated API pages with the same left sidebar as the main site.
+
+    Why this exists:
+    - pdoc emits its own layout and inline CSS that uses #sidebar/#content selectors.
+    - Our site also uses #sidebar/#content.
+
+    If we naively embed full pdoc HTML inside our site layout, we get:
+    - nested <html>/<head>/<body>
+    - duplicate ids (#sidebar, #content)
+    - conflicting CSS rules
+
+    So we *extract* the pdoc article content and embed that only.
+
+    Best-effort heuristics (no full HTML parser).
+    """
+    api_dir = html_root / "api"
+    if not api_dir.exists():
+        return
+
+    def _extract_between(s: str, start_pat: re.Pattern, end_pat: re.Pattern) -> str | None:
+        m1 = start_pat.search(s)
+        if not m1:
+            return None
+        m2 = end_pat.search(s, m1.end())
+        if not m2:
+            return None
+        return s[m1.end():m2.start()]
+
+    def _extract_pdoc_article(html: str) -> str:
+        # Prefer the main article content.
+        inner = _extract_between(
+            html,
+            re.compile(r"<article\s+id=\"content\"[^>]*>", re.IGNORECASE),
+            re.compile(r"</article>", re.IGNORECASE),
+        )
+        if inner is not None:
+            return "<article class=\"api-doc\">\n" + inner.strip() + "\n</article>"
+
+        # Fallback: pdoc may use <main> wrapper.
+        inner = _extract_between(
+            html,
+            re.compile(r"<main[^>]*>", re.IGNORECASE),
+            re.compile(r"</main>", re.IGNORECASE),
+        )
+        if inner is not None:
+            return "<article class=\"api-doc\">\n" + inner.strip() + "\n</article>"
+
+        # Absolute fallback: embed as-is.
+        return "<article class=\"api-doc\">\n" + html.strip() + "\n</article>"
+
+    def _unwrap_if_wrapped(existing_html: str) -> str:
+        """If this page is already wrapped, return an inner html fragment to re-process.
+
+        We prefer the already-extracted API content, to avoid depending on pdoc's full-page HTML.
+        """
+        if "<!-- START PDOC WRAPPER -->" not in existing_html:
+            return existing_html
+
+        # If we previously extracted into <article class="api-doc">, reuse it.
+        inner = _extract_between(
+            existing_html,
+            re.compile(r"<article\s+class=\"api-doc\"[^>]*>", re.IGNORECASE),
+            re.compile(r"</article>", re.IGNORECASE),
+        )
+        if inner is not None:
+            return "<article id=\"content\">\n" + inner.strip() + "\n</article>"
+
+        # Fallback: attempt to reuse our main content block.
+        inner = _extract_between(
+            existing_html,
+            re.compile(r"<main\s+id=\"content\"[^>]*>", re.IGNORECASE),
+            re.compile(r"</main>", re.IGNORECASE),
+        )
+        if inner is not None:
+            return inner.strip()
+
+        return existing_html
+
+    for p in api_dir.rglob("*.html"):
+        try:
+            html = p.read_text(encoding="utf-8", errors="replace")
+        except Exception:
+            continue
+
+        # If this was wrapped before, unwrap then rewrap with the current template.
+        html = _unwrap_if_wrapped(html)
+
+        # Extract a readable title for the <title> tag.
+        module_name = "API Documentation"
+        m_title = re.search(r"<h1[^>]*class=\"title\"[^>]*>\s*(.*?)\s*</h1>", html, flags=re.IGNORECASE | re.DOTALL)
+        if m_title:
+            module_name = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", m_title.group(1))).strip() or module_name
+        else:
+            m_title = re.search(r"<title>(.*?)</title>", html, flags=re.IGNORECASE | re.DOTALL)
+            if m_title:
+                module_name = re.sub(r"\s+", " ", m_title.group(1)).strip() or module_name
+
+        content_html = _extract_pdoc_article(html)
+
+        css_href = _css_href_for_output(cfg=cfg, output_path=p, html_root=html_root, docs_dir=docs_dir)
+        base_href = _base_href_for_output(output_path=p, html_root=html_root)
+        nav_items_html = _render_nav_items(cfg, base_href=base_href, active_key="api")
+
+        wrapped = "\n".join([
+            "<!-- START PDOC WRAPPER -->",
+            "<!doctype html>",
+            "<html lang=\"en\">",
+            "<head>",
+            "  <meta charset=\"utf-8\">",
+            "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">",
+            f"  <title>{module_name}</title>",
+            f"  <link rel=\"stylesheet\" href=\"{css_href}\">",
+            "</head>",
+            "<body>",
+            "  <div class=\"container\">",
+            "    <nav id=\"sidebar\">",
+            "      <div class=\"sidebar-header\">",
+            "        <h2>CCAI9012</h2>",
+            "      </div>",
+            "      <ul class=\"nav-menu\">",
+            nav_items_html,
+            "      </ul>",
+            "    </nav>",
+            "",
+            "    <main id=\"content\" class=\"api-content\">",
+            "      <!-- API content extracted from pdoc -->",
+            content_html,
+            "    </main>",
+            "  </div>",
+            "</body>",
+            "</html>",
+            "<!-- END PDOC WRAPPER -->",
+            "",
+        ])
+
+        p.write_text(wrapped, encoding="utf-8")
 
 
 def convert_all_docs():
@@ -1109,6 +1375,12 @@ def convert_all_docs():
 
     # Patch API pages to point at the unified stylesheet
     _patch_api_html_css_links(html_root=html_root, cfg=cfg)
+
+    # Normalize API layout (remove legacy flat pages, keep redirect)
+    _finalize_api_output_layout(html_root=html_root)
+
+    # Wrap pdoc API pages with the same left sidebar as the main site.
+    _wrap_api_pages_with_site_chrome(docs_dir=docs_dir, cfg=cfg, html_root=html_root)
 
     pages_by_source = _pages_by_source(cfg)
     md_files: list[Path] = []

@@ -1,117 +1,48 @@
+<!-- START PDOC WRAPPER -->
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-<meta name="generator" content="pdoc3 0.11.6">
-<title>ccai9012.gan_utils API documentation</title>
-<meta name="description" content="CCAI9012 Toolkit">
-<link rel="stylesheet" href="../docs-style.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
-<style>
-/* Additional styles for API documentation content */
-.api-content {
-    max-width: none;
-}
-.api-content code {
-    background-color: var(--code-bg);
-    padding: 0.2rem 0.4rem;
-    border-radius: 3px;
-    font-family: 'Courier New', monospace;
-    font-size: 0.875rem;
-    color: #e11d48;
-}
-.api-content pre code {
-    background: var(--code-bg);
-    padding: 1rem;
-    display: block;
-    color: var(--text-color);
-}
-.api-content .name {
-    background: #eee;
-    font-size: 0.85em;
-    padding: 5px 10px;
-    display: inline-block;
-    border-radius: 4px;
-}
-.api-content .name:hover {
-    background: #e0e0e0;
-}
-.api-content dl {
-    margin-bottom: 2em;
-}
-.api-content dd {
-    margin: 0 0 1em 2em;
-}
-.api-content .desc {
-    margin-top: 1em;
-}
-.api-content h2 {
-    margin-top: 2em;
-}
-.api-content .ident {
-    color: #900;
-    font-weight: bold;
-}
-</style>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" crossorigin></script>
-<script>window.addEventListener('DOMContentLoaded', () => {
-hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
-hljs.highlightAll();
-/* Collapse source docstrings */
-setTimeout(() => {
-[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
-.filter(el => el.innerHTML.length > 200 && ['"' + '"' + '"', "'" + "'" + "'"].includes(el.innerHTML.substring(0, 3)))
-.forEach(el => {
-let d = document.createElement('details');
-d.classList.add('hljs-string');
-d.innerHTML = '<summary>"' + '"' + '"</summary>' + el.innerHTML.substring(3);
-el.replaceWith(d);
-});
-}, 100);
-})</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Module ccai9012.gan_utils</title>
+  <link rel="stylesheet" href="../../docs-style.css">
 </head>
 <body>
-    <div class="container">
-        <nav id="sidebar">
-            <div class="sidebar-header">
-                <h2>CCAI9012</h2>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../installation.html">Installation Guide</a></li>
-                <li><a href="../starter_kits/index.html">Starter Kits</a></li>
-                <li><a href="../starter_kits/m1_gan.html">Starter Kit: Module 1 (GAN)</a></li>
-                <li><a href="../reading_material.html">Reading Materials</a></li>
-                <li><a href="../datasets.html">Datasets Reference</a></li>
-                <li><a href="index.html">API Documentation</a></li>
-                <li style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--sidebar-hover);">
-                    <span style="color: #94a3b8; font-size: 0.875rem; padding-left: 1.5rem; display: block; margin-bottom: 0.5rem;">API Modules</span>
-                </li>
-                <li style="padding-left: 1rem;"><a href="gan_utils.html">gan_utils</a></li>
-                <li style="padding-left: 1rem;"><a href="llm_utils.html">llm_utils</a></li>
-                <li style="padding-left: 1rem;"><a href="multi_modal_utils.html">multi_modal_utils</a></li>
-                <li style="padding-left: 1rem;"><a href="nn_utils.html">nn_utils</a></li>
-                <li style="padding-left: 1rem;"><a href="sd_utils.html">sd_utils</a></li>
-                <li style="padding-left: 1rem;"><a href="svi_utils.html">svi_utils</a></li>
-                <li style="padding-left: 1rem;"><a href="viz_utils.html">viz_utils</a></li>
-                <li style="padding-left: 1rem;"><a href="yolo_utils.html">yolo_utils</a></li>
-            </ul>
-        </nav>
+  <div class="container">
+    <nav id="sidebar">
+      <div class="sidebar-header">
+        <h2>CCAI9012</h2>
+      </div>
+      <ul class="nav-menu">
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../../timetable.html">Timetable</a></li>
+                <li><a href="../../installation.html">Installation Guide</a></li>
+                <li><a href="../../starter_kits/index.html">Starter Kits</a></li>
+                <li class="sub-item"><a href="../../starter_kits/m1_gan.html">Module 1: Traditional Generative ML</a></li>
+                <li class="sub-item"><a href="../../starter_kits/m2_llm.html">Module 2: LLM for Structuring Information</a></li>
+                <li class="sub-item"><a href="../../starter_kits/m3_mm.html">Module 3: Multimodal Reasoning</a></li>
+                <li class="sub-item"><a href="../../starter_kits/m4_cv.html">Module 4: CV Models</a></li>
+                <li class="sub-item"><a href="../../starter_kits/m5_bias.html">Module 5: Bias & Interpretability</a></li>
+                <li><a href="../../reading_material.html">Reading Materials</a></li>
+                <li><a href="../../datasets.html">Datasets Reference</a></li>
+                <li><a href="../../api/ccai9012/index.html" class="active">API Documentation</a></li>
+      </ul>
+    </nav>
 
-        <main id="content" class="api-content">
-<article id="content">
-<header>
-<h1 class="title">Module <code>ccai9012.gan_utils</code></h1>
-</header>
+    <main id="content" class="api-content">
 <!-- STARTERKIT_BACKLINKS_START -->
-<section class="starterkit-backlinks" style="margin-top:1.5rem; padding:1rem; border:1px solid #e5e7eb; border-radius:10px; background:#fff">
-  <h2 style="margin-top:0">Related Starter Kit(s)</h2>
+<section class="starterkit-backlinks api-related-block">
+  <div class="api-related-block__title">Related Starter Kit(s)</div>
   <ul>
-<li><a href="../starter_kits/m1_gan.html">Starter Kit Module 1</a></li>
+<li><a href="../../starter_kits/m1_gan.html">Starter Kit Module 1</a></li>
   </ul>
 </section>
 <!-- STARTERKIT_BACKLINKS_END -->
+      <!-- API content extracted from pdoc -->
+<article class="api-doc">
+<header>
+<h1 class="title">Module <code>ccai9012.gan_utils</code></h1>
+</header>
 <section id="section-intro">
 <h1 id="gan-utilities-module">GAN Utilities Module</h1>
 <p>This module provides comprehensive utilities for training and using Generative Adversarial Networks (GANs),
@@ -1004,58 +935,8 @@ registered hooks while the latter silently ignores them.</p>
 </dl>
 </section>
 </article>
-<nav id="sidebar">
-<div class="toc">
-<ul>
-<li><a href="#gan-utilities-module">GAN Utilities Module</a></li>
-</ul>
-</div>
-<ul id="index">
-<li><h3>Super-module</h3>
-<ul>
-<li><code><a title="ccai9012" href="index.html">ccai9012</a></code></li>
-</ul>
-</li>
-<li><h3><a href="#header-functions">Functions</a></h3>
-<ul class="">
-<li><code><a title="ccai9012.gan_utils.augment_pair" href="#ccai9012.gan_utils.augment_pair">augment_pair</a></code></li>
-<li><code><a title="ccai9012.gan_utils.collect_image_pairs" href="#ccai9012.gan_utils.collect_image_pairs">collect_image_pairs</a></code></li>
-<li><code><a title="ccai9012.gan_utils.copy_pair" href="#ccai9012.gan_utils.copy_pair">copy_pair</a></code></li>
-<li><code><a title="ccai9012.gan_utils.create_paired_data_loader" href="#ccai9012.gan_utils.create_paired_data_loader">create_paired_data_loader</a></code></li>
-<li><code><a title="ccai9012.gan_utils.inference_gan" href="#ccai9012.gan_utils.inference_gan">inference_gan</a></code></li>
-<li><code><a title="ccai9012.gan_utils.load_model" href="#ccai9012.gan_utils.load_model">load_model</a></code></li>
-<li><code><a title="ccai9012.gan_utils.prepare_gan_dataset" href="#ccai9012.gan_utils.prepare_gan_dataset">prepare_gan_dataset</a></code></li>
-<li><code><a title="ccai9012.gan_utils.process_and_save_image" href="#ccai9012.gan_utils.process_and_save_image">process_and_save_image</a></code></li>
-<li><code><a title="ccai9012.gan_utils.setup_directories" href="#ccai9012.gan_utils.setup_directories">setup_directories</a></code></li>
-<li><code><a title="ccai9012.gan_utils.split_pairs" href="#ccai9012.gan_utils.split_pairs">split_pairs</a></code></li>
-<li><code><a title="ccai9012.gan_utils.tensor2img" href="#ccai9012.gan_utils.tensor2img">tensor2img</a></code></li>
-<li><code><a title="ccai9012.gan_utils.train_GAN" href="#ccai9012.gan_utils.train_GAN">train_GAN</a></code></li>
-</ul>
-</li>
-<li><h3><a href="#header-classes">Classes</a></h3>
-<ul>
-<li>
-<h4><code><a title="ccai9012.gan_utils.PairedImageDataset" href="#ccai9012.gan_utils.PairedImageDataset">PairedImageDataset</a></code></h4>
-</li>
-<li>
-<h4><code><a title="ccai9012.gan_utils.PatchDiscriminator" href="#ccai9012.gan_utils.PatchDiscriminator">PatchDiscriminator</a></code></h4>
-<ul class="">
-<li><code><a title="ccai9012.gan_utils.PatchDiscriminator.forward" href="#ccai9012.gan_utils.PatchDiscriminator.forward">forward</a></code></li>
-</ul>
-</li>
-<li>
-<h4><code><a title="ccai9012.gan_utils.UNetGenerator" href="#ccai9012.gan_utils.UNetGenerator">UNetGenerator</a></code></h4>
-<ul class="">
-<li><code><a title="ccai9012.gan_utils.UNetGenerator.forward" href="#ccai9012.gan_utils.UNetGenerator.forward">forward</a></code></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</nav>
-
-        </main>
-    </div>
+    </main>
+  </div>
 </body>
 </html>
-
+<!-- END PDOC WRAPPER -->
