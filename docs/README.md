@@ -67,7 +67,3 @@ When adding a new page, you need to do two things:
   - `output`: HTML output path (relative to `docs/` site root)
   - `children`: list of child pages (can be nested indefinitely; compatible with multi-level structures)
   - `home_card`: whether to show on the homepage card area (optional)
-
-Notes:
-- If you only want to add a navigation item that points to an “external/already generated page” (e.g., the API home), you can configure only `href` without `source`.
-  - There is already an example in the repo: `key: "api"` uses `href: "api/ccai9012/index.html"`.
