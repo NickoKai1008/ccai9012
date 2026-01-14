@@ -178,12 +178,12 @@ def plot_loss_curve(
 # Word embedding visualization
 # ==========================
 
-def plot_tsne_words(tsne_results, valid_words, key_words, key_word_colors=None, key_word_labels=None):
+def plot_pca_words(pca_results, valid_words, key_words, key_word_colors=None, key_word_labels=None):
     """
     Plot t-SNE results of word embeddings with key words highlighted by color.
 
     Args:
-        tsne_results (np.ndarray): 2D array of shape (N, 2) with t-SNE coordinates.
+        pca_results (np.ndarray): 2D array of shape (N, 2) with t-SNE coordinates.
         valid_words (list of str): List of words corresponding to embeddings.
         key_words (set or list): Words to highlight with special colors.
         key_word_colors (dict or None): Optional dict mapping keys to colors.
@@ -213,7 +213,7 @@ def plot_tsne_words(tsne_results, valid_words, key_words, key_word_colors=None, 
         else:
             colors.append('gray')
 
-    plt.scatter(tsne_results[:, 0], tsne_results[:, 1], c=colors, s=100, edgecolors='k', alpha=0.75)
+    plt.scatter(pca_results[:, 0], pca_results[:, 1], c=colors, s=100, edgecolors='k', alpha=0.75)
 
     for i, word in enumerate(valid_words):
         fontweight = 'bold' if (word in key_words if isinstance(key_words, (set, list)) else any(word in s for s in key_words.values())) else 'normal'
@@ -224,13 +224,13 @@ def plot_tsne_words(tsne_results, valid_words, key_words, key_word_colors=None, 
                     color = key_word_colors.get(group, 'black')
                     break
 
-        plt.text(tsne_results[i, 0]+0.5, tsne_results[i, 1]+0.5, word,
+        plt.text(pca_results[i, 0]+0.5, pca_results[i, 1]+0.5, word,
                  fontsize=11, fontweight=fontweight,
                  color=color)
 
-    plt.title('t-SNE Visualization of Word Groups', fontsize=18, fontweight='bold')
-    plt.xlabel('t-SNE Dimension 1', fontsize=14)
-    plt.ylabel('t-SNE Dimension 2', fontsize=14)
+    plt.title('PCA Visualization of Word Groups', fontsize=18, fontweight='bold')
+    plt.xlabel('PCA Dimension 1', fontsize=14)
+    plt.ylabel('PCA Dimension 2', fontsize=14)
 
     # Legend
     legend_elements = []

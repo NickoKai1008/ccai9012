@@ -16,7 +16,6 @@ Verbose usage:
 
 import sys
 import importlib
-from typing import List, Tuple, Dict
 import argparse
 
 
@@ -150,6 +149,8 @@ class EnvironmentTester:
             ('openai', None),
             ('tiktoken', None),
             ('sentence_transformers', None),
+            ('faiss', None),  # pip/conda package name commonly: faiss-cpu (import as faiss)
+            ('pypdf', None),
         ]
 
         for pkg, from_module in packages:
@@ -273,6 +274,7 @@ class EnvironmentTester:
             'pydantic',
             'rich',
             'joblib',
+            'markdown'
         ]
 
         for pkg in packages:
@@ -344,7 +346,7 @@ class EnvironmentTester:
         self.test_ccai9012_package()
 
         # Print summary
-        self.print_summary()
+        return self.print_summary()
 
     def print_summary(self):
         """Summarize passed/failed/warning counts and provide basic remediation suggestions.

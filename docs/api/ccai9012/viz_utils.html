@@ -548,6 +548,104 @@ a heatmap where the intensity is determined by the values in the target column.<
 - ylabel: str, label for y-axis
 - figsize: tuple, figure size</p></div>
 </dd>
+<dt id="ccai9012.viz_utils.plot_pca_words"><code class="name flex">
+<span>def <span class="ident">plot_pca_words</span></span>(<span>pca_results, valid_words, key_words, key_word_colors=None, key_word_labels=None)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def plot_pca_words(pca_results, valid_words, key_words, key_word_colors=None, key_word_labels=None):
+    &#34;&#34;&#34;
+    Plot t-SNE results of word embeddings with key words highlighted by color.
+
+    Args:
+        pca_results (np.ndarray): 2D array of shape (N, 2) with t-SNE coordinates.
+        valid_words (list of str): List of words corresponding to embeddings.
+        key_words (set or list): Words to highlight with special colors.
+        key_word_colors (dict or None): Optional dict mapping keys to colors.
+            Example: {&#39;group1&#39;: &#39;red&#39;, &#39;group2&#39;: &#39;blue&#39;}
+        key_word_labels (dict or None): Optional dict mapping keys to labels for legend.
+    &#34;&#34;&#34;
+    pio.renderers.default = &#39;notebook&#39;  # or &#39;notebook_connected&#39;
+    sns.set(style=&#39;whitegrid&#39;)
+    plt.figure(figsize=(12, 8))
+
+    # Default color assignment
+    colors = []
+    for w in valid_words:
+        if w in key_words:
+            # If key_word_colors provided and word belongs to group, use color
+            if key_word_colors:
+                # find color by group, fallback to &#39;red&#39;
+                # Here assume key_words is a dict {group_name: set_of_words}
+                found_color = &#39;red&#39;
+                for group, words_set in key_words.items():
+                    if w in words_set:
+                        found_color = key_word_colors.get(group, &#39;red&#39;)
+                        break
+                colors.append(found_color)
+            else:
+                colors.append(&#39;red&#39;)
+        else:
+            colors.append(&#39;gray&#39;)
+
+    plt.scatter(pca_results[:, 0], pca_results[:, 1], c=colors, s=100, edgecolors=&#39;k&#39;, alpha=0.75)
+
+    for i, word in enumerate(valid_words):
+        fontweight = &#39;bold&#39; if (word in key_words if isinstance(key_words, (set, list)) else any(word in s for s in key_words.values())) else &#39;normal&#39;
+        color = &#39;black&#39;
+        if key_word_colors and isinstance(key_words, dict):
+            for group, words_set in key_words.items():
+                if word in words_set:
+                    color = key_word_colors.get(group, &#39;black&#39;)
+                    break
+
+        plt.text(pca_results[i, 0]+0.5, pca_results[i, 1]+0.5, word,
+                 fontsize=11, fontweight=fontweight,
+                 color=color)
+
+    plt.title(&#39;PCA Visualization of Word Groups&#39;, fontsize=18, fontweight=&#39;bold&#39;)
+    plt.xlabel(&#39;PCA Dimension 1&#39;, fontsize=14)
+    plt.ylabel(&#39;PCA Dimension 2&#39;, fontsize=14)
+
+    # Legend
+    legend_elements = []
+    if key_word_colors and key_word_labels:
+        for group, color in key_word_colors.items():
+            label = key_word_labels.get(group, group)
+            legend_elements.append(Line2D([0], [0], marker=&#39;o&#39;, color=&#39;w&#39;, label=label,
+                                          markerfacecolor=color, markersize=12, markeredgecolor=&#39;k&#39;))
+    else:
+        # default legend entries
+        legend_elements = [
+            Line2D([0], [0], marker=&#39;o&#39;, color=&#39;w&#39;, label=&#39;Key words&#39;,
+                   markerfacecolor=&#39;red&#39;, markersize=12, markeredgecolor=&#39;k&#39;),
+            Line2D([0], [0], marker=&#39;o&#39;, color=&#39;w&#39;, label=&#39;Other words&#39;,
+                   markerfacecolor=&#39;gray&#39;, markersize=12, markeredgecolor=&#39;k&#39;),
+        ]
+
+    plt.legend(handles=legend_elements, loc=&#39;best&#39;, fontsize=12)
+    plt.tight_layout()
+    plt.show()</code></pre>
+</details>
+<div class="desc"><p>Plot t-SNE results of word embeddings with key words highlighted by color.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>pca_results</code></strong> :&ensp;<code>np.ndarray</code></dt>
+<dd>2D array of shape (N, 2) with t-SNE coordinates.</dd>
+<dt><strong><code>valid_words</code></strong> :&ensp;<code>list</code> of <code>str</code></dt>
+<dd>List of words corresponding to embeddings.</dd>
+<dt><strong><code>key_words</code></strong> :&ensp;<code>set</code> or <code>list</code></dt>
+<dd>Words to highlight with special colors.</dd>
+<dt><strong><code>key_word_colors</code></strong> :&ensp;<code>dict</code> or <code>None</code></dt>
+<dd>Optional dict mapping keys to colors.
+Example: {'group1': 'red', 'group2': 'blue'}</dd>
+<dt><strong><code>key_word_labels</code></strong> :&ensp;<code>dict</code> or <code>None</code></dt>
+<dd>Optional dict mapping keys to labels for legend.</dd>
+</dl></div>
+</dd>
 <dt id="ccai9012.viz_utils.plot_poi_sampled"><code class="name flex">
 <span>def <span class="ident">plot_poi_sampled</span></span>(<span>pois, center=(36.1699, -115.1398), zoom=4, sample_size=1000)</span>
 </code></dt>
@@ -862,104 +960,6 @@ the center is calculated as the average of all review locations.</dd>
     plt.show()</code></pre>
 </details>
 <div class="desc"></div>
-</dd>
-<dt id="ccai9012.viz_utils.plot_tsne_words"><code class="name flex">
-<span>def <span class="ident">plot_tsne_words</span></span>(<span>tsne_results, valid_words, key_words, key_word_colors=None, key_word_labels=None)</span>
-</code></dt>
-<dd>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def plot_tsne_words(tsne_results, valid_words, key_words, key_word_colors=None, key_word_labels=None):
-    &#34;&#34;&#34;
-    Plot t-SNE results of word embeddings with key words highlighted by color.
-
-    Args:
-        tsne_results (np.ndarray): 2D array of shape (N, 2) with t-SNE coordinates.
-        valid_words (list of str): List of words corresponding to embeddings.
-        key_words (set or list): Words to highlight with special colors.
-        key_word_colors (dict or None): Optional dict mapping keys to colors.
-            Example: {&#39;group1&#39;: &#39;red&#39;, &#39;group2&#39;: &#39;blue&#39;}
-        key_word_labels (dict or None): Optional dict mapping keys to labels for legend.
-    &#34;&#34;&#34;
-    pio.renderers.default = &#39;notebook&#39;  # or &#39;notebook_connected&#39;
-    sns.set(style=&#39;whitegrid&#39;)
-    plt.figure(figsize=(12, 8))
-
-    # Default color assignment
-    colors = []
-    for w in valid_words:
-        if w in key_words:
-            # If key_word_colors provided and word belongs to group, use color
-            if key_word_colors:
-                # find color by group, fallback to &#39;red&#39;
-                # Here assume key_words is a dict {group_name: set_of_words}
-                found_color = &#39;red&#39;
-                for group, words_set in key_words.items():
-                    if w in words_set:
-                        found_color = key_word_colors.get(group, &#39;red&#39;)
-                        break
-                colors.append(found_color)
-            else:
-                colors.append(&#39;red&#39;)
-        else:
-            colors.append(&#39;gray&#39;)
-
-    plt.scatter(tsne_results[:, 0], tsne_results[:, 1], c=colors, s=100, edgecolors=&#39;k&#39;, alpha=0.75)
-
-    for i, word in enumerate(valid_words):
-        fontweight = &#39;bold&#39; if (word in key_words if isinstance(key_words, (set, list)) else any(word in s for s in key_words.values())) else &#39;normal&#39;
-        color = &#39;black&#39;
-        if key_word_colors and isinstance(key_words, dict):
-            for group, words_set in key_words.items():
-                if word in words_set:
-                    color = key_word_colors.get(group, &#39;black&#39;)
-                    break
-
-        plt.text(tsne_results[i, 0]+0.5, tsne_results[i, 1]+0.5, word,
-                 fontsize=11, fontweight=fontweight,
-                 color=color)
-
-    plt.title(&#39;t-SNE Visualization of Word Groups&#39;, fontsize=18, fontweight=&#39;bold&#39;)
-    plt.xlabel(&#39;t-SNE Dimension 1&#39;, fontsize=14)
-    plt.ylabel(&#39;t-SNE Dimension 2&#39;, fontsize=14)
-
-    # Legend
-    legend_elements = []
-    if key_word_colors and key_word_labels:
-        for group, color in key_word_colors.items():
-            label = key_word_labels.get(group, group)
-            legend_elements.append(Line2D([0], [0], marker=&#39;o&#39;, color=&#39;w&#39;, label=label,
-                                          markerfacecolor=color, markersize=12, markeredgecolor=&#39;k&#39;))
-    else:
-        # default legend entries
-        legend_elements = [
-            Line2D([0], [0], marker=&#39;o&#39;, color=&#39;w&#39;, label=&#39;Key words&#39;,
-                   markerfacecolor=&#39;red&#39;, markersize=12, markeredgecolor=&#39;k&#39;),
-            Line2D([0], [0], marker=&#39;o&#39;, color=&#39;w&#39;, label=&#39;Other words&#39;,
-                   markerfacecolor=&#39;gray&#39;, markersize=12, markeredgecolor=&#39;k&#39;),
-        ]
-
-    plt.legend(handles=legend_elements, loc=&#39;best&#39;, fontsize=12)
-    plt.tight_layout()
-    plt.show()</code></pre>
-</details>
-<div class="desc"><p>Plot t-SNE results of word embeddings with key words highlighted by color.</p>
-<h2 id="args">Args</h2>
-<dl>
-<dt><strong><code>tsne_results</code></strong> :&ensp;<code>np.ndarray</code></dt>
-<dd>2D array of shape (N, 2) with t-SNE coordinates.</dd>
-<dt><strong><code>valid_words</code></strong> :&ensp;<code>list</code> of <code>str</code></dt>
-<dd>List of words corresponding to embeddings.</dd>
-<dt><strong><code>key_words</code></strong> :&ensp;<code>set</code> or <code>list</code></dt>
-<dd>Words to highlight with special colors.</dd>
-<dt><strong><code>key_word_colors</code></strong> :&ensp;<code>dict</code> or <code>None</code></dt>
-<dd>Optional dict mapping keys to colors.
-Example: {'group1': 'red', 'group2': 'blue'}</dd>
-<dt><strong><code>key_word_labels</code></strong> :&ensp;<code>dict</code> or <code>None</code></dt>
-<dd>Optional dict mapping keys to labels for legend.</dd>
-</dl></div>
 </dd>
 <dt id="ccai9012.viz_utils.plot_wordclouds"><code class="name flex">
 <span>def <span class="ident">plot_wordclouds</span></span>(<span>df, target_col='overall_impression', tag_col='decision_tags', delimiter=',')</span>

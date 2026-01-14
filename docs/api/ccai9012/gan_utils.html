@@ -227,12 +227,20 @@ Ensures both input and target images undergo the same transformations.</p>
         pair_list: List of image pairs
         split_root: Destination root directory
     &#34;&#34;&#34;
+    # Ensure destination directories exist even if the caller didn&#39;t run setup_directories
+    os.makedirs(os.path.join(split_root, &#34;A&#34;), exist_ok=True)
+    os.makedirs(os.path.join(split_root, &#34;B&#34;), exist_ok=True)
+
     for region, rel_path, source_path, target_path in pair_list:
         parts = rel_path.split(os.sep)
         new_name = f&#34;{region}_{&#39;_&#39;.join(parts)}&#34;
 
         dst_A = os.path.join(split_root, &#34;A&#34;, new_name)
         dst_B = os.path.join(split_root, &#34;B&#34;, new_name)
+
+        # Be defensive: make sure parent dirs exist right before saving
+        os.makedirs(os.path.dirname(dst_A), exist_ok=True)
+        os.makedirs(os.path.dirname(dst_B), exist_ok=True)
 
         process_and_save_image(source_path, dst_A)
         process_and_save_image(target_path, dst_B)</code></pre>
@@ -785,6 +793,7 @@ a tree structure. You can assign the submodules as regular attributes::</p>
 <pre><code>import torch.nn as nn
 import torch.nn.functional as F
 
+
 class Model(nn.Module):
     def __init__(self) -&gt; None:
         super().__init__()
@@ -875,6 +884,7 @@ registered hooks while the latter silently ignores them.</p>
 a tree structure. You can assign the submodules as regular attributes::</p>
 <pre><code>import torch.nn as nn
 import torch.nn.functional as F
+
 
 class Model(nn.Module):
     def __init__(self) -&gt; None:

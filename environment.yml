@@ -53,6 +53,7 @@ dependencies:
       # Hugging Face / LLM utils
       - accelerate
       - sentence-transformers
+      - faiss-cpu
 
       # LangChain ecosystem
       - langchain==0.3.14
@@ -84,3 +85,5 @@ dependencies:
       - pytest
       - huggingface_hub>=0.16
       - qwen_vl_utils
+      - pypdf>=6.0.0
+      - pdoc3

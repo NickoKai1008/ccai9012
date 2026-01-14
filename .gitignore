@@ -14,4 +14,12 @@ docs/figs/flowchart/*.xml
 docs/md/weekly_syllabus.md
 
 starter_kits/4_cv_models/webcam_yolo/video/Live Cam Iseo _ SkylineWebcams _(9_30_16_55).mp4
-weekly_scripts/week10/video/Live Cam Iseo _ SkylineWebcams _(9_30_16_55).mp4
+
+weekly_scripts/week6/data
+weekly_scripts/week7/output
+weekly_scripts/week8/svi_segmentation/segmentations
+weekly_scripts/week8/yolo/output
+weekly_scripts/week8/yolo/runs
+
+docs/figs/brand_identity/*
+!docs/figs/brand_identity/banner.png

@@ -140,12 +140,20 @@ def copy_pair(pair_list: List[Tuple], split_root: str) -> None:
         pair_list: List of image pairs
         split_root: Destination root directory
     """
+    # Ensure destination directories exist even if the caller didn't run setup_directories
+    os.makedirs(os.path.join(split_root, "A"), exist_ok=True)
+    os.makedirs(os.path.join(split_root, "B"), exist_ok=True)
+
     for region, rel_path, source_path, target_path in pair_list:
         parts = rel_path.split(os.sep)
         new_name = f"{region}_{'_'.join(parts)}"
 
         dst_A = os.path.join(split_root, "A", new_name)
         dst_B = os.path.join(split_root, "B", new_name)
+
+        # Be defensive: make sure parent dirs exist right before saving
+        os.makedirs(os.path.dirname(dst_A), exist_ok=True)
+        os.makedirs(os.path.dirname(dst_B), exist_ok=True)
 
         process_and_save_image(source_path, dst_A)
         process_and_save_image(target_path, dst_B)
