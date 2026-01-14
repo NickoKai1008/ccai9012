@@ -553,8 +553,8 @@ Return your answer strictly in the following JSON format:
 # ==========================
 from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.embeddings import HuggingFaceEmbeddings
-from langchain.vectorstores import FAISS
+from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_community.vectorstores import FAISS
 from langchain.chains import RetrievalQA
 from langchain_deepseek import ChatDeepSeek
 from langchain.prompts import PromptTemplate
