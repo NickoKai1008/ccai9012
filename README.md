@@ -10,15 +10,15 @@ In this repository, you'll find a comprehensive set of resources, including week
 
 ```
 ├── weekly_scripts/        # Weekly course code
-│   ├── week1/            # Python basics
-│   ├── week2/            # Data processing & Feature visualization
-│   ├── week3/            # Shapley values & Model interpretation
-│   ├── week5/            # ML fundamentals & MLP
-│   ├── week6/            # CNN & Street View Imagery
-│   ├── week8/            # Image generation & LLM output control
-│   ├── week9/            # LLM hallucination
-│   ├── week10/           # YOLO object detection
-│   └── week11/           # Embedding & Credit decision fairness
+│   ├── week2/            # Python basics + LLM basics + Feature visualization
+│   ├── week3/            # Data basics + Python (part 2)
+│   ├── week4/            # Multimodal LLM
+│   ├── week5/            # ML fundamentals + MLP/CNN
+│   ├── week6/            # Simple CNN + GAN
+│   ├── week7/            # Document parsing
+│   ├── week8/            # Image generation + LLM output control
+│   ├── week9/            # LLM hallucination + Credit decision + Shapley
+│   └── week11/           # Embedding
 │
 ├── starter_kits/         # Project starter kits
 │   ├── 1_traditional_generative_ml/
@@ -28,8 +28,7 @@ In this repository, you'll find a comprehensive set of resources, including week
 │   └── 5_bias_detection_interpretability/
 │
 ├── ccai9012/            # Core utility library
-├── docs/                # Documentation
-│   └── ccai9012/        # Unified documentation website
+├── docs/                # Documentation source files
 ├── data/                # Example datasets
 └── models/              # Pre-trained models
 ```
