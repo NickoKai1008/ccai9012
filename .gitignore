@@ -4,9 +4,9 @@ __pycache__/
 .DS_Store
 .idea/
 
-data/
+data/*
+!data/german_credits/
 models/
-tests/
 tmp/
 
 docs/figs/flowchart/*.xml.bkp
@@ -14,6 +14,11 @@ docs/figs/flowchart/*.xml
 docs/md/weekly_syllabus.md
 
 starter_kits/4_cv_models/webcam_yolo/video/Live Cam Iseo _ SkylineWebcams _(9_30_16_55).mp4
+starter_kits/1_traditional_generative_ml/GANmapper/data/test
+starter_kits/1_traditional_generative_ml/GANmapper/data/train
+starter_kits/1_traditional_generative_ml/GANmapper/data/train_aug
+starter_kits/2_llm_structure_output/urban_sentiment/data
+starter_kits/4_cv_models/svi_housing_price/data
 
 weekly_scripts/week6/data
 weekly_scripts/week7/output
