@@ -150,18 +150,6 @@
         "description": "Access 40+ datasets with direct download links for your projects.",
         "button": "Browse Datasets →"
       }
-    },
-    {
-      "key": "api",
-      "label": "API Documentation",
-      "href": "api/ccai9012/index.html",
-      "home_card": {
-        "show": true,
-        "order": 6,
-        "icon": "🔧",
-        "description": "Detailed documentation for the ccai9012 utility library.",
-        "button": "View API Docs →"
-      }
     }
   ]
 }
