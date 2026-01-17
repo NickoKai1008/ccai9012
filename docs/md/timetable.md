@@ -1,4 +1,10 @@
-| Module | Dates       | Wk | Teacher                  | Activities | Topic                                   | Key Concepts | Assignment | In-class Script | Tutorial | Dataset used |
+
+
+**Course Planning**: [**[link]**](https://docs.google.com/spreadsheets/d/1-a0Wgr8zA2lIl8lOQ-Hn6dda7kueW6XznnyS7PzHf-0/edit?usp=sharing) 
+
+**Tutorial Registration**: [**[link]**](https://tobeupdated) 
+
+<!-- | Module | Dates       | Wk | Teacher                  | Activities | Topic                                   | Key Concepts | Assignment | In-class Script | Tutorial | Dataset used |
 |--------|-------------|----|---------------------------|------------|------------------------------------------|--------------|------------|------------------|----------|--------------|
 |Phase 1: Responsible AI  | 2026.01.21  | 1  | Mark / Hongshan & Waishan | Lecture    | Intro to AI & Generative Solutions       | - AI history<br>- ML/AI Definition<br>- General vs Specialist AI<br>- Basic ML<br>  - Modes of ML<br>- Course Structures |            | |Coding Infrastructure setup & Python 101| |
 |        | 2026.01.28  | 2  | Hongshan                 | Lecture    | Mitigating Risks: Transparency, Trustworthiness, Explainability |              |            |  |Data Processing, analysis and visualization | California housing price dataset (sklearn.datasets) |
@@ -16,3 +22,4 @@
 |        | 2026.04.15  | 11 | Waishan                  | Lecture    | AI Bias                                  | Bias types<br>Detection/mitigation |            | Word embedding bias visualization | Bias detection & fairness metrics  |COMPAS dataset, Fairlearn|
 |        | 2026.04.22  | 12 | Mark + Waishan/Hongshan | Lecture    | Final Presentations                      | Course synthesis<br>Peer learning | Assignment #3-B Final Presentation |                  |          |              |
 |        | 2026.04.29  | 13 | Mark                     | Lecture / Discussion | Debrief / Review of Materials        |              |            |                  |          |              |
+ -->
