@@ -2,8 +2,12 @@
 
 ## General
 
-The Economist. (2024, July 16). A short history of AI. _The Economist._  
+- The Economist. (2024, July 16). _A short history of AI_.  
 Source Article: [**[link]**](https://www.economist.com/schools-brief/2024/07/16/a-short-history-of-ai) | File Upload: [**[link]**](https://github.com/ccai9012/ccai9012/raw/main/reading/week1/EconomistAIBriefs/Economist_AI_SchoolsBrief_1.pdf)  
+
+
+- Bender, E. M., Gebru, T., McMillan-Major, A., and Shmitchell, S. (2021). “On the dangers of stochastic parrots: Can language models be too big?” *Proceedings of the ACM Conference on Fairness, Accountability, and Transparency (FAccT)*.  
+Source Article: [**[link]**](https://dl.acm.org/doi/10.1145/3442188.3445922) | File Upload: [**[link]**](https://github.com/ccai9012/ccai9012/raw/main/reading/week1/bender-stochastic-parrots.pdf)  
 
 
 ## Phase 1: Responsiblity & Ethics of AI
