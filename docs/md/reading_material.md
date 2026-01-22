@@ -4,33 +4,20 @@
 
 _Stay tuned for more._
 
-<!-- - The Economist. (2024, July 16). _A short history of AI_.  
+- The Economist. (2024, July 16). _A short history of AI_.  
 Source Article: [**[link]**](https://www.economist.com/schools-brief/2024/07/16/a-short-history-of-ai) | File Upload: [**[link]**](https://github.com/ccai9012/ccai9012/raw/main/reading/week1/EconomistAIBriefs/Economist_AI_SchoolsBrief_1.pdf)  
-
 
 - Bender, E. M., Gebru, T., McMillan-Major, A., and Shmitchell, S. (2021). “On the dangers of stochastic parrots: Can language models be too big?” *Proceedings of the ACM Conference on Fairness, Accountability, and Transparency (FAccT)*.  
 Source Article: [**[link]**](https://dl.acm.org/doi/10.1145/3442188.3445922) | File Upload: [**[link]**](https://github.com/ccai9012/ccai9012/raw/main/reading/week1/bender-stochastic-parrots.pdf)  
 
 
- -->
-
 ## Phase 1: Responsiblity & Ethics of AI
 
-_Stay tuned for more._
+- Murrell, A. (2023). _The Age of Average_. Source Article: [**[link]**](https://www.alexmurrell.co.uk/articles/the-age-of-average) 
 
-<!-- - **Week 1: Intro to AI & Generative Solutions**
-  Russell, S.J. and Norvig, P. (2016) Artificial intelligence: a modern approach. Third edition, Global edition. Chapter 1, Sections 1.1–1.3. Boston Columbus Indianapolis: Pearson. 
-  LeCun, Y., Bengio, Y. and Hinton, G. (2015) ‘Deep learning’, *Nature*, 521(7553), pp. 436–444. Available at: https://doi.org/10.1038/nature14539;
+- Chiang, T. (2023). _ChatGPT Is a Blurry JPEG of the Web_. *The New Yorker*.  
+Source Article: [**[link]**](https://www.newyorker.com/tech/annals-of-technology/chatgpt-is-a-blurry-jpeg-of-the-web) | File Upload: [**[link]**](https://github.com/ccai9012/ccai9012/raw/main/reading/week1/chiang-gpt-blurry-jpeg.pdf)  
 
-- **Week 2: Mitigating Risks: Transparency, Trustworthiness, Explainability**  
-  Lipton, Z.C. (2017) ‘The Mythos of Model Interpretability’. *arXiv*. Available at: https://doi.org/10.48550/arXiv.1606.03490.
-
-- **Week 3: Legal Framework of AI**  
-  Jobin, A., Ienca, M. and Vayena, E. (2019) ‘The global landscape of AI ethics guidelines’, *Nature Machine Intelligence*, 1(9), pp. 389–399. Available at: https://doi.org/10.1038/s42256-019-0088-2.
-
-- **Week 4: Future of AI**  
-  Bostrom, N. (2014) *Superintelligence: Paths, Dangers, Strategies*, Chapter 2: Paths to Superintelligence.
-  Sutton, R.S. (2019) ‘The bitter lesson’. Incomplete Ideas. Available at: http://www.incompleteideas.net/IncIdeas/BitterLesson.html) -->
 
 ## Phase 2: Mechanics & Applications of AI
 
