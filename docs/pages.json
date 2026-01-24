@@ -46,6 +46,49 @@
         "button": "Get Started →"
       }
     },
+        {
+      "key": "I. Responsibility & AI",
+      "label": "I. Responsibility & AI",
+      "title": "I. Responsibility & AI",
+      "source": "Responsibility.md",
+      "output": "Responsibility.html",
+      "home_card": {
+        "show": true,
+        "order": 2,
+        "icon": "📦",
+        "description": "Set up your development environment with Anaconda and all required dependencies.",
+        "button": "Get Started →"
+      }
+    },
+    {
+      "key": "Assessment",
+      "label": "Assessment",
+      "title": "Assessment",
+      "source": "Assessment.md",
+      "output": "Assessment.html",
+      "nav_children_class": "sub-item",
+      "home_card": {
+        "show": true,
+        "order": 3,
+        "icon": "🚀",
+        "description": "Case Study",
+        "button": "Open →"
+      },
+      "children": [
+        {
+          "key": "Case Study",
+          "label": "Case Study",
+          "source": "casestudy.md",
+          "output": "casestudy.html",
+          "href": "casestudy.html",
+          "module": {
+            "number": 1,
+            "page_title": "Case Study: The Divergence Artifact",
+            "index_summary": "Prove You're Not Redundant."
+          }
+        }
+      ]
+    },
     {
       "key": "starter",
       "label": "Starter Kits",
@@ -55,7 +98,7 @@
       "nav_children_class": "sub-item",
       "home_card": {
         "show": true,
-        "order": 3,
+        "order": 4,
         "icon": "🚀",
         "description": "Explore five comprehensive modules for your AI projects, from GANs to bias detection.",
         "button": "View Kits →"
@@ -131,7 +174,7 @@
       "output": "reading_material.html",
       "home_card": {
         "show": true,
-        "order": 4,
+        "order": 5,
         "icon": "📚",
         "description": "Curated academic papers and resources organized by learning modules.",
         "button": "Read More →"
@@ -145,7 +188,7 @@
       "output": "datasets.html",
       "home_card": {
         "show": true,
-        "order": 5,
+        "order": 6,
         "icon": "💾",
         "description": "Access 40+ datasets with direct download links for your projects.",
         "button": "Browse Datasets →"
