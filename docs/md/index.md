@@ -4,9 +4,7 @@
 
 # CCAI 9012 Course Online Documentation
 
-<p align="center">
-  <img src="figs/three_part.png" width="1000"><br>
-</p>
+<div style="height:1.5rem"></div>
 
 *GenAI Solutions to Global Challenges* explores how artificial intelligence, and generative AI in particular, can be used carefully and creatively in architecture and urban design. The course introduces core ideas behind data, machine learning, and generative models, and focuses on how these systems behave in practice rather than in abstraction.
 
@@ -15,3 +13,11 @@ Teaching is organised around lectures, tutorials, and case studies, alongside a 
 This document links the various course components, including weekly lecture materials, tutorial resources, readings, case study briefs, and project starter kits. Content will continue to evolve over the semester as tools, examples, and risks around AI change. 
 
 Your patience is appreciated as materials are refined and updated to reflect changes in AI practice.   If you notice any issues or inconsistencies, please contact us at via [**[email]**](mailto:ccai9012@gmail.com).
+
+<p align="center">
+  <img src="figs/people.png" width="1000"><br>
+</p>
+
+<p align="center">
+  <img src="figs/three_part.png" width="1000"><br>
+</p>
