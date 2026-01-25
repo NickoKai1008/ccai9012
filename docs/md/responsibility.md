@@ -6,7 +6,7 @@ toc: true
 --- -->
 
 # Part I. Responsibility & AI
-### _*Make AI Responsible to YOU*_  
+## _*Make AI Responsible to YOU*_  
 
 
 <div style="height:1.5rem"></div>
