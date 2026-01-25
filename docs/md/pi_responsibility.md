@@ -98,7 +98,10 @@ This should be read alongside the **general case study rubric** [**[here]**](cas
 
 <div style="height:1.5rem"></div>
 
-Please read papers under 'Phase I: Responsibility & AI' in [**Reading Material**](reading_material.html).
+- **Reading Material**: see _Part I: Responsibility & AI_ under [**[link]**](reading_material.html).
+- **Consolidated Handout**: for all in-class activities [**[link]**](pi_showflow.html).
+- **Additional Resources**: Tools, cases, and further reading [**[link]**](pi_resources.html).
+
 
 <div style="height:1.5rem"></div>
 
