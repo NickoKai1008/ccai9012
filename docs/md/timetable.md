@@ -1,9 +1,61 @@
 
+# Course Structure
 
-**Course Planning**: [**[link]**](https://docs.google.com/spreadsheets/d/1-a0Wgr8zA2lIl8lOQ-Hn6dda7kueW6XznnyS7PzHf-0/edit?usp=sharing) 
+<div style="height:1.5rem"></div>
+
+The course combines a weekly **plenary lecture** with a programme of **small-group tutorials**. Lectures establish shared concepts, frameworks, and case material, while tutorials provide structured, hands-on engagement with both technical and professional competencies. Together, they are designed to support progressive skill development across the semester.
+
+<div style="height:1.5rem"></div>
+
+---
+
+<div style="height:1.5rem"></div>
+
+## Lectures
+
+The overall sequencing of lectures, tutorials, and assessment milestones is outlined in the **course plan**, which indicates when key topics are introduced and how tutorial activities align with assessed work.
+
+Please refer to the detailed **Course Plan** [**[here]**](https://docs.google.com/spreadsheets/d/1-a0Wgr8zA2lIl8lOQ-Hn6dda7kueW6XznnyS7PzHf-0/edit?usp=sharing).
+
+
+<div style="height:1.5rem"></div>
+
+---
+
+<div style="height:1.5rem"></div>
+
+
+## Tutorials
+
+Tutorials are organised into two parallel streams that run alongside the weekly lecture programme. Together, they are designed to balance **technical capability** with **professional and communication skills**, allowing students to prioritise different forms of competence at different points in the semester. While the streams are distinct in focus, they are intended to be complementary rather than hierarchical.
+
+<div style="height:1.5rem"></div>
+
+### Structure and Requirements
+
+Tutorials are organised into two parallel streams that run alongside the weekly lecture programme. Together, they balance **technical capability** with **professional and communication skills**, allowing students to prioritise different forms of competence at different points in the semester. The streams are complementary and may be taken in parallel.
+
+|  | **Stream 1: Technical Competencies** | **Stream 2: Professional Competencies** |
+|--|--------------------------------------|------------------------------------------|
+| **Module types available** | - Python initialisation and environment setup<br>- Introductory machine-learning concepts<br>- Neural networks fundamentals<br>- Programmatic and UI-based LLM use (e.g. ChatGPT, MidJourney) | - Précis writing<br>- Problem statements and framing<br>- Visualisation techniques<br>- Presentation skills<br>- Crit-style peer review |
+| **Minimum requirements** | - 1× Python initialisation<br>- 1× getting started session<br>- 2× additional technical modules (student’s choice) | - 2× peer-review sessions (with milestones)<br>- 1× précis writing **or** problem statement session<br>- 1× additional skills-development session |
+
+
+Attendance beyond the requirements specified above is not mandatory. However, sustained and constructive participation may positively adjust the overall general participation grade.
+
+<div style="height:1.5rem"></div>
+
+### Tutorial Registration
+
+Tutorial places are allocated through an online registration system. Registration typically opens on the **Friday preceding each tutorial week**, allowing students to select sessions aligned with their needs and availability.
+
+[**Tutorial Registration**](https://docs.google.com/spreadsheets/d/1jbZjv_6N-_M5EDLRxXp56FYtf4_CbxLQvfy51GavZZ4/edit?gid=0#gid=0)
+
+
+<!-- **Course Planning**: [**[link]**](https://docs.google.com/spreadsheets/d/1-a0Wgr8zA2lIl8lOQ-Hn6dda7kueW6XznnyS7PzHf-0/edit?usp=sharing) 
 
 **Tutorial Registration**: [**[link]**](https://tobeupdated) 
-
+ -->
 <!-- | Module | Dates       | Wk | Teacher                  | Activities | Topic                                   | Key Concepts | Assignment | In-class Script | Tutorial | Dataset used |
 |--------|-------------|----|---------------------------|------------|------------------------------------------|--------------|------------|------------------|----------|--------------|
 |Phase 1: Responsible AI  | 2026.01.21  | 1  | Mark / Hongshan & Waishan | Lecture    | Intro to AI & Generative Solutions       | - AI history<br>- ML/AI Definition<br>- General vs Specialist AI<br>- Basic ML<br>  - Modes of ML<br>- Course Structures |            | |Coding Infrastructure setup & Python 101| |

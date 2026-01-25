@@ -75,21 +75,36 @@ By the end of this module, you will be able to:
 
 ---
 
+
 <div style="height:1.5rem"></div>
 
-## How You'll Be Assessed
 
-We do not grade polish. We grade **deliberateness**.
+## How You’ll Be Assessed
 
-The goal is not "use AI well." The goal is "prove you're not redundant."
+<div style="height:1.5rem"></div>
 
-See the full [Assessment](assessment.html) details.
+This module is assessed through **A1.1 — Case Study 1: The Divergence Artefact**, an individual case study that evaluates how deliberately and critically you engage with generative AI.
 
-<!-- ## Resources
+- We do not grade polish.  
+- We grade **deliberateness**.  
 
-- [Activity Showflow](showflow.html) — Consolidated handout for all in-class activities
-- [Resources & Readings](resources.html) — Tools, cases, and further reading -->
+Full requirements and deliverables are provided in the **assignment-specific outline** [**[here]**](casestudy1.html).  
+This should be read alongside the **general case study rubric** [**[here]**](casestudy.html).
 
+- The goal is not "use AI well."  
+- The goal is "prove you're not redundant."  
+
+<div style="height:1.5rem"></div>
+
+---
+
+<div style="height:1.5rem"></div>
+
+## Resources
+
+<div style="height:1.5rem"></div>
+
+Please read papers under 'Phase I: Responsibility & AI' in [**Reading Material**](reading_material.html).
 
 <div style="height:1.5rem"></div>
 

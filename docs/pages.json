@@ -70,7 +70,7 @@
       "home_card": {
         "show": true,
         "order": 3,
-        "icon": "🚀",
+        "icon": "📝",
         "description": "Case Study",
         "button": "Open →"
       },
