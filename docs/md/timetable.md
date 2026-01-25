@@ -1,5 +1,5 @@
 
-# Course Structure
+# Course Plan
 
 <div style="height:1.5rem"></div>
 

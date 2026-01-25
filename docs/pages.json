@@ -19,9 +19,9 @@
       "home_cards_title": "Documentation"
     },
     {
-      "key": "timetable",
-      "label": "Timetable",
-      "title": "Course Timetable",
+      "key": "Course Plan",
+      "label": "Course Plan",
+      "title": "Course Plan",
       "source": "timetable.md",
       "output": "timetable.html",
       "home_card": {
