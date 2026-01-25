@@ -5,7 +5,7 @@ author: "Dr. Hongshan Guo"
 toc: true
 --- -->
 
-# Responsibility & AI
+# Part I. Responsibility & AI
 ### _*Make AI Responsible to YOU*_  
 
 
@@ -31,6 +31,8 @@ Your job is to understand its walls, break through them, and make it answer to y
 <div style="height:1.5rem"></div>
 
 ## The Arc
+
+<div style="height:1.5rem"></div>
 
 | Class | Title | What Happens | What You Learn |
 |-------|-------|--------------|----------------|
@@ -77,7 +79,6 @@ By the end of this module, you will be able to:
 
 
 <div style="height:1.5rem"></div>
-
 
 ## How You’ll Be Assessed
 
