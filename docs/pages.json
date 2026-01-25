@@ -71,7 +71,7 @@
         "show": true,
         "order": 3,
         "icon": "📝",
-        "description": "Assessment",
+        "description": "Grading criteria and assessment structure.",
         "button": "Open →"
       },
       "children": [
