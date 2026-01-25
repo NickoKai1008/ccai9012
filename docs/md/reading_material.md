@@ -22,7 +22,7 @@ Source Article: [**[link]**](https://dl.acm.org/doi/10.1145/3442188.3445922) | F
 
 <div style="height:1.5rem"></div>
 
-## Phase 1: Responsiblity & Ethics of AI
+## Part I: Responsiblity & AI
 
 - Murrell, A. (2023). _The Age of Average_. Source Article: [**[link]**](https://www.alexmurrell.co.uk/articles/the-age-of-average) 
 
@@ -35,7 +35,7 @@ Source Article: [**[link]**](https://www.newyorker.com/tech/annals-of-technology
 
 <div style="height:1.5rem"></div>
 
-## Phase 2: Mechanics & Applications of AI
+## Part II: Mechanics of AI
 
 _Stay tuned for more._
 
@@ -54,7 +54,7 @@ _Stay tuned for more._
 
 <div style="height:1.5rem"></div>
 
-## Phase 3: Datasets & Risks in AI
+## Part III: Datasets & Risks of AI
 
 _Stay tuned for more._
 

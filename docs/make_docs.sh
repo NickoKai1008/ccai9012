@@ -1,0 +1,6 @@
+#!/bin/bash
+
+python md_to_html.py
+python md_to_html.py md/pi_resources.md
+python md_to_html.py md/pi_showflow.md
+python md_to_html.py md/pi_casestudy.md

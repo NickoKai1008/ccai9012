@@ -1,6 +1,6 @@
 
 # Part II: Mechanics of AI
-## _*Make AI Work for you*_  
+## _*Make AI work for you*_  
 
 <div style="height:1.5rem"></div>
 

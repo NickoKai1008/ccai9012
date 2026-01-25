@@ -156,69 +156,7 @@
         "icon": "🚀",
         "description": "Explore five comprehensive modules for your AI projects, from GANs to bias detection.",
         "button": "View Kits →"
-      },
-      "children": [
-        {
-          "key": "m1",
-          "label": "Module 1: Traditional Generative ML",
-          "source": "starter_kits/m1_gan.md",
-          "output": "starter_kits/m1_gan.html",
-          "href": "starter_kits/m1_gan.html",
-          "module": {
-            "number": 1,
-            "page_title": "Module 1 - Traditional Generative ML",
-            "index_summary": "Traditional generative ML for synthetic data generation and prediction."
-          }
-        },
-        {
-          "key": "m2",
-          "label": "Module 2: LLM for Structuring Information",
-          "source": "starter_kits/m2_llm.md",
-          "output": "starter_kits/m2_llm.html",
-          "href": "starter_kits/m2_llm.html",
-          "module": {
-            "number": 2,
-            "page_title": "Module 2 - LLM for Structuring Information",
-            "index_summary": "LLMs to structure unstructured text into analyzable formats."
-          }
-        },
-        {
-          "key": "m3",
-          "label": "Module 3: Multimodal Reasoning",
-          "source": "starter_kits/m3_mm.md",
-          "output": "starter_kits/m3_mm.html",
-          "href": "starter_kits/m3_mm.html",
-          "module": {
-            "number": 3,
-            "page_title": "Module 3 - Multimodal Reasoning",
-            "index_summary": "Multimodal (vision-language) reasoning over images and text."
-          }
-        },
-        {
-          "key": "m4",
-          "label": "Module 4: CV Models",
-          "source": "starter_kits/m4_cv.md",
-          "output": "starter_kits/m4_cv.html",
-          "href": "starter_kits/m4_cv.html",
-          "module": {
-            "number": 4,
-            "page_title": "Module 4 - CV Models",
-            "index_summary": "Computer vision: detection, segmentation, tracking, and visual analytics."
-          }
-        },
-        {
-          "key": "m5",
-          "label": "Module 5: Bias & Interpretability",
-          "source": "starter_kits/m5_bias.md",
-          "output": "starter_kits/m5_bias.html",
-          "href": "starter_kits/m5_bias.html",
-          "module": {
-            "number": 5,
-            "page_title": "Module 5 - Bias Detection & Interpretability",
-            "index_summary": "Bias detection, fairness evaluation, and interpretability tooling."
-          }
-        }
-      ]
+      }
     },
     {
       "key": "datasets",
