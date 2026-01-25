@@ -1,13 +1,6 @@
-<!-- ---
-title: "Make AI Responsible to YOU"
-subtitle: "A 3-Class Module on GenAI, Constraints, and Creative Survival"
-author: "Dr. Hongshan Guo"
-toc: true
---- -->
 
-# Part I. Responsibility & AI
-## _*Make AI Responsible to YOU*_  
-
+# Part I: Responsibility & AI
+## _*Make AI responsible to you*_  
 
 <div style="height:1.5rem"></div>
 

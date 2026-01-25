@@ -33,34 +33,6 @@
       }
     },
     {
-      "key": "installation",
-      "label": "Installation Guide",
-      "title": "Installation Guide",
-      "source": "installation.md",
-      "output": "installation.html",
-      "home_card": {
-        "show": true,
-        "order": 2,
-        "icon": "📦",
-        "description": "Set up your development environment with Anaconda and all required dependencies.",
-        "button": "Get Started →"
-      }
-    },
-        {
-      "key": "I. Responsibility & AI",
-      "label": "I. Responsibility & AI",
-      "title": "I. Responsibility & AI",
-      "source": "Responsibility.md",
-      "output": "Responsibility.html",
-      "home_card": {
-        "show": true,
-        "order": 2,
-        "icon": "🛡️",
-        "description": "Set up your development environment with Anaconda and all required dependencies.",
-        "button": "Get Started →"
-      }
-    },
-    {
       "key": "Assessment",
       "label": "Assessment",
       "title": "Assessment",
@@ -69,7 +41,7 @@
       "nav_children_class": "sub-item",
       "home_card": {
         "show": true,
-        "order": 3,
+        "order": 2,
         "icon": "📝",
         "description": "Grading criteria and assessment structure.",
         "button": "Open →"
@@ -85,7 +57,7 @@
             "number": 1,
             "page_title": "Case Studies",
             "index_summary": "Case Studies"
-          }
+            }
         },
         {
           "key": "Course Project",
@@ -99,7 +71,77 @@
             "index_summary": "Designing, prototyping, and critically evaluating AI-assisted work."
           }
         }
-      ]
+        ]
+    },
+    {
+      "key": "reading",
+      "label": "Reading Materials",
+      "title": "Reading Materials",
+      "source": "reading_material.md",
+      "output": "reading_material.html",
+      "home_card": {
+        "show": true,
+        "order": 3,
+        "icon": "📚",
+        "description": "Curated academic papers and resources organized by learning modules.",
+        "button": "Read More →"
+        }
+    },
+    {
+      "key": "I. Responsibility & AI",
+      "label": "I. Responsibility & AI",
+      "title": "I. Responsibility & AI",
+      "source": "pi_responsibility.md",
+      "output": "pi_responsibility.html",
+      "home_card": {
+        "show": true,
+        "order": 4,
+        "icon": "🛡️",
+        "description": "Make AI responsible to you.",
+        "button": "Get Started →"
+        }
+    },
+    {
+      "key": "II. Mechanics of AI",
+      "label": "II. Mechanics of AI",
+      "title": "II. Mechanics of AI",
+      "source": "pii_mechanics.md",
+      "output": "pii_mechanics.html",
+      "home_card": {
+        "show": true,
+        "order": 5,
+        "icon": "⚙️",
+        "description": "Make AI work for you.",
+        "button": "Get Started →"
+      }
+    },
+    {
+      "key": "III. Datasets & Risks of AI",
+      "label": "III. Datasets & Risks of AI",
+      "title": "III. Datasets & Risks of AI",
+      "source": "piii_data_and_risks.md",
+      "output": "piii_data_and_risks.html",
+      "home_card": {
+        "show": true,
+        "order": 6,
+        "icon": "🗄️",
+        "description": "Make AI learn from accountable data.",
+        "button": "Get Started →"
+        }
+    },
+    {
+      "key": "installation",
+      "label": "Installation Guide",
+      "title": "Installation Guide",
+      "source": "installation.md",
+      "output": "installation.html",
+      "home_card": {
+        "show": true,
+        "order": 7,
+        "icon": "📦",
+        "description": "Set up your development environment with Anaconda and all required dependencies.",
+        "button": "Get Started →"
+      }
     },
     {
       "key": "starter",
@@ -110,7 +152,7 @@
       "nav_children_class": "sub-item",
       "home_card": {
         "show": true,
-        "order": 4,
+        "order": 8,
         "icon": "🚀",
         "description": "Explore five comprehensive modules for your AI projects, from GANs to bias detection.",
         "button": "View Kits →"
@@ -179,20 +221,6 @@
       ]
     },
     {
-      "key": "reading",
-      "label": "Reading Materials",
-      "title": "Reading Materials",
-      "source": "reading_material.md",
-      "output": "reading_material.html",
-      "home_card": {
-        "show": true,
-        "order": 5,
-        "icon": "📚",
-        "description": "Curated academic papers and resources organized by learning modules.",
-        "button": "Read More →"
-      }
-    },
-    {
       "key": "datasets",
       "label": "Datasets Reference",
       "title": "Datasets Reference",
@@ -200,8 +228,8 @@
       "output": "datasets.html",
       "home_card": {
         "show": true,
-        "order": 6,
-        "icon": "💾",
+        "order": 9,
+        "icon": "🛢️",
         "description": "Access 40+ datasets with direct download links for your projects.",
         "button": "Browse Datasets →"
       }

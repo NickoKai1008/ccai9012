@@ -1,8 +1,14 @@
 # Reading Material
 
+<div style="height:1.5rem"></div>
+
+---
+
+<div style="height:1.5rem"></div>
+
 ## General
 
-_Stay tuned for more._
+<div style="height:1.5rem"></div>
 
 - The Economist. (2024, July 16). _A short history of AI_.  
 Source Article: [**[link]**](https://www.economist.com/schools-brief/2024/07/16/a-short-history-of-ai) | File Upload: [**[link]**](https://github.com/ccai9012/ccai9012/raw/main/reading/week1/EconomistAIBriefs/Economist_AI_SchoolsBrief_1.pdf)  
@@ -10,6 +16,11 @@ Source Article: [**[link]**](https://www.economist.com/schools-brief/2024/07/16/
 - Bender, E. M., Gebru, T., McMillan-Major, A., and Shmitchell, S. (2021). “On the dangers of stochastic parrots: Can language models be too big?” *Proceedings of the ACM Conference on Fairness, Accountability, and Transparency (FAccT)*.  
 Source Article: [**[link]**](https://dl.acm.org/doi/10.1145/3442188.3445922) | File Upload: [**[link]**](https://github.com/ccai9012/ccai9012/raw/main/reading/week1/bender-stochastic-parrots.pdf)  
 
+<div style="height:1.5rem"></div>
+
+---
+
+<div style="height:1.5rem"></div>
 
 ## Phase 1: Responsiblity & Ethics of AI
 
@@ -17,6 +28,12 @@ Source Article: [**[link]**](https://dl.acm.org/doi/10.1145/3442188.3445922) | F
 
 - Chiang, T. (2023). _ChatGPT Is a Blurry JPEG of the Web_. *The New Yorker*.  
 Source Article: [**[link]**](https://www.newyorker.com/tech/annals-of-technology/chatgpt-is-a-blurry-jpeg-of-the-web) | File Upload: [**[link]**](https://github.com/ccai9012/ccai9012/raw/main/reading/week1/chiang-gpt-blurry-jpeg.pdf)  
+
+<div style="height:1.5rem"></div>
+
+---
+
+<div style="height:1.5rem"></div>
 
 ## Phase 2: Mechanics & Applications of AI
 
@@ -30,6 +47,12 @@ _Stay tuned for more._
 
 - **Week 8: Randomness of AI (LLM)**  
   Floridi, L. and Chiriatti, M. (2020) ‘GPT-3: Its Nature, Scope, Limits, and Consequences’, *Minds and Machines*, 30(4), pp. 681–694. Available at: https://doi.org/10.1007/s11023-020-09548-1. -->
+
+<div style="height:1.5rem"></div>
+
+---
+
+<div style="height:1.5rem"></div>
 
 ## Phase 3: Datasets & Risks in AI
 

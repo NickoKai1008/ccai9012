@@ -1,0 +1,210 @@
+{
+  "version": 1,
+  "site": {
+    "name": "CCAI9012",
+    "title_prefix": "CCAI9012 - ",
+    "css": {
+      "path": "docs-style.css",
+      "top_level_href": "docs-style.css",
+      "subdir_href": "../docs-style.css"
+    }
+  },
+  "pages": [
+    {
+      "key": "home",
+      "label": "Home",
+      "title": "Home",
+      "source": "index.md",
+      "output": "index.html",
+      "home_cards_title": "Documentation"
+    },
+    {
+      "key": "Course Plan",
+      "label": "Course Plan",
+      "title": "Course Plan",
+      "source": "timetable.md",
+      "output": "timetable.html",
+      "home_card": {
+        "show": true,
+        "order": 1,
+        "icon": "📅",
+        "description": "View the complete course schedule with weekly topics, assignments, and activities.",
+        "button": "View Schedule →"
+      }
+    },
+    {
+      "key": "installation",
+      "label": "Installation Guide",
+      "title": "Installation Guide",
+      "source": "installation.md",
+      "output": "installation.html",
+      "home_card": {
+        "show": true,
+        "order": 2,
+        "icon": "📦",
+        "description": "Set up your development environment with Anaconda and all required dependencies.",
+        "button": "Get Started →"
+      }
+    },
+        {
+      "key": "I. Responsibility & AI",
+      "label": "I. Responsibility & AI",
+      "title": "I. Responsibility & AI",
+      "source": "Responsibility.md",
+      "output": "Responsibility.html",
+      "home_card": {
+        "show": true,
+        "order": 2,
+        "icon": "🛡️",
+        "description": "Set up your development environment with Anaconda and all required dependencies.",
+        "button": "Get Started →"
+      }
+    },
+    {
+      "key": "Assessment",
+      "label": "Assessment",
+      "title": "Assessment",
+      "source": "Assessment.md",
+      "output": "Assessment.html",
+      "nav_children_class": "sub-item",
+      "home_card": {
+        "show": true,
+        "order": 3,
+        "icon": "📝",
+        "description": "Grading criteria and assessment structure.",
+        "button": "Open →"
+      },
+      "children": [
+        {
+          "key": "Case Study",
+          "label": "Case Study",
+          "source": "casestudy.md",
+          "output": "casestudy.html",
+          "href": "casestudy.html",
+          "module": {
+            "number": 1,
+            "page_title": "Case Studies",
+            "index_summary": "Case Studies"
+          }
+        },
+        {
+          "key": "Course Project",
+          "label": "Course Project",
+          "source": "course_project.md",
+          "output": "course_project.html",
+          "href": "course_project.html",
+          "module": {
+            "number": 2,
+            "page_title": "Course Project",
+            "index_summary": "Designing, prototyping, and critically evaluating AI-assisted work."
+          }
+        }
+      ]
+    },
+    {
+      "key": "starter",
+      "label": "Starter Kits",
+      "title": "Starter Kits",
+      "source": "starter_kits/index.md",
+      "output": "starter_kits/index.html",
+      "nav_children_class": "sub-item",
+      "home_card": {
+        "show": true,
+        "order": 4,
+        "icon": "🚀",
+        "description": "Explore five comprehensive modules for your AI projects, from GANs to bias detection.",
+        "button": "View Kits →"
+      },
+      // "children": [
+      //   {
+      //     "key": "m1",
+      //     "label": "Module 1: Traditional Generative ML",
+      //     "source": "starter_kits/m1_gan.md",
+      //     "output": "starter_kits/m1_gan.html",
+      //     "href": "starter_kits/m1_gan.html",
+      //     "module": {
+      //       "number": 1,
+      //       "page_title": "Module 1 - Traditional Generative ML",
+      //       "index_summary": "Traditional generative ML for synthetic data generation and prediction."
+      //     }
+      //   },
+      //   {
+      //     "key": "m2",
+      //     "label": "Module 2: LLM for Structuring Information",
+      //     "source": "starter_kits/m2_llm.md",
+      //     "output": "starter_kits/m2_llm.html",
+      //     "href": "starter_kits/m2_llm.html",
+      //     "module": {
+      //       "number": 2,
+      //       "page_title": "Module 2 - LLM for Structuring Information",
+      //       "index_summary": "LLMs to structure unstructured text into analyzable formats."
+      //     }
+      //   },
+      //   {
+      //     "key": "m3",
+      //     "label": "Module 3: Multimodal Reasoning",
+      //     "source": "starter_kits/m3_mm.md",
+      //     "output": "starter_kits/m3_mm.html",
+      //     "href": "starter_kits/m3_mm.html",
+      //     "module": {
+      //       "number": 3,
+      //       "page_title": "Module 3 - Multimodal Reasoning",
+      //       "index_summary": "Multimodal (vision-language) reasoning over images and text."
+      //     }
+      //   },
+      //   {
+      //     "key": "m4",
+      //     "label": "Module 4: CV Models",
+      //     "source": "starter_kits/m4_cv.md",
+      //     "output": "starter_kits/m4_cv.html",
+      //     "href": "starter_kits/m4_cv.html",
+      //     "module": {
+      //       "number": 4,
+      //       "page_title": "Module 4 - CV Models",
+      //       "index_summary": "Computer vision: detection, segmentation, tracking, and visual analytics."
+      //     }
+      //   },
+      //   {
+      //     "key": "m5",
+      //     "label": "Module 5: Bias & Interpretability",
+      //     "source": "starter_kits/m5_bias.md",
+      //     "output": "starter_kits/m5_bias.html",
+      //     "href": "starter_kits/m5_bias.html",
+      //     "module": {
+      //       "number": 5,
+      //       "page_title": "Module 5 - Bias Detection & Interpretability",
+      //       "index_summary": "Bias detection, fairness evaluation, and interpretability tooling."
+      //     }
+      //   }
+      // ]
+    },
+    {
+      "key": "reading",
+      "label": "Reading Materials",
+      "title": "Reading Materials",
+      "source": "reading_material.md",
+      "output": "reading_material.html",
+      "home_card": {
+        "show": true,
+        "order": 5,
+        "icon": "📚",
+        "description": "Curated academic papers and resources organized by learning modules.",
+        "button": "Read More →"
+      }
+    },
+    {
+      "key": "datasets",
+      "label": "Datasets Reference",
+      "title": "Datasets Reference",
+      "source": "datasets.md",
+      "output": "datasets.html",
+      "home_card": {
+        "show": true,
+        "order": 6,
+        "icon": "💾",
+        "description": "Access 40+ datasets with direct download links for your projects.",
+        "button": "Browse Datasets →"
+      }
+    }
+  ]
+}
