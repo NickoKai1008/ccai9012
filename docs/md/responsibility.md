@@ -1,10 +1,14 @@
----
+<!-- ---
 title: "Make AI Responsible to YOU"
 subtitle: "A 3-Class Module on GenAI, Constraints, and Creative Survival"
 author: "Dr. Hongshan Guo"
 toc: true
----
+--- -->
 
+# Responsibility & AI
+### _*Make AI Responsible to YOU*_  
+
+  
 ## What This Module Is
 
 Standard AI courses teach: *"Here's how to use AI responsibly."*
@@ -47,10 +51,10 @@ The goal is not "use AI well." The goal is "prove you're not redundant."
 
 See the full [Assessment](assessment.html) details.
 
-## Resources
+<!-- ## Resources
 
 - [Activity Showflow](showflow.html) — Consolidated handout for all in-class activities
-- [Resources & Readings](resources.html) — Tools, cases, and further reading
+- [Resources & Readings](resources.html) — Tools, cases, and further reading -->
 
 ## The One-Liner
 

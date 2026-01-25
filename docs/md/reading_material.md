@@ -18,7 +18,6 @@ Source Article: [**[link]**](https://dl.acm.org/doi/10.1145/3442188.3445922) | F
 - Chiang, T. (2023). _ChatGPT Is a Blurry JPEG of the Web_. *The New Yorker*.  
 Source Article: [**[link]**](https://www.newyorker.com/tech/annals-of-technology/chatgpt-is-a-blurry-jpeg-of-the-web) | File Upload: [**[link]**](https://github.com/ccai9012/ccai9012/raw/main/reading/week1/chiang-gpt-blurry-jpeg.pdf)  
 
-
 ## Phase 2: Mechanics & Applications of AI
 
 _Stay tuned for more._

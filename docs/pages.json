@@ -55,7 +55,7 @@
       "home_card": {
         "show": true,
         "order": 2,
-        "icon": "📦",
+        "icon": "🛡️",
         "description": "Set up your development environment with Anaconda and all required dependencies.",
         "button": "Get Started →"
       }
