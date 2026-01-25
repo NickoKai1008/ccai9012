@@ -82,7 +82,7 @@ This module is assessed through **A1.1 — Case Study 1: The Divergence Artefact
 - We do not grade polish.  
 - We grade **deliberateness**.  
 
-Full requirements and deliverables are provided in the **assignment-specific outline** [**[here]**](casestudy1.html).  
+Full requirements and deliverables are provided in the **assignment-specific outline** [**[here]**](pi_casestudy.html).  
 This should be read alongside the **general case study rubric** [**[here]**](casestudy.html).
 
 - The goal is not "use AI well."  
