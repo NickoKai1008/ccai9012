@@ -71,7 +71,7 @@
         "show": true,
         "order": 3,
         "icon": "📝",
-        "description": "Case Study",
+        "description": "Assessment",
         "button": "Open →"
       },
       "children": [
@@ -83,8 +83,20 @@
           "href": "casestudy.html",
           "module": {
             "number": 1,
-            "page_title": "Case Study: The Divergence Artifact",
-            "index_summary": "Prove You're Not Redundant."
+            "page_title": "Case Studies",
+            "index_summary": "Case Studies"
+          }
+        },
+        {
+          "key": "Course Project",
+          "label": "Course Project",
+          "source": "course_project.md",
+          "output": "course_project.html",
+          "href": "course_project.html",
+          "module": {
+            "number": 2,
+            "page_title": "Course Project",
+            "index_summary": "Designing, prototyping, and critically evaluating AI-assisted work."
           }
         }
       ]
