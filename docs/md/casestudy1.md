@@ -1,4 +1,4 @@
-# Case Study #1: Responsibility & AI
+# A.1.1: Case Study #1: Responsibility & AI
 
 ## _The Divergence Artefact_
 

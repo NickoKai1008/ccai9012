@@ -1,4 +1,6 @@
-# Case Studies
+# A.1: Case Studies
+
+<div style="height:1.5rem"></div> 
 
 The independent case studies are a sequence of individual analytical assignments designed to develop critical, technical, and ethical literacy in contemporary AI systems. Rather than assessing tool proficiency or output quality in isolation, the case studies focus on judgement, agency, and the ability to reason about how AI systems behave, where risks arise, and where responsibility ultimately lies.
 
@@ -6,7 +8,11 @@ Each case targets a distinct layer of the AI stack. Taken together, they move fr
 
 Before beginning any case study, students must review the general structure, expectations, and submission requirements outlined here.
 
+<div style="height:1.5rem"></div> 
+
 ---
+
+<div style="height:1.5rem"></div> 
 
 ## Case Study Structure
 
@@ -17,12 +23,11 @@ Each case study consists of four required components:
 - **(iii) Vignette**: A concise **short-form video** presentation, no longer than 90 seconds, communicating the core argument, findings, and insights of the case study.
 - **(iv) Evidence**: Concrete documentation of assignment-specific process required for some case studies.
 
-> Students are expected to begin by reviewing the **general case study outline** ([**[link]**](https://drive.google.com/file/d/1yD89ksBETDk4dHD8TsuDCXRXOX-S1onD/view?usp=sharing)), which sets out shared structure, submission requirements, and assessment criteria. Each case study then provides a **project-specific outline** that refines these expectations in relation to its particular focus. Submissions should follow the general outline unless explicitly superseded by case-specific instructions.
-
+> Students are expected to begin by reviewing the **general case study outline** [**[link]**](https://drive.google.com/file/d/1yD89ksBETDk4dHD8TsuDCXRXOX-S1onD/view?usp=sharing), which sets out shared structure, submission requirements, and assessment criteria. Each case study then provides a **project-specific outline** that refines these expectations in relation to its particular focus. Submissions should follow the general outline unless explicitly superseded by case-specific instructions.
 
 
 | Case | Title | Brief Description |
 |------|-------|-------------------|
-| 1 | **[Case Study: Responsibility & AI](casestudy1.html)** | Examines responsibility and authorship in generative AI through the deliberate production of a non-default artefact. Students document how they resisted model defaults, navigated legal, ethical, regulatory, or creative risks, and identified clear boundaries between machine output and human judgement, supported by evidence of divergence. |
-| 2 | **Case Study: Mechanics of AI** | Investigates how a specific technical aspect of an AI system operates, such as model architecture, training approach, or inference behaviour. Students analyse how this mechanism shapes system strengths, limitations, and failure modes, linking observed behaviour to underlying design choices rather than surface-level outputs. |
-| 3 | **Case Study: Datasets & Risks** | Analyses a dataset or data-generation pipeline used in AI systems, focusing on how data collection, labelling, filtering, or curation decisions influence outputs and introduce risk. Emphasis is placed on bias, representational gaps, and downstream consequences, along with reasoned proposals for mitigation or improvement. |
+| A.1.1 | **[Responsibility & AI](casestudy1.html)** | Examines responsibility and authorship in generative AI through the deliberate production of a non-default artefact. Students document how they resisted model defaults, navigated legal, ethical, regulatory, or creative risks, and identified clear boundaries between machine output and human judgement, supported by evidence of divergence. |
+| A.1.2 | **Mechanics of AI** | Investigates how a specific technical aspect of an AI system operates, such as model architecture, training approach, or inference behaviour. Students analyse how this mechanism shapes system strengths, limitations, and failure modes, linking observed behaviour to underlying design choices rather than surface-level outputs. |
+| A.1.3 | **Datasets & Risks of AI** | Analyses a dataset or data-generation pipeline used in AI systems, focusing on how data collection, labelling, filtering, or curation decisions influence outputs and introduce risk. Emphasis is placed on bias, representational gaps, and downstream consequences, along with reasoned proposals for mitigation or improvement. |
