@@ -13,10 +13,7 @@ The course combines a weekly **plenary lecture** with a programme of **small-gro
 
 ## Lectures
 
-The overall sequencing of lectures, tutorials, and assessment milestones is outlined in the **course plan**, which indicates when key topics are introduced and how tutorial activities align with assessed work.
-
-Please refer to the detailed **Course Plan** [**[here]**](https://docs.google.com/spreadsheets/d/1-a0Wgr8zA2lIl8lOQ-Hn6dda7kueW6XznnyS7PzHf-0/edit?usp=sharing).
-
+The overall sequencing of lectures, tutorials, and assessment milestones is outlined in the **course plan** [**[link]**](https://docs.google.com/spreadsheets/d/1-a0Wgr8zA2lIl8lOQ-Hn6dda7kueW6XznnyS7PzHf-0/edit?usp=sharing), which indicates when key topics are introduced and how tutorial activities align with assessed work.
 
 <div style="height:1.5rem"></div>
 
@@ -27,13 +24,15 @@ Please refer to the detailed **Course Plan** [**[here]**](https://docs.google.co
 
 ## Tutorials
 
-Tutorials are organised into two parallel streams that run alongside the weekly lecture programme. Together, they are designed to balance **technical capability** with **professional and communication skills**, allowing students to prioritise different forms of competence at different points in the semester. While the streams are distinct in focus, they are intended to be complementary rather than hierarchical.
-
 <div style="height:1.5rem"></div>
 
 ### Structure and Requirements
 
-Tutorials are organised into two parallel streams that run alongside the weekly lecture programme. Together, they balance **technical capability** with **professional and communication skills**, allowing students to prioritise different forms of competence at different points in the semester. The streams are complementary and may be taken in parallel.
+Tutorials are organised into two parallel streams that run alongside the weekly lecture programme. Together, they are designed to balance **technical capability (Stream 1)** with **professional and communication skills (Stream 2)**.  The streams are complementary and may be taken in parallel, allowing students to prioritise different forms of competence at different points in the semester. 
+
+<p align="center">
+  <img src="figs/two_stream_tutorials.png" width="800"><br>
+</p>
 
 <table>
   <colgroup>
@@ -50,7 +49,7 @@ Tutorials are organised into two parallel streams that run alongside the weekly 
   </thead>
   <tbody>
     <tr>
-      <td><strong>Focus and module scope</strong></td>
+      <td><strong>Focus & Scope</strong></td>
       <td>
         Technical foundations for working with AI systems, covering computational setup,
         core machine-learning concepts, and hands-on interaction with models through code
@@ -62,30 +61,62 @@ Tutorials are organised into two parallel streams that run alongside the weekly 
       </td>
     </tr>
     <tr>
-      <td><strong>Minimum requirements</strong></td>
+      <td><strong>Minimum Requirements</strong></td>
       <td>
         1× <strong><em>&lt;&lt;Python Initialisation&gt;&gt;</em></strong><br>
         1× <strong><em>&lt;&lt;Getting Started&gt;&gt;</em></strong><br>
-        2× additional technical modules (student’s choice)
+        2× additional technical modules
       </td>
       <td>
-        2× <strong><em>&lt;&lt;Crit-Style Peer Review&gt;&gt;</em></strong> sessions (aligned with project milestones)<br>
-        1× <strong><em>&lt;&lt;Précis Writing&gt;&gt;</em></strong> <strong>or</strong> <strong><em>&lt;&lt;Problem Statement&gt;&gt;</em></strong> module<br>
-        1× additional professional skills module
+        2× <strong><em>&lt;&lt;Crit-Style Peer Review&gt;&gt;</em></strong> sessions (at the Course Project midterm & finals)<br>
+        1× <strong><em>&lt;&lt;Précis Writing&gt;&gt;</em></strong> OR <strong><em>&lt;&lt;Problem Statement&gt;&gt;</em></strong> module<br>
+        1× additional skills module
       </td>
     </tr>
   </tbody>
 </table>
 
+The scheduling lineup anticipates some front-loading at the beginning of the semester, with the potential to double tutorials so that students can acquire useful skills for their case studies. Nonetheless, the flexibility in the requirements allows students to take one tutorial per week.
+
 Attendance beyond the requirements specified above is not mandatory. However, sustained and constructive participation may positively adjust the overall general participation grade.
 
-Please view the schedule of tutorial [**[here]**](https://docs.google.com/spreadsheets/d/1-a0Wgr8zA2lIl8lOQ-Hn6dda7kueW6XznnyS7PzHf-0/edit?usp=sharing).
+Please view the current schedule of planned tutorials [**[here]**](https://docs.google.com/spreadsheets/d/1-a0Wgr8zA2lIl8lOQ-Hn6dda7kueW6XznnyS7PzHf-0/edit?usp=sharing).
 
 <div style="height:1.5rem"></div>
 
 ### Tutorial Timing & Registration
 
 Tutorial places are allocated through an online registration system [**[link]**](https://docs.google.com/spreadsheets/d/1jbZjv_6N-_M5EDLRxXp56FYtf4_CbxLQvfy51GavZZ4/edit?gid=0#gid=0). Registration typically opens on the **Friday preceding each tutorial week**, allowing students to select sessions aligned with their needs and availability.
+
+<div style="height:1.5rem"></div>
+
+### Requirements of Tutorials
+
+You will find basic information regarding tutorials below:
+
+#### Stream 1
+
+<div style="height:0.5rem"></div>
+
+&lt;&lt;💻🔧 ***Python Initialisation***&gt;&gt;  
+- Set up your computer for programming and running AI/ML models.  
+- Learn the basic workflow for starting code development.
+
+&lt;&lt;💻📝🧠 ***Getting Started***&gt;&gt;  
+- Learn basic programming principles using Python.  
+- Understand the fundamentals of LLM interaction through programming and online UI.
+
+<div style="height:0.5rem"></div>
+
+#### Stream 2
+
+<div style="height:0.5rem"></div>
+
+&lt;&lt;🎬 ***Basic Movie Editing***&gt;&gt;  
+- Acquire fundamental movie editing skills.  
+- Please come with CapCut installed.
+
+
 
 
 <!-- **Course Planning**: [**[link]**](https://docs.google.com/spreadsheets/d/1-a0Wgr8zA2lIl8lOQ-Hn6dda7kueW6XznnyS7PzHf-0/edit?usp=sharing) 

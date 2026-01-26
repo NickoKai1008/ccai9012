@@ -15,9 +15,5 @@ This document links the various course components, including weekly lecture mate
 Your patience is appreciated as materials are refined and updated to reflect changes in AI practice.   If you notice any issues or inconsistencies, please contact us at via [**[email]**](mailto:ccai9012@gmail.com).
 
 <p align="center">
-  <img src="figs/people.png" width="1000"><br>
-</p>
-
-<p align="center">
-  <img src="figs/three_part.png" width="1000"><br>
+  <img src="figs/three_parts.png" width="1000"><br>
 </p>

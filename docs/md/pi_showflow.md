@@ -1,5 +1,5 @@
 ### Part I: Responsibility & AI
-# Showflow
+# Consolidated Activity Reference
 
 <div style="height:1.5rem"></div>
 
