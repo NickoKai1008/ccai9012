@@ -1,6 +1,7 @@
 
 # Part I: Responsibility & AI
 ## _*Make AI responsible to you*_  
+_A 3-Class Module on GenAI, Constraints, and Creative Survival_
 
 <div style="height:1.5rem"></div>
 
