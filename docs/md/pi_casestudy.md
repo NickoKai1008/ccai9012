@@ -4,7 +4,7 @@
 
 <div style="height:1.5rem"></div>
 
-_Note: This outline complements the **general case study rubric**_ [**[link]**](casestudy.html), _providing additional guidance specific to this assignment rather than replacing the shared assessment criteria._
+_Note: This outline provides guidance specific to Case Study #1, complementing the **general case study rubric**_ [**[link]**](casestudy.html).
 
 <div style="height:1.5rem"></div> 
 
