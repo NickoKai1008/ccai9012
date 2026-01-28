@@ -28,7 +28,11 @@ The overall sequencing of lectures, tutorials, and assessment milestones is outl
 
 ### Structure and Requirements
 
-Tutorials are organised into two parallel streams that run alongside the weekly lecture programme. Together, they are designed to balance **technical capability (Stream 1)** with **professional and communication skills (Stream 2)**.  The streams are complementary and may be taken in parallel, allowing students to prioritise different forms of competence at different points in the semester. 
+Tutorials are organised into two parallel streams that run alongside the weekly lecture programme. Together, they are designed to balance **technical capability (Stream 1)** with **professional and communication skills (Stream 2)**.  
+
+The streams are complementary and may be taken in parallel, allowing students to prioritise different forms of competence at different points in the semester. 
+
+**Students are required to complete the minimum modules listed for both streams.** 
 
 <p align="center">
   <img src="figs/two_stream_tutorials.png" width="800"><br>
@@ -76,11 +80,19 @@ Tutorials are organised into two parallel streams that run alongside the weekly 
   </tbody>
 </table>
 
-The scheduling lineup anticipates some front-loading at the beginning of the semester, with the potential to double tutorials so that students can acquire useful skills for their case studies. Nonetheless, the flexibility in the requirements allows students to take one tutorial per week.
+The scheduling lineup anticipates some front-loading at the beginning of the semester, with the potential to double tutorials so that students can acquire useful skills for their case studies. 
 
 Attendance beyond the requirements specified above is not mandatory. However, sustained and constructive participation may positively adjust the overall general participation grade.
 
 Please view the current schedule of planned tutorials [**[here]**](https://docs.google.com/spreadsheets/d/1-a0Wgr8zA2lIl8lOQ-Hn6dda7kueW6XznnyS7PzHf-0/edit?usp=sharing).
+
+<div style="height:1.0rem"></div>
+
+#### Note ####
+Although there is a minimum attendance requirement for both streams of tutorials:  
+
+- The total number of modules required for minimum completion is fewer than the total number of weeks in the course.
+- The flexible structure allows students to attend and complete one tutorial per week, enabling them to tailor their engagement throughout the semester.
 
 <div style="height:1.5rem"></div>
 
