@@ -20,7 +20,7 @@ Each case study consists of four required components:
 
 - **(i) Annotation**: A written analytical reflection that documents intent, decisions, and reasoning. This is where claims must be made explicit and supported.
 - **(ii) Artefact**: The primary output of the case study. This may be visual, written, computational, or hybrid, depending on the case. The artefact demonstrates engagement with the AI system under study.
-- **(iii) Vignette**: A concise **short-form video** presentation, no longer than 90 seconds, communicating the core argument, findings, and insights of the case study.
+- **(iii) Vignette**: A concise **short-form video** presentation, no longer than 90 seconds, communicating the core argument, findings, and insights of the case study. (Formatting guidelines will be released soon.)
 - **(iv) Evidence**: Concrete documentation of assignment-specific process required for some case studies.
 
 > Students are expected to begin by reviewing the **general case study outline** [**[link]**](https://drive.google.com/file/d/1yD89ksBETDk4dHD8TsuDCXRXOX-S1onD/view?usp=sharing), which sets out shared structure, submission requirements, and assessment criteria. Each case study then provides a **project-specific outline** that refines these expectations in relation to its particular focus. Submissions should follow the general outline unless explicitly superseded by case-specific instructions.
@@ -31,3 +31,13 @@ Each case study consists of four required components:
 | A.1.1 | **[Responsibility & AI](pi_casestudy.html)** | Examines responsibility and authorship in generative AI through the deliberate production of a non-default artefact. Students document how they resisted model defaults, navigated legal, ethical, regulatory, or creative risks, and identified clear boundaries between machine output and human judgement, supported by evidence of divergence. |
 | A.1.2 | **Mechanics of AI** | Investigates how a specific technical aspect of an AI system operates, such as model architecture, training approach, or inference behaviour. Students analyse how this mechanism shapes system strengths, limitations, and failure modes, linking observed behaviour to underlying design choices rather than surface-level outputs. |
 | A.1.3 | **Datasets & Risks of AI** | Analyses a dataset or data-generation pipeline used in AI systems, focusing on how data collection, labelling, filtering, or curation decisions influence outputs and introduce risk. Emphasis is placed on bias, representational gaps, and downstream consequences, along with reasoned proposals for mitigation or improvement. |
+
+
+The contents will be archived online to showcase your extrodinary work.  
+
+<p align="center">
+  <img src="figs/case_study_submission.png" width="300"><br>
+</p>
+
+**A template for formatting the case study for online archival will be released in due course!**
+
