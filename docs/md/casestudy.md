@@ -8,6 +8,7 @@ Each case targets a distinct layer of the AI stack. Taken together, they move fr
 
 Before beginning any case study, students must review the general structure, expectations, and submission requirements outlined here.
 
+
 <div style="height:1.5rem"></div> 
 
 ---
@@ -40,4 +41,6 @@ The contents will be archived online to showcase your extrodinary work.
 </p>
 
 **A template for formatting the case study for online archival will be released in due course!**
+
+
 
