@@ -126,7 +126,10 @@ You will find basic information regarding tutorials below:
 
 &lt;&lt;🎬 ***Basic Movie Editing***&gt;&gt;  
 - Acquire fundamental movie editing skills.  
-- Please come with CapCut installed.
+- Please come with CapCut installed.  
+
+Please view the recorded session [**[here]**](https://drive.google.com/file/d/1367vJ7tcNmYMyKj_LSdA5mY8erCXETZ_/view?usp=sharing).
+
 
 &lt;&lt;✍️ ***Precis Writing***&gt;&gt;  
 Please bring an article of no more than 1,000 words, fiction or non-fiction, on a subject that matters to you. Choose the article with care; it should be one you have already read and can examine critically. It will form the basis of the Précis Writing Exercise. Please bring both a printed copy and a digital version of the text. The exercise includes both AI and non-AI components; please bring a laptop.
