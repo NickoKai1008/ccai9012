@@ -20,7 +20,7 @@ You will find basic information regarding tutorials below:
 
 <!-- ========================  SECTION DIVIDER  ======================== -->
 
-### &lt;&lt;💻🔧 **Python Initialisation**&gt;&gt;  
+<h3 id="python-initialisation">&lt;&lt;💻🔧 <strong>Python Initialisation</strong>&gt;&gt;</h3>
 <div style="height:0.5rem"></div>
 - Set up your computer for programming and running AI/ML models.  
 - Learn the basic workflow for starting code development.
@@ -33,7 +33,7 @@ You will find basic information regarding tutorials below:
 
 <!-- ========================  SECTION DIVIDER  ======================== -->
 
-### &lt;&lt;💻📝🧠 **Getting Started**&gt;&gt;  
+<h3 id="getting-started">&lt;&lt;💻📝🧠 <strong>Getting Started</strong>&gt;&gt;</h3>
 <div style="height:0.5rem"></div>
 - Learn basic programming principles using Python.  
 - Understand the fundamentals of LLM interaction through programming and online UI.
@@ -46,7 +46,7 @@ You will find basic information regarding tutorials below:
 
 <!-- ======================== SECTION DIVIDER ======================== -->
 
-### &lt;&lt;💻📝🧠 **Advancing in Python**&gt;&gt;  
+<h3 id="advancing-python">&lt;&lt;💻📝🧠 <strong>Advancing in Python</strong>&gt;&gt;</h3> 
 <div style="height:0.5rem"></div>
 - Apply Python to basic scientific computing with NumPy.
 - Load and manipulate data using pandas.
@@ -69,7 +69,7 @@ You will find basic information regarding tutorials below:
 
 <!-- ========================  SECTION DIVIDER  ======================== -->
 
-### &lt;&lt;🎬 **Basic Movie Editing**&gt;&gt;  
+<h3 id="basic-movie-editing">&lt;&lt;🎬 <strong>Basic Movie Editing</strong>&gt;&gt;</h3>
 
 <div style="height:1.0rem"></div>
 
@@ -86,7 +86,7 @@ Please view the recorded session [**[here]**](https://drive.google.com/file/d/13
 
 <!-- ========================  SECTION DIVIDER  ======================== -->
 
-### &lt;&lt;✍️ **Precis Writing**&gt;&gt; 
+<h3 id="precis-writing">&lt;&lt;✍️ <strong>Précis Writing</strong>&gt;&gt;</h3>
 
 <div style="height:1.0rem"></div> 
 
@@ -102,7 +102,7 @@ Please view slides [**[here]**](https://docs.google.com/presentation/d/12bl9g-Pp
 
 <!-- ========================  SECTION DIVIDER  ======================== -->
 
-### &lt;&lt;✍️ **Problem Statement**&gt;&gt;  
+<h3 id="problem-statement">&lt;&lt;✍️ <strong>Problem Statement</strong>&gt;&gt;</h3> 
 
 <div style="height:1.0rem"></div>
 
