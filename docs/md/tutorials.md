@@ -46,7 +46,7 @@ You will find basic information regarding tutorials below:
 
 <!-- ======================== SECTION DIVIDER ======================== -->
 
-### &lt;&lt;💻📝🧠 **Advacning in Python**&gt;&gt;  
+### &lt;&lt;💻📝🧠 **Advancing in Python**&gt;&gt;  
 <div style="height:0.5rem"></div>
 - Apply Python to basic scientific computing with NumPy.
 - Load and manipulate data using pandas.
