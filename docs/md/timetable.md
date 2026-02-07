@@ -102,6 +102,6 @@ Tutorial places are allocated through an online registration system [**[link]**]
 
 <div style="height:1.5rem"></div>
 
-### Requirements of Tutorials
+### Tutorial Outlines
 
 You will find information about specific tutorials [**[here]**](tutorials.html).
