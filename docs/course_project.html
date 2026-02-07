@@ -35,12 +35,13 @@
 <p>The course project is a <strong>team-based, design-oriented assignment</strong> in which students develop, prototype, and analyse an AI-assisted proposal addressing a concrete real-world problem. In contrast to the case studies, which focus on analysing existing systems or practices, the course project emphasises <strong>making</strong>, evaluation through use, and critical reflection through implementation.</p>
 <p>Projects may take analytical, tool-based, or design-oriented forms, but all must demonstrate a considered synthesis of <strong>responsibility and ethics</strong>, <strong>mechanisms and model behaviour</strong>, and <strong>datasets and data practices</strong>, reflecting how these dimensions interact in real-world AI applications. The emphasis is on reasoned experimentation, explicit assumptions, and reflective judgement rather than technical novelty or performance optimisation.</p>
 <p>The project is completed in teams of <strong>4–6 students</strong>. Tutorials provide structured opportunities for skills development, feedback, and team formation.</p>
+<div style="height:4.0rem"></div>
+
+<hr style="height: 2px; border: none; background-color: #000;">
+
 <div style="height:1.5rem"></div>
 
-<hr />
-<div style="height:1.5rem"></div>
-
-<h2>Project Structure and Deliverables</h2>
+<h2>Project Structure &amp; Deliverables</h2>
 <p>The course project consists of the following assessed components:</p>
 <ul>
 <li>
@@ -50,7 +51,7 @@
 <p><strong>Final Project Submission</strong>, comprising:</p>
 <ul>
 <li><strong>(i) Annotation &amp; Title</strong>: A concise written framing of the project and its treatment of responsibility, mechanisms, and data.</li>
-<li><strong>(ii) Paper</strong>: A design-oriented paper documenting the project’s motivation, system design, implementation, results, and critical reflection.</li>
+<li><strong>(ii) Paper</strong>: A design-oriented paper documenting the project’s motivation, system design, implementation, results, and critical reflection (maximum 1500 words and 10 pages).</li>
 <li><strong>(iii) Vignette</strong>: A short-form video (maximum 5 minutes) communicating the project’s core argument and insights.</li>
 <li><strong>(iv) Evidence</strong> <em>(Optional Appendices)</em>: Optional supplementary documentation of process, such as intermediate outputs, experiments, logs, or design iterations. Note that the <strong>paper and vignette must remain self-contained</strong> and should not rely on appendices to communicate core arguments or findings.</li>
 </ul>
@@ -60,9 +61,10 @@
 </li>
 <li><strong>Peer Assessment</strong>: Advisory peer feedback on group work and individual contributions. Further details are provided in the course outline.</li>
 </ul>
-<div style="height:1.5rem"></div>
+<div style="height:4.0rem"></div>
 
-<hr />
+<hr style="height: 2px; border: none; background-color: #000;">
+
 <div style="height:1.5rem"></div>
 
 <h2>Milestones</h2>
@@ -114,21 +116,107 @@
 </tr>
 </tbody>
 </table>
-<div style="height:1.5rem"></div>
+<div style="height:4.0rem"></div>
 
-<hr />
+<hr style="height: 2px; border: none; background-color: #000;">
+
 <div style="height:1.5rem"></div>
 
 <h2>Learning Focus</h2>
+<div style="height:1.0rem"></div>
+
 <p>Through the course project, students are expected to demonstrate the ability to:</p>
 <ul>
-<li>define and bound a real-world problem with clear context and relevance;</li>
-<li>design and justify an AI-assisted approach aligned with stated objectives;</li>
-<li>develop reasonable demonstrations or evaluations that provide meaningful validation;</li>
-<li>reason critically about interactions between mechanisms, datasets, and responsibility;</li>
-<li>communicate intent, methods, results, and limitations clearly and coherently.</li>
+<li><strong>Problem Statement:</strong> define and bound a real-world problem with clear context and relevance;</li>
+<li><strong>Solution Space:</strong> design and justify an AI-assisted approach aligned with stated objectives;</li>
+<li><strong>Rigorous Investigation:</strong>develop reasonable demonstrations or evaluations that provide meaningful validation;</li>
+<li><strong>Course Synthesis:</strong> reason critically about interactions between mechanisms, datasets, and responsibility;</li>
+<li><strong>Effective Communication:</strong> communicate intent, methods, results, and limitations clearly and coherently.</li>
 </ul>
 <p>The course project serves as the <strong>capstone assignment</strong> for the course, integrating technical understanding, critical judgement, and professional communication into a single, coherent body of work.</p>
+<div style="height:4.0rem"></div>
+
+<hr style="height: 2px; border: none; background-color: #000;">
+
+<div style="height:1.5rem"></div>
+
+<h2>Possible Directions</h2>
+<div style="height:2.0rem"></div>
+
+<h3>Methodology</h3>
+<div style="height:1.0rem"></div>
+
+<p>CCAI 9012 encourages students to conduct their Course Project using programming, enabling systematic data collection and analysis, and unlocking scalable opportunities that would be cumbersome—if not intractable—to execute and control via ChatBot/UI-based GenAI alone.</p>
+<p>While programming is strongly encouraged, we recognize that skill levels vary across the student body and welcome projects in any format, as long as they are grounded in:</p>
+<ul>
+<li>a well-framed problem</li>
+<li>an appropriately matched solution approach</li>
+<li>a rigorous process of investigation</li>
+</ul>
+<p>Accordingly, it is also acceptable to construct a dataset manually through direct interaction with LLMs, provided you take appropriate precautions to avoid unintentionally biasing your results.</p>
+<p>For students interested in developing programming-based solutions, a number of starter kits <a href="starter_kits/index.html"><strong>[link]</strong></a> are available. These include example code that already performs canonical ML and AI tasks. Often, simple modifications—such as swapping in a different text or image dataset—are sufficient to support exploration of new research questions.</p>
+<p><em>Note: The documentation for starter kits is being actively expanded and refined.</em></p>
+<div style="height:2.0rem"></div>
+
+<h3>Thinking Algorithmically</h3>
+<div style="height:1.0rem"></div>
+
+<p>Whether you are generating data manually or programmatically, it is helpful to break down your problem and methods into modular mappings, such as:</p>
+<ul>
+<li><strong>text → text</strong> – input text, get new text (answering questions, summarising, translating)</li>
+<li><strong>image → text</strong> – input an image, get text (captions, tags, object names)</li>
+<li><strong>text → image</strong> – input a description, get an image (AI “drawing” what you describe)</li>
+<li><strong>image → image</strong> – input an image, get an edited image (filters, style changes, object removal)</li>
+<li><strong>image → video</strong> – input one or more images, get a short video (adding motion or transitions)</li>
+<li><strong>image → scalar</strong> – input an image, get one number (e.g., a 0–100 quality score or a damage estimate)</li>
+<li><strong>vector → scalar</strong> – input a list of numbers, get one number (e.g., a price prediction or risk score)</li>
+<li><strong>etc.</strong> – other input/output mixes (audio, video, combinations of text–image–audio)</li>
+</ul>
+<p>By intelligently chaining these modules, and then running the resulting pipeline over each data point in a dataset, you can build powerful systems to investigate varied and complex questions.</p>
+<p>For example, to study whether different LLMs provide different responses under different circumstances, you might:</p>
+<ol>
+<li>Define a set of prompts: <strong>text</strong></li>
+<li>Feed them into multiple LLMs: <strong>text → text</strong></li>
+<li>Compare and score their outputs: <strong>text → scalar</strong> (e.g., with human ratings or another model)</li>
+<li>Aggregate results over the dataset: <strong>vectors of scalars → scalars</strong> (summary statistics)</li>
+</ol>
+<p>Similarly, to study whether multimodal, image-generation–enabled LLMs exhibit professional, racial, or gender bias, you might:</p>
+<ol>
+<li>Design prompts describing roles or scenarios: <strong>text</strong></li>
+<li>Generate corresponding images: <strong>text → image</strong></li>
+<li>Analyse those images for attributes (e.g., perceived gender/race/occupation): <strong>image → text</strong> and/or <strong>image → scalar</strong></li>
+<li>Quantify bias by aggregating these attributes: <strong>vectors (attribute scores across images) → scalars (bias metrics)</strong></li>
+</ol>
+<p>The key is to think in terms of these modular transformations and then compose them into end-to-end pipelines tailored to your research question.</p>
+<div style="height:2.0rem"></div>
+
+<h3>Example Ideas</h3>
+<div style="height:1.0rem"></div>
+
+<p>Listed below are example directions (analysing AI, using AI for analysis, developing AI‑powered tools) are illustrative rather than exhaustive.  Note that many other directions are also possible.</p>
+<ul>
+<li>
+<p><strong>Analysing AI</strong></p>
+<ul>
+<li><strong>Problem Statement</strong>: AI image generators used to create “professional” profile images for platforms like LinkedIn may depict certain professions (e.g., “doctor”, “engineer”, “CEO”, “nurse”, “teacher”) in ways that systematically vary by race and gender, even when prompts are neutral. This may reinforce stereotypes about which kinds of people are “typical” or “appropriate” for particular professional roles. There is limited systematic evidence on how frequently such patterns occur or how they vary across professions and systems.</li>
+<li><strong>Possible Project Response</strong>: Analyse outputs from one or more image‑generation systems using controlled prompts for professional roles, and assess how perceived gender and race are distributed across occupations (e.g., “engineer”, “nurse”, “CEO”).</li>
+</ul>
+</li>
+<li>
+<p><strong>AI for Analysis</strong></p>
+<ul>
+<li><strong>Problem Statement</strong>: In a second-year interaction design module, students submit written reflections, but there is no systematic way to see which themes or user groups are addressed across the cohort. Tutors suspect that accessibility and disability are rarely discussed, yet this has never been examined at scale. As a result, important blind spots in students’ assumptions and in the curriculum may remain invisible.</li>
+<li><strong>Possible Project Response</strong>: Use AI-based text analysis to scan a corpus of student reflections and identify how often issues such as accessibility, disability, and other user characteristics are mentioned.</li>
+</ul>
+</li>
+<li>
+<p><strong>Developing AI‑Powered Tools</strong></p>
+<ul>
+<li><strong>Problem Statement</strong>: In a first-year visual communication course, tutors must give feedback on many poster designs in short studio sessions. Time pressure and differing critique styles lead to inconsistent, often vague comments, leaving students unsure how to improve or how their work maps to assessment criteria. This makes it difficult for students to understand expectations and track their progress.</li>
+<li><strong>Possible Project Response</strong>: Prototype an AI-assisted feedback tool that helps tutors quickly generate structured, criteria-based comments on poster designs.</li>
+</ul>
+</li>
+</ul>
         </main>
     </div>
 </body>
