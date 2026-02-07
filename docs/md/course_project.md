@@ -37,9 +37,11 @@ The course project consists of the following assessed components:
 
 ## Milestones
 
+<div style="height:1.0rem"></div> 
+
 | Item | Description | Date | Individual (%) | Group (%) |
 |-----|-------------|------|----------------|-----------|
-| **Project Team Formation Form** | Indication of potential project partners to support early team formation and scoping. | 2026.02.11 | – | – |
+| **Project Team Formation Form** | Indication of potential project partners to support early team formation and scoping. | 2026.02.13 | – | – |
 | **Mid-term Pecha Kucha Presentation** | Time-limited presentation of project framing, proposed AI-assisted approach, preliminary thinking on data, mechanisms, and responsibility, and key open questions for feedback. | 2026.03.18 | – | 10 |
 | **Final Project Submission** | Submission of all core project deliverables (annotation and title, academic paper, and vignette). On the presentation day, projects are presented through the screening of the **Vignette** component. | 2026.04.22 | – | 35 |
 | **Individual Reflection** | Individually assessed reflective statement documenting contributions, learning process, and key design decisions. | 2026.05.06 | 10 | – |
