@@ -36,11 +36,18 @@ Each case study consists of four required components:
 
 The contents will be archived online to showcase your extrodinary work.  
 
+Please prepare your case study according the instructions [**[here]**](https://docs.google.com/presentation/d/1oqCTKGcg9u5OPQ2C21wfnTEFBq_4_TEz/edit?usp=sharing&ouid=110843421025662715021&rtpof=true&sd=true).
+
+This document contains the:
+- submission instructions (via Google Form link indicated in Moodle)
+- template for formatting your case study for online archival as a single pptx submission.
+
+
 <p align="center">
   <img src="figs/case_study_submission.png" width="300"><br>
 </p>
 
-**A template for formatting the case study for online archival will be released in due course!**
+
 
 
 
