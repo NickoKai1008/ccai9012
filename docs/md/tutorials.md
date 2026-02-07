@@ -80,7 +80,7 @@ Please find code covered by tutorial [**[here]**](https://github.com/ccai9012/cc
 - Acquire fundamental movie editing skills.  
 - Please come with CapCut installed.  
 
-Please view the recorded session [**[here]**](https://drive.google.com/file/d/1367vJ7tcNmYMyKj_LSdA5mY8erCXETZ_/view?usp=sharing) and related material [**here**](https://github.com/ccai9012/ccai9012/tree/main/weekly_scripts/S2_basic_movie_editing).  
+Please view the recorded session [**[here]**](https://drive.google.com/file/d/1367vJ7tcNmYMyKj_LSdA5mY8erCXETZ_/view?usp=sharing) and related material [**[here]**](https://github.com/ccai9012/ccai9012/tree/main/weekly_scripts/S2_basic_movie_editing).  
 
 <div style="height:0.5rem"></div>
 
