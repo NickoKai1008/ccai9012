@@ -38,6 +38,8 @@ You will find basic information regarding tutorials below:
 - Learn basic programming principles using Python.  
 - Understand the fundamentals of LLM interaction through programming and online UI.
 
+Please find code covered by tutorial [**[here]**](https://github.com/ccai9012/ccai9012/tree/main/weekly_scripts/S1_getting_started).  
+
 <div style="height:0.5rem"></div>
 
 <hr style="height: 2px; border: none; background-color: #000;">
@@ -51,6 +53,8 @@ You will find basic information regarding tutorials below:
 - Apply Python to basic scientific computing with NumPy.
 - Load and manipulate data using pandas.
 - Create and customise basic visualisations with Matplotlib.
+
+Please find code covered by tutorial [**[here]**](https://github.com/ccai9012/ccai9012/tree/main/weekly_scripts/S2_advancing_in_python).  
 
 <div style="height:1.5rem"></div>
 
@@ -76,7 +80,7 @@ You will find basic information regarding tutorials below:
 - Acquire fundamental movie editing skills.  
 - Please come with CapCut installed.  
 
-Please view the recorded session [**[here]**](https://drive.google.com/file/d/1367vJ7tcNmYMyKj_LSdA5mY8erCXETZ_/view?usp=sharing).
+Please view the recorded session [**[here]**](https://drive.google.com/file/d/1367vJ7tcNmYMyKj_LSdA5mY8erCXETZ_/view?usp=sharing) and related material [**here**](https://github.com/ccai9012/ccai9012/tree/main/weekly_scripts/S2_basic_movie_editing).  
 
 <div style="height:0.5rem"></div>
 
