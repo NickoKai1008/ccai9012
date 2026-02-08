@@ -43,9 +43,9 @@ The course project consists of the following assessed components:
 |------|-------------|------|----------------|-----------|
 | **Project Team Formation Form** | Early indication of potential project partners to support team formation and initial scoping as a 100-200 word statement.  Submit via Moodle. | 2026.02.15 | – | – |
 | **Mid-term Pecha Kucha Presentation** | Time-limited presentation of project framing, proposed AI-assisted approach, and preliminary considerations on data, mechanisms, and responsibility. | 2026.03.18 | – | 10 |
-| **Crit-Style Peer Review (Post-Midterm)** | Structured studio-style peer critique focused on problem definition, methodological coherence, assumptions, and responsible AI positioning. Formative and non-graded. | 2026.03.19-24 | – | – |
+| **Crit-Style Peer Review (Post-Midterm)** | Structured studio-style peer critique conducted during tutorial slots, focused on problem definition, methodological coherence, assumptions, and responsible AI positioning. Formative and non-graded. | 2026.03.19-24 | – | – |
 | **Final Project Submission** | Submission of all core deliverables. Projects are presented through the screening of the vignette component. | 2026.04.22 | – | 35 |
-| **Crit-Style Peer Review (Post-Final)** | Reflective peer critique of completed projects, emphasising evaluative judgement, strengths, limitations, and comparative learning. Formative and non-graded. | 2026.04.23-28 | – | – |
+| **Crit-Style Peer Review (Post-Final)** | Reflective peer critique of completed projects (via tutorial slots), emphasising evaluative judgement, strengths, limitations, and comparative learning. Formative and non-graded. | 2026.04.23-28 | – | – |
 | **Individual Reflection** | Individually assessed reflective statement on contributions, learning process, and key design decisions. | 2026.05.06 | 10 | – |
 | **Peer Assessment** | Advisory peer feedback on group process and individual contributions, used to inform moderation where appropriate. | 2026.05.06 | – | – |
 
