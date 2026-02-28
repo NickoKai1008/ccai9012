@@ -99,7 +99,9 @@ Include at least one screenshot or transcript showing a moment of friction, resi
 
 ### Submission
 
-**Deadline:** 2026.02.25
+**Deadline:**  
+<s>Original: 📅2026.02.25 ⏰00.00</s>  
+Extended: <span style="background-color:#a00000;color:#fff;">📅2026.02.27 ⏰12:00</span>  
 
 <div style="height:1.5rem"></div> 
 
