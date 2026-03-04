@@ -4,3 +4,6 @@ python md_to_html.py
 python md_to_html.py md/pi_resources.md
 python md_to_html.py md/pi_showflow.md
 python md_to_html.py md/pi_casestudy.md
+python md_to_html.py md/pii_casestudy.md
+python md_to_html.py md/pii_examples.md
+python md_to_html.py md/cp_pechakucha.md

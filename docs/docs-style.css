@@ -136,7 +136,7 @@ section {
 section h2 {
     font-size: 1.875rem;
     font-weight: 600;
-    margin-bottom: 1rem;
+    margin-bottom: 1.0 rem;
     color: var(--text-color);
     border-bottom: 2px solid var(--border-color);
     padding-bottom: 0.5rem;
@@ -163,7 +163,7 @@ p {
     line-height: 1.7;
 }
 
-ul, ol {
+/*ul, ol {
     margin-left: 1.5rem;
     margin-bottom: 1rem;
 }
@@ -172,6 +172,24 @@ li {
     margin-bottom: 0.5rem;
 }
 
+*/
+
+ul, ol {
+    margin-left: 1.25rem;
+    margin-top: 0.4rem;
+    margin-bottom: 0.4rem;
+}
+
+li {
+    margin-top: 0.15rem;
+    margin-bottom: 0.15rem;
+    line-height: 1.35;
+}
+
+/* Prevent extra spacing if Markdown wraps list items in <p> */
+li p {
+    margin: 0;
+}
 /* Code Styles */
 code {
     background-color: var(--code-bg);
