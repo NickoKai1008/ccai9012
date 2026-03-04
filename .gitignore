@@ -4,7 +4,7 @@ __pycache__/
 .DS_Store
 .idea/
 
-data/*
+# data/*
 !data/german_credits/
 models/
 tmp/

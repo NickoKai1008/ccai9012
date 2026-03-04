@@ -103,3 +103,45 @@ Teams are expected to:
 - incorporate useful feedback into subsequent development
 
 The midterm review is intended to help **strengthen the direction of your project before the final submission**.
+
+<div style="height:2rem"></div> 
+
+<hr style="height: 6px; border: none; background-color: #000;">
+
+<div style="height:1.5rem"></div> 
+
+## Grading Criteria
+
+<div style="height:1.5rem"></div>
+
+### In a nutshell
+
+#### We are **not** grading:
+
+- completeness of the project  
+- polished final results  
+- advanced technical implementation  
+
+#### We **are** grading:
+
+| Criterion | What It Means |
+|-----------|---------------|
+| **Problem Framing** | Is the problem or opportunity clearly defined, bounded, and situated in context? |
+| **System Concept** | Is the proposed AI-assisted approach understandable, coherent, and plausibly aligned with the problem? |
+| **Process Thinking** | Do you demonstrate structured thinking about workflow, methods, and experimentation (i.e., how you will build, test, and iterate)? |
+| **Integration** | Do you reason critically about how **mechanisms, datasets, and responsibility** interact in the creation and use of the system? |
+| **Communication** | Are ideas communicated clearly through visuals and a coherent spoken narrative? |
+
+<div style="height:1.5rem"></div>
+
+### Rubric
+
+| Criterion | Excellent | Adequate | Insufficient |
+|-----------|-----------|-----------|--------------|
+| **Problem Framing** | Clear, specific, well-motivated problem with appropriate scope and constraints | Problem identifiable but somewhat broad, vague, or under-scoped | Problem unclear, overly broad, or poorly motivated |
+| **System Concept** | System/workflow clearly articulated with logical structure and clear role of AI | Approach described but with gaps in structure, feasibility, or AI role clarity | Approach confusing, inconsistent, or not clearly AI-assisted |
+| **Process Thinking** | Clear plan for methods and experimentation; shows iterative logic (what will be tested, how, and why) | Some plan or early experiments shown, but methodology is underdeveloped | Little evidence of planned or executed experimentation; process is ad hoc |
+| **Integration** | Thoughtful early synthesis of **mechanisms + datasets + responsibility**, with clear implications for design decisions | Mentions these dimensions but connections are shallow or unclear | Treats dimensions separately or ignores one or more; no critical reasoning |
+| **Communication** | Strong visual storytelling; minimal text; clear pacing; narrative makes feedback needs explicit | Understandable but uneven; some text-heavy slides or unclear transitions | Hard to follow; too dense; visuals do not support the narrative |
+
+<div style="height:1.5rem"></div>
