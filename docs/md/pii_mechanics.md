@@ -1,7 +1,7 @@
 
 # Part II: Mechanics & Application
 ## _*Make AI work for you*_   
-_A 3-Class Module on AI Systems, Mechanisms, and Behaviour_
+_A 4-Class Module on AI Systems, Mechanisms, and Behaviour_
 
 <div style="height:1.5rem"></div>
 
@@ -43,7 +43,7 @@ Once you see the structure, you can begin to reason about:
 | Class | Title | What Happens | What You Learn |
 |------|------|--------------|----------------|
 | 1 | [Machine Learning 101](https://docs.google.com/presentation/d/1WsaKzyXBToEf9KiaM1DGHP138O0AmdsA/edit?usp=sharing&ouid=110843421025662715021&rtpof=true&sd=true) | We translate real problems into AI workflows | Basic lay of the land and key principles of machine learning |
-| 2 | [Neural Network & Generative Modelling](https://docs.google.com/presentation/d/1msU3xp_C4MF7p1htg3Om-5NLQPGaVcuR/edit?usp=sharing&ouid=110843421025662715021&rtpof=true&sd=true) | We examine how models transform inputs into outputs | Neural networks, generative extensions (images and graphs), and the role of randomness |
+| 2 | [Neural Network & Generative Modelling](https://docs.google.com/presentation/d/1msU3xp_C4MF7p1htg3Om-5NLQPGaVcuR/edit?usp=sharing&ouid=110843421025662715021&rtpof=true&sd=true) | We examine how models transform inputs into outputs | Neural networks, extensions (images and graphs), and the role of probability & randomness in generative modelling |
 
 
 <div style="height:1.5rem"></div>
