@@ -117,4 +117,4 @@ This should be read alongside the **general case study rubric** [**[link]**](cas
 
 ## The One-Liner
 
-> "If you can’t explain the mechanism, you don’t understand the system."
+> "If you can’t explain the mechanism, you don’t understand the system — and you can’t make AI work for you."
