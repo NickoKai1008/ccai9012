@@ -15,8 +15,6 @@ The course combines a weekly **plenary lecture** with a programme of **small-gro
 
 The overall **sequencing of lectures, tutorials, and assessment milestones** is outlined in the **course plan** [**[link]**](https://docs.google.com/spreadsheets/d/1-a0Wgr8zA2lIl8lOQ-Hn6dda7kueW6XznnyS7PzHf-0/edit?usp=sharing), which indicates when key topics are introduced and how tutorial activities align with assessed work.
 
-The **course plan** [**[here]**](https://docs.google.com/spreadsheets/d/1-a0Wgr8zA2lIl8lOQ-Hn6dda7kueW6XznnyS7PzHf-0/edit?usp=sharing also contains links to all lectures.
-
 <div style="height:1.5rem"></div>
 
 ---
