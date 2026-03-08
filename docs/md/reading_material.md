@@ -37,7 +37,10 @@ Source Article: [**[link]**](https://www.newyorker.com/tech/annals-of-technology
 
 ## Part II: Mechanics of AI
 
-_Stay tuned for more._
+- LeCun, Y., Bengio, Y., & Hinton, G. (2015). _Deep Learning_. *Nature*, 521, 436–444.  
+  Source Article: [**[link]**](https://www.nature.com/articles/nature14539) | File Upload: [**[link]**](https://github.com/ccai9012/ccai9012/raw/main/reading/p2/nature14539.pdf). 
+
+_Articles will be released progressively throughout the lecture series..._
 
 <!-- - **Week 5: ML 101: Scratch-trained AI**  
   Goodfellow, I., Bengio, Y. and Courville, A. (2016) *Deep Learning*, Chapter 1. MIT Press. Available at: https://www.deeplearningbook.org/.

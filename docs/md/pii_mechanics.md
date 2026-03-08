@@ -115,6 +115,19 @@ This should be read alongside the **general case study rubric** [**[link]**](cas
 
 <div style="height:1.5rem"></div>
 
+## Resources
+
+<div style="height:1.5rem"></div>
+
+- **Reading Material**: see _Part II: Mechanics of AI_ under [**[link]**](reading_material.html).
+
+<div style="height:1.5rem"></div>
+
+---
+
+<div style="height:1.5rem"></div>
+
+
 ## The One-Liner
 
 > "If you can’t explain the mechanism, you don’t understand the system — and you can’t make AI work for you."
