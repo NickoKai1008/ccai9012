@@ -4,6 +4,11 @@
 
 <span style="background-color:#a00000;color:#fff;">📅 Submit by: 2026.03.18 ⏰ 00:00 (Midnight before class)</span>  
 
+<div style="height:1rem"></div>
+
+> **📤 Upload your slides here:**  
+> [CCAI9012 Pecha Kucha Submission Form](https://forms.gle/j8WPsnpbsP24hVZT8)
+
 **Slides must be submitted in PowerPoint format so we can combine all presentations into a single deck before class. Late submissions may delay the setup of the session.**
 
 <div style="height:2rem"></div> 
@@ -22,9 +27,32 @@ The midterm presentation follows a **Pecha Kucha format**.
 • **20 seconds per slide** (auto-advance)  
 • **Total duration: approximately 6 minutes 40 seconds**
 
-Slides should be **primarily visual**, with **minimal text**.
+Slides should be **primarily visual**, with **minimal text**.  
+Each presentation will be followed by a **short discussion and peer feedback session**.  
+The goal is to communicate ideas clearly and efficiently through images, diagrams, and structured visual storytelling.  
 
-The goal is to communicate ideas clearly and efficiently through images, diagrams, and structured visual storytelling.
+<div style="height:1.5rem"></div>
+
+A PowerPoint template is available for teams who would like a starting point:  
+**Template download:**  [CCAI9012 Pecha Kucha Template](https://docs.google.com/presentation/d/1mcIfOca_UZ7NwgxZaoHL7rTz19qhMW_D/edit?usp=sharing&ouid=110843421025662715021&rtpof=true&sd=true).  
+Please **use the title slide provided in the template**.  
+The remaining slides can be organised and formatted freely to best communicate your project.
+
+<div style="height:1.5rem"></div>
+
+<hr style="height: 3px; border: none; background-color: #000;">
+
+<div style="height:1.5rem"></div>
+
+⚠️ **Please arrive on time and be ready when your team is called.**  
+The review session will run through **7 teams consecutively**.
+
+To keep the session on schedule:
+
+• presentations must **not exceed the Pecha Kucha duration**  
+• each team will receive **approximately 5 minutes of discussion**
+
+Staying within the time limit allows every team to receive fair feedback.  
 
 <div style="height:1.5rem"></div>
 
