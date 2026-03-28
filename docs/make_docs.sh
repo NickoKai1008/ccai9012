@@ -9,5 +9,6 @@ python md_to_html.py md/pii_mechanics.md
 python md_to_html.py md/pii_casestudy.md
 python md_to_html.py md/pii_examples.md
 python md_to_html.py md/cp_pechakucha.md
+python md_to_html.py md/tutorials.md
 
 #./make_docs.sh

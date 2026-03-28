@@ -177,6 +177,41 @@ _Note: These example directions (analysing AI, using AI for analysis, developing
 
 In the session, we will **share and discuss draft problem statements** in small groups, **check that each one states a clear, well‑scoped problem** (not a solution, method, or vague topic), and **tighten scope, context, and stakeholders** while loosely connecting problems to possible **AI‑related directions**; by the end, you should have a **clearer, more focused problem statement** and a rough sense of how it might develop later in the module.
 
+<div style="height:0.5rem"></div>
+
 <hr style="height: 2px; border: none; background-color: #000;">
+
+<div style="height:2.0rem"></div>
+
+<!-- ========================  SECTION DIVIDER  ======================== -->
+
+<h3 id="presentation-workshop">&lt;&lt;🎤 <strong>Presentation Workshop</strong>&gt;&gt;</h3>
+
+<div style="height:1.0rem"></div> 
+
+This session introduces key strategies for communicating ideas clearly, effectively, and with confidence across different formats. Students will explore structure, visual storytelling, and delivery techniques through guided examples and discussion.
+
+<div style="height:0.5rem"></div>
+
+Please view slides [**[here]**](https://docs.google.com/presentation/d/1Ij5b8vw3nJZGBi3mW-94R5cV8lwLGZ01NRiwIFunjvA/edit?usp=sharing).
+
+<div style="height:0.5rem"></div>
+
+<hr style="height: 2px; border: none; background-color: #000;">
+
+<div style="height:2.0rem"></div>
+
+<!-- ========================  SECTION DIVIDER  ======================== -->
+
+<h3 id="design-crits">&lt;&lt;🧠 <strong>Crit-Syle Peer-to-Peer Review</strong>&gt;&gt;</h3>
+
+<div style="height:1.0rem"></div> 
+
+This session introduces the practice of design crits, a core component of architectural studio culture that fosters critical thinking through structured dialogue and reflection. Students will learn to give and receive constructive feedback, applying these skills during midterm Pecha Kucha presentations to evaluate course projects, refine ideas, and develop more thoughtful and rigorous design responses.
+
+<div style="height:0.5rem"></div>
+
+Please view slides [**[here]**](https://docs.google.com/presentation/d/1Zr6KoyIpSoM1jLcRbewOQtDb1LO7kaeeeygYicRcvO0/edit?usp=sharing).
+
 
 
