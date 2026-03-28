@@ -415,7 +415,9 @@ You may include **supplementary materials** in an appendix, such as:
 
 
 ### Submission Deadline
-📅2026.04.01 ⏰00:00
+<s>Original: 📅2026.04.01 ⏰00:00</s>  
+Extended: <span style="background-color:#a00000;color:#fff;">📅2026.04.08 ⏰00:00</span>  
+
 
 <div style="height:1.5rem"></div> 
 
