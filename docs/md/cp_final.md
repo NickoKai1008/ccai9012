@@ -45,7 +45,7 @@ Be strategic in how you construct your material:
 
 The gallery post can be understood as a **image slide-based version of your paper and video**, presenting the same contents through a digestible visual image sequence.  There is no need to do new work.
  
-Please prepare your online gallery post using a **template** similar to your case study[**[here]**](https://docs.google.com/presentation/d/12YJjW1pGqLk45Qcgpn_TiMWWSgrZd2Ny/edit?usp=sharing&ouid=110843421025662715021&rtpof=true&sd=true).
+Please prepare your online gallery post using a **template** similar to your case study [**[here]**](https://docs.google.com/presentation/d/12YJjW1pGqLk45Qcgpn_TiMWWSgrZd2Ny/edit?usp=sharing&ouid=110843421025662715021&rtpof=true&sd=true).
 
 
 <div style="height:1.5rem"></div>
