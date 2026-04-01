@@ -23,7 +23,7 @@ The course project consists of the following assessed components:
 - **Final Project Submission**, comprising:
     - **(i) Annotation & Title**: A concise written framing of the project and its treatment of responsibility, mechanisms, and data.
     - **(ii) Paper**: A design-oriented paper documenting the project’s motivation, system design, implementation, results, and critical reflection (maximum 1500 words and 10 pages).
-    - **(iii) Vignette**: A short-form video (maximum 5 minutes) communicating the project’s core argument and insights.
+    - **(iii) Vignette**: A short-form video (approximately 5-8 minutes) communicating the project’s core argument and insights.
     - **(iv) Evidence** _(Optional Appendices)_: Optional supplementary documentation of process, such as intermediate outputs, experiments, logs, or design iterations. Note that the **paper and vignette must remain self-contained** and should not rely on appendices to communicate core arguments or findings.
 
 - **Individual Reflection**: An individually assessed reflective statement documenting contributions and learning. Requirements are specified in the course outline.
@@ -44,7 +44,7 @@ The course project consists of the following assessed components:
 | **Project Team Formation Form** | Early indication of potential project partners to support team formation and initial scoping as a 100-200 word statement.  Submit via Moodle. | 2026.02.22 | – | – |
 | [[**Mid-term Pecha Kucha Presentation**]](cp_pechakucha.html) | Time-limited presentation of project framing, proposed AI-assisted approach, and preliminary considerations on data, mechanisms, and responsibility. | 2026.03.18 | – | 10 |
 | **Crit-Style Peer Review (Post-Midterm)** | Structured studio-style peer critique conducted during tutorial slots, focused on problem definition, methodological coherence, assumptions, and responsible AI positioning. Formative and non-graded. | 2026.03.19-24 | – | – |
-| **Final Project Submission** | Submission of all core deliverables. Projects are presented through the screening of the vignette component. | 2026.04.22 | – | 35 |
+| [[**Final Project Submission**]](cp_final.html)  | Submission of all core deliverables. Projects are presented through the screening of the vignette component. | 2026.04.22 | – | 35 |
 | **Crit-Style Peer Review (Post-Final)** | Reflective peer critique of completed projects (via tutorial slots), emphasising evaluative judgement, strengths, limitations, and comparative learning. Formative and non-graded. | 2026.04.23-28 | – | – |
 | **Individual Reflection** | Individually assessed reflective statement on contributions, learning process, and key design decisions. | 2026.05.06 | 10 | – |
 | **Peer Assessment** | Advisory peer feedback on group process and individual contributions, used to inform moderation where appropriate. | 2026.05.06 | – | – |
