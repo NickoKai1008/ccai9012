@@ -40,8 +40,8 @@ Once you see the training process & potential risks, you can begin to reason abo
 
 | Class | Title | What Happens | What You Learn |
 |-------|-------|--------------|----------------|
-| 1 | [Datasets of AI](https://drive.google.com/file/d/1KkBdUrgzwfMJFp8sNloNrgU7kPoPM3NN/view?usp=drive_link) | We dive into the training process of AI models | Scaling laws of AI, training data processing, and evaluating data quality |
-| 2 | [Risks of AI](https://drive.google.com/file/d/1GhbNKIpVr_AkjbrRZWDlbI7Xm5Hu07NZ/view?usp=drive_link) | We examine the multifaceted impacts and risks of AI | Ethics and risks of AI in business, socioeconomics, environments, and most importantly, on human beings |
+| 1 | [Datasets of AI](https://drive.google.com/file/d/1KkBdUrgzwfMJFp8sNloNrgU7kPoPM3NN/view?usp=sharing) | We dive into the training process of AI models | Scaling laws of AI, training data processing, and evaluating data quality |
+| 2 | [Risks of AI](https://drive.google.com/file/d/1GhbNKIpVr_AkjbrRZWDlbI7Xm5Hu07NZ/view?usp=sharing) | We examine the multifaceted impacts and risks of AI | Ethics and risks of AI in business, socioeconomics, environments, and most importantly, on human beings |
 
 <div style="height:1.5rem"></div>
 
@@ -110,7 +110,7 @@ This should be read alongside the general case study rubric [link](https://Nicko
 
 ## Resources
 
-**Reading Material:** see _Part III: Datasets and Risks of AI_ under [link](https://drive.google.com/drive/folders/1mmM4n6IR7e9HXRLq_WI7uPWG3NlEgGkv).
+**Reading Material:** see _Part III: Datasets and Risks of AI_ under [link](https://drive.google.com/drive/folders/1mmM4n6IR7e9HXRLq_WI7uPWG3NlEgGkv?usp=sharing).
 
 ### Datasets of AI:
 
