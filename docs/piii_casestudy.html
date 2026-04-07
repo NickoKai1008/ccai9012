@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCAI9012 - Piii Casestudy</title>
+    <link rel="stylesheet" href="docs-style.css">
+</head>
+<body>
+    <div class="container">
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h2>CCAI9012</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="timetable.html">Course Plan</a></li>
+                <li><a href="Assessment.html">Assessment</a></li>
+                <li class="sub-item"><a href="casestudy.html">Case Study</a></li>
+                <li class="sub-item"><a href="course_project.html">Course Project</a></li>
+                <li><a href="reading_material.html">Reading Materials</a></li>
+                <li><a href="pi_responsibility.html">I. Responsibility & AI</a></li>
+                <li><a href="pii_mechanics.html">II. Mechanics of AI</a></li>
+                <li><a href="piii_data_and_risks.html">III. Datasets & Risks of AI</a></li>
+                <li><a href="installation.html">Installation Guide</a></li>
+                <li><a href="starter_kits/index.html">Starter Kits</a></li>
+                <li><a href="datasets.html">Datasets Reference</a></li>
+            </ul>
+        </nav>
+
+        <main id="content">
+<h1>A.1.3: Case Study #3: Datasets &amp; Risks</h1>
+<h2><em>The Building Blocks &amp; Guardrails</em></h2>
+<div style="height:1.5rem"></div>
+
+<p><em>Note 1: This outline provides guidance specific to Case Study #3, complementing the <strong>general case study rubric</strong></em> <a href="casestudy.html"><strong>[link]</strong></a>.<br />
+<em>Note 2: See lecture note 3.1 Datasets &amp; Risks of AI <a href="pii_examples.html"><strong>[link]</strong></a> for some illustrative examples of the tasks.</em></p>
+<div style="height:4rem"></div>
+
+<hr style="height: 6px; border: none; background-color: #000;">
+
+<div style="height:1.5rem"></div>
+
+<h2>The Brief</h2>
+<div style="height:1.5rem"></div>
+
+<p>Understand how the training dataset guides the <strong>capability and boundary</strong> of a Generative AI model.</p>
+<p>Investigate how specific training datasets can differentiate the capability of Generative AI (GenAI) models or LLMs.</p>
+<p>You are <strong>NOT training customized Generative AI models.</strong><br />
+You are <strong>exploring the boundaries</strong> of market-ready GenAI/LLMs in specific tasks (domain knowledge).</p>
+<ul>
+<li>It can be asking a pre-trained LLM to <strong>generate "realistic" nighttime images based on given input daytime images</strong> (download daytime images from the <a href="https://drive.google.com/drive/folders/1m0xVRvCSXI9uI1zXKCypMNZ5-kXnNF4-?usp=sharing"><strong>link</strong></a>)</li>
+<li>Or you can think about <strong>another specific task in your domain of study</strong> that you notice current LLMs on the market cannot handle well, but through very specific prompts or better datasets, they might improve their capabilities.</li>
+</ul>
+<p>Your analysis should address the following questions.</p>
+<div style="height:0.5rem"></div>
+
+<hr style="height: 3px; border: none; background-color: #000;">
+
+<div style="height:1.0rem"></div>
+
+<h3>1. What is the domain-specific task? (E.g., creating realistic nighttime street view images from daytime ones instead of generating a fancy rendering or fantasy-like visions)</h3>
+<div style="height:1.0rem"></div>
+
+<p>• <strong>Problem / Function</strong></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;– What is the <strong>main objective</strong> of the task?<br />
+&nbsp;&nbsp;&nbsp;&nbsp;– Why is this problem important?<br />
+&nbsp;&nbsp;&nbsp;&nbsp;– Why LLM (or GenAI) might be useful?</p>
+<div style="height:0.5rem"></div>
+
+<hr />
+<div style="height:1.0rem"></div>
+
+<h3>2. What models do you use for the task? (E.g., Do you generate the nighttime images with StableDiffusion, Nano Banana, Midjourney, etc.?)</h3>
+<div style="height:1.0rem"></div>
+
+<p>• <strong>Model Dependency</strong></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;– Describe clearly <strong>how it operates</strong>.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;– Explain how the overall task breaks down into <strong>input data preparation, prompt</strong> (or algorithmic steps), and <strong>output</strong> steps.</p>
+<p>• <strong>Your explanation should show</strong></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;– The <strong>overall workflow</strong><br />
+&nbsp;&nbsp;&nbsp;&nbsp;– The <strong>specific model's mechanism</strong> you are leveraging (E.g., if you are using StableDiffusion, explain how the Diffusion architecture works)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;– The full <strong>Inputs &rarr; transformations &rarr; outputs</strong> link</p>
+<div style="height:0.5rem"></div>
+
+<hr />
+<div style="height:1.0rem"></div>
+
+<h3>3. Is the GenAI model (or LLM) powerful in fulfilling the domain-specific task? (E.g., mimicking a realistic nighttime urban environment?)</h3>
+<div style="height:1.0rem"></div>
+
+<p>• <strong>Capabilities</strong></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;– What strengths or behaviors does the model enable?</p>
+<p>• <strong>Limitations</strong></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;– What problems or dysfunctionality do you spot/diagnose from the pre-trained model?</p>
+<div style="height:0.5rem"></div>
+
+<hr />
+<div style="height:1.0rem"></div>
+
+<h3>4. How do you improve it?</h3>
+<div style="height:1.0rem"></div>
+
+<p>• <strong>Causal reasoning</strong></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;– Explain how training dataset quality, and/or prompt engineering might (or might not) improve the model's ability for the domain-specific task.</p>
+<p>• <strong>Comparison</strong></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;– Where helpful, compare the <strong>"initial results"</strong> to an <strong>"improved result"</strong> from an <strong>alternative model,</strong> or <strong>an improved prompt,</strong> or <strong>feeding in specific training data</strong>.</p>
+<p>Your analysis should reveal <strong>one key insight</strong> about how the domain-specific training dataset/prompt/harness reshapes model performance.</p>
+<div style="height:1.0rem"></div>
+
+<hr style="height: 3px; border: none; background-color: #000;">
+
+<div style="height:1.0rem"></div>
+
+<h3>What a Strong Submission Demonstrates</h3>
+<div style="height:1.0rem"></div>
+
+<p>A strong submission will:</p>
+<ul>
+<li>Isolate the role of the <strong>training dataset quality</strong> from the mechanism clearly</li>
+<li>Diagram the <strong>overall workflow of the model</strong></li>
+<li>Zoom into the <strong>selected module (training dataset/prompt/etc)</strong></li>
+<li>Identify <strong>inputs &rarr; transformations &rarr; outputs</strong></li>
+<li>Explain how the <strong>training dataset matters to behavioral outcomes</strong></li>
+</ul>
+<p>Your writing should demonstrate <strong>training dataset engineering thinking</strong> or <strong>prompt engineering thinking</strong>.</p>
+<div style="height:1.5rem"></div>
+
+<hr style="height: 3px; border: none; background-color: #000;">
+
+<div style="height:1.5rem"></div>
+
+<h3>Choosing Your Task</h3>
+<p>Your domain-specific task should be:</p>
+<ul>
+<li><strong>Specific</strong></li>
+<li><strong>Practically identifiable</strong></li>
+<li><strong>Narrow enough to analyse clearly</strong></li>
+<li><strong>Causally linked to dataset or prompt quality</strong></li>
+</ul>
+<p>Do not choose something broad like <strong>&ldquo;AI image generation&rdquo;</strong> or <strong>&ldquo;language models.&rdquo;</strong><br />
+Focus on <strong>one clearly defined task</strong> where dataset or prompt choices visibly shape output quality.</p>
+<p>Explain the task and model <strong>conceptually</strong>.<br />
+You may reference specific techniques where necessary to clarify how it works.</p>
+<p>Do <strong>not</strong> turn this into a technical manual.</p>
+<p><strong>Clarity over breadth.<br />
+Dataset over surface.</strong></p>
+
+<div style="height:4.0rem"></div>
+
+<hr style="height: 6px; border: none; background-color: #000;">
+
+<div style="height:2.0rem"></div>
+
+<h2>Deliverables</h2>
+<div style="height:1.5rem"></div>
+
+<p>Your submission must include <strong>four parts</strong>.</p>
+<div style="height:0.5rem"></div>
+
+<hr style="height: 3px; border: none; background-color: #000;">
+
+<div style="height:1.0rem"></div>
+
+<h3>i. Annotation (≈500 words)</h3>
+<div style="height:1.0rem"></div>
+
+<p>Provide a short written annotation accompanying your case study.</p>
+<p>• <strong>Title</strong><br />
+&nbsp;&nbsp;&nbsp;&nbsp;– A clear title identifying the task, model, and dataset focus studied.</p>
+<p>• <strong>Caption / Description</strong><br />
+&nbsp;&nbsp;&nbsp;&nbsp;– A brief written explanation summarising the domain task, the model used, and your key finding about dataset or prompt influence.</p>
+<div style="height:0.5rem"></div>
+
+<hr style="height: 3px; border: none; background-color: #000;">
+
+<div style="height:1.0rem"></div>
+
+<h3>ii. The Artefact</h3>
+<div style="height:1.0rem"></div>
+
+<p>Your artefact consists of <strong>two components</strong>:</p>
+<p>• <strong>Supporting Explanation</strong> &mdash; contextual material that frames the domain task and the model you analyse<br />
+• <strong>Dataset / Prompt Representation</strong> &mdash; the core explanation showing how dataset or prompt choices shape outputs</p>
+<p>Think of this as <strong>telling the story of the task first, then revealing how data or prompts drive the result</strong>.</p>
+<div style="height:1.0rem"></div>
+
+<hr />
+<div style="height:1.0rem"></div>
+
+<h4>Explanation Layer (Supporting Context)</h4>
+<div style="height:1.0rem"></div>
+
+<p>This section provides the <strong>context needed to understand the task and model under study</strong>.<br />
+It is essentially the <strong>story or narrative that frames your investigation</strong>.</p>
+<p>It may include slides, visual examples, short demonstrations, or other explanatory material.</p>
+<p>Your explanation layer should generally follow the sequence below.</p>
+<p>• <strong>Problem</strong><br />
+&nbsp;&nbsp;&nbsp;&nbsp;– Illustrate the real-world domain task the model is being asked to address.</p>
+<p>• <strong>System Context</strong><br />
+&nbsp;&nbsp;&nbsp;&nbsp;– Provide brief background on the GenAI model or LLM being studied.</p>
+<p>• <strong>Dataset / Prompt (Overview)</strong><br />
+&nbsp;&nbsp;&nbsp;&nbsp;– Identify the training data or prompting strategy you will investigate.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;– The detailed explanation follows in the next section.</p>
+<p>• <strong>Assessment</strong><br />
+&nbsp;&nbsp;&nbsp;&nbsp;– Provide preliminary observations about what the model does well and where it fails.</p>
+<p>• <strong>Comparison (if relevant)</strong><br />
+&nbsp;&nbsp;&nbsp;&nbsp;– Introduce any alternative models, prompts, or dataset configurations that may be referenced later.</p>
+<p>The goal of this section is to <strong>frame the task and prepare the reader for the detailed dataset/prompt analysis</strong>.</p>
+<p>This corresponds to the <strong>contextual slides or images</strong> that accompany your core artefact in the online gallery documentation.</p>
+<div style="height:1.0rem"></div>
+
+<hr />
+<div style="height:1.0rem"></div>
+
+<h4>Dataset / Prompt Analysis (Core Artefact)</h4>
+<div style="height:0.3rem"></div>
+
+<p>This section is the <strong>central focus of the artefact</strong>.</p>
+<p>Explain how dataset quality or prompt engineering shapes model outputs using <strong>clear comparative representations</strong>.</p>
+<p>Your explanation should make visible:</p>
+<p>• The <strong>overall workflow of the model</strong><br />
+• The <strong>specific dataset or prompt module</strong> you are analysing<br />
+• <strong>Inputs &rarr; transformations &rarr; outputs</strong><br />
+• How output quality <strong>changes across different data or prompt conditions</strong></p>
+<p>Where relevant, present <strong>multiple levels of abstraction</strong>:</p>
+<p>• <strong>System-level overview</strong> &mdash; the overall model pipeline<br />
+• <strong>Data/prompt-level breakdown</strong> &mdash; the specific dataset or prompt you selected<br />
+• <strong>Output comparison</strong> &mdash; how performance shifts with different inputs</p>
+<p>If the task is complex, focus on the <strong>overall structure plus one clearly analysed dataset or prompt variable</strong>.</p>
+<p>The goal is to make the <strong>hidden role of training data legible</strong>.</p>
+<p>This is <strong>not a demo of aesthetic outputs</strong> and <strong>not an exercise in visual polish</strong>.</p>
+<p>Your priority is <strong>clarity of how data quality or prompt design shapes model behaviour</strong>.</p>
+<div style="height:0.5rem"></div>
+
+<hr style="height: 3px; border: none; background-color: #000;">
+
+<div style="height:1.0rem"></div>
+
+<h3>iii. Vignette</h3>
+<div style="height:1.0rem"></div>
+
+<p>The vignette is a <strong>short-form video presentation</strong> summarising your case study.</p>
+<p>• Duration: <strong>approximately 90 seconds</strong></p>
+<p>Your video should clearly communicate:</p>
+<p>• The <strong>domain-specific task studied</strong><br />
+• The <strong>model and dataset/prompt strategy you investigated</strong><br />
+• Your <strong>key insight about how training data or prompting reshapes model performance</strong></p>
+<div style="height:0.5rem"></div>
+
+<hr style="height: 3px; border: none; background-color: #000;">
+
+<div style="height:1.0rem"></div>
+
+<h3>iv. Evidences (Optional)</h3>
+<div style="height:1.0rem"></div>
+
+<p>You may include <strong>supplementary materials</strong> in an appendix, such as:</p>
+<p>• Code snippets<br />
+• Prompt comparisons<br />
+• Side-by-side output comparisons<br />
+• Additional diagrams or tables<br />
+• Dataset descriptions or samples</p>
+<div style="height:4rem"></div>
+
+<hr style="height: 6px; border: none; background-color: #000;">
+
+<div style="height:1.5rem"></div>
+
+<h2>Grading Criteria</h2>
+<div style="height:1.5rem"></div>
+
+<h3>In a nutshell</h3>
+<h4>We are <strong>not</strong> grading:</h4>
+<ul>
+<li>Advanced machine learning training</li>
+<li>Sophisticated model fine-tuning</li>
+<li>Exhaustive dataset coverage</li>
+</ul>
+<div style="height:1.5rem"></div>
+
+<h4>We <strong>are</strong> grading:</h4>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>What It Means</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Understanding</strong></td>
+<td>Do you correctly explain how the model and its training data interact to produce outputs?</td>
+</tr>
+<tr>
+<td><strong>Causal Reasoning / Comparison</strong></td>
+<td>Do you link dataset or prompt choices to observable changes in model behaviour, including comparisons across conditions?</td>
+</tr>
+<tr>
+<td><strong>Limitations</strong></td>
+<td>Do you identify meaningful failure modes or constraints introduced by the dataset or prompt design?</td>
+</tr>
+<tr>
+<td><strong>Clarity</strong></td>
+<td>Can you explain complex ideas in a precise and accessible way?</td>
+</tr>
+<tr>
+<td><strong>Visual Explanation</strong></td>
+<td>Do your diagrams or visual representations clearly communicate the workflow and output differences?</td>
+</tr>
+</tbody>
+</table>
+<div style="height:1.5rem"></div>
+
+<h3>Rubric</h3>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>Excellent</th>
+<th>Adequate</th>
+<th>Insufficient</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Task &amp; Model Accuracy</strong></td>
+<td>Structurally correct and clearly articulated explanation of the domain task and model used</td>
+<td>Mostly correct explanation with minor gaps or simplifications</td>
+<td>Superficial, vague, or incorrect description of the task or model</td>
+</tr>
+<tr>
+<td><strong>Causal Analysis</strong></td>
+<td>Clear linkage between dataset/prompt design and model output quality, with thoughtful comparison</td>
+<td>Some connection between data/prompt and output, but underdeveloped</td>
+<td>Describes outputs or observations without causal reasoning</td>
+</tr>
+<tr>
+<td><strong>Failure Awareness</strong></td>
+<td>Identifies meaningful limitations, failure modes, or dataset/prompt constraints</td>
+<td>Mentions limitations but without depth or explanation</td>
+<td>No meaningful discussion of limitations</td>
+</tr>
+<tr>
+<td><strong>Clarity of Communication</strong></td>
+<td>Complex task explained clearly and accessibly to non-specialists</td>
+<td>Explanation understandable but dense or uneven</td>
+<td>Obscure, overly technical, or difficult to follow</td>
+</tr>
+<tr>
+<td><strong>Visual Explanation</strong></td>
+<td>Visuals clearly reveal the model workflow, dataset role, and output comparison</td>
+<td>Visuals present but only partially clarify the analysis</td>
+<td>Visuals absent, confusing, or decorative rather than explanatory</td>
+</tr>
+</tbody>
+</table>
+<h3>Submission Deadline</h3>
+<p><s>Original: 📅2026.04.01 ⏰00:00</s><br />
+Extended: <span style="background-color:#a00000;color:#fff;">📅2026.04.08 ⏰00:00</span></p>
+<div style="height:1.5rem"></div>
+
+<hr style="height: 3px; border: none; background-color: #000;">
+
+<div style="height:1.5rem"></div>
+
+<h2>The Standard</h2>
+<div style="height:1.5rem"></div>
+
+<p>The goal is not to <em>use AI tools</em>.<br />
+The goal is to <strong>understand what shapes their outputs</strong>.</p>
+<p>Do not remain at the surface of generated images or text.<br />
+Demonstrate that you can think in datasets, prompts, and model pipelines.</p>
+<p>Don't just run AI.<br />
+<strong>Interrogate it.</strong></p>
+        </main>
+    </div>
+</body>
+</html>
