@@ -40,8 +40,8 @@ Once you see the training process & potential risks, you can begin to reason abo
 
 | Class | Title | What Happens | What You Learn |
 |-------|-------|--------------|----------------|
-| 1 | [Datasets of AI](#) | We dive into the training process of AI models | Scaling laws of AI, training data processing, and evaluating data quality |
-| 2 | [Risks of AI](#) | We examine the multifaceted impacts and risks of AI | Ethics and risks of AI in business, socioeconomics, environments, and most importantly, on human beings |
+| 1 | [Datasets of AI](https://drive.google.com/file/d/1KkBdUrgzwfMJFp8sNloNrgU7kPoPM3NN/view?usp=drive_link) | We dive into the training process of AI models | Scaling laws of AI, training data processing, and evaluating data quality |
+| 2 | [Risks of AI](https://drive.google.com/file/d/1GhbNKIpVr_AkjbrRZWDlbI7Xm5Hu07NZ/view?usp=drive_link) | We examine the multifaceted impacts and risks of AI | Ethics and risks of AI in business, socioeconomics, environments, and most importantly, on human beings |
 
 <div style="height:1.5rem"></div>
 
@@ -99,8 +99,8 @@ This module is assessed through **A1.3 — Case Study 3: The Data Matters**, an 
 - **what problem the mechanism solves**
 - **how it shapes system behaviour**
 
-**Full requirements and deliverables are provided in the assignment-specific outline [link].**  
-This should be read alongside the general case study rubric [link].
+**Full requirements and deliverables are provided in the assignment-specific outline [link](casestudy.html).**  
+This should be read alongside the general case study rubric [link](https://drive.google.com/drive/folders/1mmM4n6IR7e9HXRLq_WI7uPWG3NlEgGkv).
 
 <div style="height:1.5rem"></div>
 
@@ -110,7 +110,7 @@ This should be read alongside the general case study rubric [link].
 
 ## Resources
 
-**Reading Material:** see _Part III: Datasets and Risks of AI_ under [link].
+**Reading Material:** see _Part III: Datasets and Risks of AI_ under [link](reading_material.html).
 
 ### Datasets of AI:
 
