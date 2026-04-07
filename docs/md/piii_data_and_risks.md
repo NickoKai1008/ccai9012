@@ -99,7 +99,7 @@ You will analyze a pre-trained GenAI/LLM system and show:
 - What dysfunctionality does the market-ready model struggle with
 - How specific training dataset or prompt engineering might improve the model performance
 
-Full requirements and deliverables are provided in the A1.3 assignment-specific outline [link].
+Full requirements and deliverables are provided in the A1.3 assignment-specific outline [link](https://NickoKai1008.github.io/ccai9012/piii_casestudy.html).
 
 **Full requirements and deliverables are provided in the assignment-specific outline [link](https://NickoKai1008.github.io/ccai9012/piii_casestudy.html).**  
 This should be read alongside the general case study rubric [link](https://NickoKai1008.github.io/ccai9012/casestudy.html).
