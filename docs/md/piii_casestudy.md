@@ -140,3 +140,153 @@ Your writing should demonstrate **training dataset engineering thinking or promp
 <hr style="height: 3px; border: none; background-color: #000;">
 
 <div style="height:1.5rem"></div>
+
+## Deliverables
+
+<div style="height:1.5rem"></div>
+
+Your submission must include **four parts**.
+
+<div style="height:0.5rem"></div>
+
+<hr style="height: 3px; border: none; background-color: #000;">
+
+<div style="height:1.0rem"></div>
+
+### i. Annotation (≈500 words)
+
+<div style="height:1.0rem"></div>
+
+Provide a short written annotation accompanying your case study.
+
+• **Title**  
+&nbsp;&nbsp;&nbsp;&nbsp;– A clear title identifying the system or mechanism studied.
+
+• **Caption / Description**  
+&nbsp;&nbsp;&nbsp;&nbsp;– A brief written explanation summarising the focus of your case study.
+
+<div style="height:0.5rem"></div>
+
+<hr style="height: 3px; border: none; background-color: #000;">
+
+<div style="height:1.0rem"></div>
+
+### ii. The Artefact
+
+<div style="height:1.0rem"></div>
+
+Your artefact consists of **two components**:
+
+• **Supporting Explanation** — contextual material that frames the domain specific task you explore  
+• **Input → Model → Output Representation** — the core explanation showing how the whole input-output flow operates.
+
+<div style="height:1.0rem"></div>
+
+---
+
+<div style="height:1.0rem"></div>
+
+### iii. Vignette
+
+<div style="height:1.0rem"></div>
+
+The vignette is a **short-form video presentation** summarising your case study.
+
+• Duration: **approximately 60 seconds**
+
+Your video should clearly communicate:
+
+• The **GenAI or LLM model studied**  
+• The **domain-specific task you investigated**  
+• Your **key insight about how the training dataset or prompt reshapes AI model behaviour**
+
+<div style="height:1.0rem"></div>
+
+---
+
+<div style="height:1.0rem"></div>
+
+### iv. Evidences (Optional)
+
+<div style="height:1.0rem"></div>
+
+You may include **supplementary materials in an appendix**, such as:
+
+• Code snippets  
+• Parameter sweeps  
+• Prompt comparisons  
+• Additional diagrams or tables  
+• Experimental results
+
+<div style="height:1.5rem"></div>
+
+<hr style="height: 3px; border: none; background-color: #000;">
+
+<div style="height:1.5rem"></div>
+
+## Grading Criteria
+
+<div style="height:1.0rem"></div>
+
+### In a nutshell
+
+**We are not grading:**
+
+- Advanced mathematics  
+- Sophisticated coding  
+- Exhaustive technical coverage
+
+**We are grading:**
+
+| Criterion | What It Means |
+|-----------|---------------|
+| **Understanding** | Do you correctly explain how the mechanism works? |
+| **Causal Reasoning / Comparison** | Do you link structural design choices to observable system behaviour, including how behaviour might change under alternative designs? |
+| **Limitations** | Do you identify meaningful trade-offs, constraints, or failure modes introduced by the mechanism? |
+| **Clarity** | Can you explain complex ideas in a precise and accessible manner? |
+| **Visual Explanation** | Do your diagrams or visual representations clearly communicate the mechanism and information flow? |
+
+### Rubric
+
+| Criterion | Excellent | Adequate | Insufficient |
+|-----------|-----------|----------|--------------|
+| **Mechanism Accuracy** | Structurally correct and clearly articulated explanation of how the mechanism operates | Mostly correct explanation with minor gaps or simplifications | Superficial, vague, or incorrect description of the mechanism |
+| **Causal Analysis** | Clear linkage between structural design and system behaviour, with thoughtful comparison or reasoning | Some connection between structure and behaviour, but underdeveloped | Describes outputs or observations without structural reasoning |
+| **Failure Awareness** | Identifies meaningful trade-offs, limitations, or structural constraints | Mentions limitations but without depth or explanation | No meaningful discussion of limitations |
+| **Clarity of Communication** | Complex mechanism explained clearly and accessibly to non-specialists | Explanation understandable but dense or uneven | Obscure, overly technical, or difficult to follow |
+| **Visual Explanation** | Diagrams clearly reveal the system workflow, mechanism, and information flow | Visuals present but only partially clarify the mechanism | Visuals absent, confusing, or decorative rather than explanatory |
+
+<div style="height:1.5rem"></div>
+
+<hr style="height: 3px; border: none; background-color: #000;">
+
+<div style="height:1.5rem"></div>
+
+## Submission Deadline
+
+<div style="height:1.0rem"></div>
+
+Original: **2026.04.29 00:00**
+
+<div style="height:1.5rem"></div>
+
+<hr style="height: 3px; border: none; background-color: #000;">
+
+<div style="height:1.5rem"></div>
+
+## The Standard
+
+<div style="height:1.0rem"></div>
+
+The goal is not to **describe AI**.  
+The goal is to **understand how it works**.  
+Do not remain at the surface of outputs.  
+Demonstrate that you can think in **mechanisms, modules, and pipelines**.  
+Don't just use AI.  
+**Explain it.**
+
+<div style="height:1.5rem"></div>
+
+<hr style="height: 3px; border: none; background-color: #000;">
+
+<div style="height:1.5rem"></div>
