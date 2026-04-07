@@ -28,7 +28,7 @@ You are **exploring the boundaries of market-ready GenAI/LLMs in specific tasks*
 
 **Examples:**
 
-• It can be asking a pre-trained LLM to generate **"realistic" nighttime images** based on given input daytime images (download daytime images from the [**[link]**]([h](https://drive.google.com/drive/folders/1m0xVRvCSXI9uI1zXKCypMNZ5-kXnNF4-?usp=sharing))
+• It can be asking a pre-trained LLM to generate **"realistic" nighttime images** based on given input daytime images (download daytime images from the [**[link]**](https://drive.google.com/drive/folders/1m0xVRvCSXI9uI1zXKCypMNZ5-kXnNF4-?usp=sharing ))
 
 • Or you can think about **another specific task in your domain of study** that you notice current LLMs on the market cannot handle well, but through very specific prompts or better datasets, they might improve their capabilities.
 
