@@ -91,107 +91,107 @@ By the end of this module, you will be able to:
 
 ## How You'll Be Assessed
 	
-	This module is assessed through **A1.3 — Case Study 3: The Data Matters**, an individual case study focused on explaining why the dataset matters.
+This module is assessed through **A1.3 — Case Study 3: The Data Matters**, an individual case study focused on explaining why the dataset matters.
 	
-	### Deliverables
+### Deliverables
 	
-	Your submission must include four parts.
+Your submission must include four parts.
 	
-	#### i. Annotation (≈500 words)
+#### i. Annotation (≈500 words)
 	
-	Provide a short written annotation accompanying your case study.
+Provide a short written annotation accompanying your case study.
 	
-	**Title**
-	- A clear title identifying the system or mechanism studied.
+**Title**
+- A clear title identifying the system or mechanism studied.
 	
-	**Caption / Description**
-	- A brief written explanation summarising the focus of your case study.
+**Caption / Description**
+- A brief written explanation summarising the focus of your case study.
 	
-	---
+---
 	
-	#### ii. The Artefact
+#### ii. The Artefact
 	
-	Your artefact consists of **two components**:
+Your artefact consists of **two components**:
 	
-	- **Supporting Explanation** — contextual material that frames the domain specific task you explore
-	- **Input → Model → Output Representation** — the core explanation showing how the whole input-output flow operates.
+- **Supporting Explanation** — contextual material that frames the domain specific task you explore
+- **Input → Model → Output Representation** — the core explanation showing how the whole input-output flow operates.
 	
-	---
+---
 	
-	#### iii. Vignette
+#### iii. Vignette
 	
-	The vignette is a **short-form video presentation summarising your case study**.
+The vignette is a **short-form video presentation summarising your case study**.
 	
-	**Duration: approximately 60 seconds**
+**Duration: approximately 60 seconds**
 	
-	Your video should clearly communicate:
+Your video should clearly communicate:
 	
-	- The GenAI or LLM model studied
-	- The domain-specific task you investigated
-	- Your key insight about how the training dataset or prompt reshapes AI model behaviour
+- The GenAI or LLM model studied
+- The domain-specific task you investigated
+- Your key insight about how the training dataset or prompt reshapes AI model behaviour
 	
-	---
+---
 	
-	#### iv. Evidences (Optional)
+#### iv. Evidences (Optional)
 	
-	You may include **supplementary materials in an appendix**, such as:
+You may include **supplementary materials in an appendix**, such as:
 	
-	- Code snippets
-	- Parameter sweeps
-	- Prompt comparisons
-	- Additional diagrams or tables
-	- Experimental results
+- Code snippets
+- Parameter sweeps
+- Prompt comparisons
+- Additional diagrams or tables
+- Experimental results
 	
-	---
+---
 	
-	### Grading Criteria
+### Grading Criteria
 	
-	#### In a nutshell
+#### In a nutshell
 	
-	**We are not grading:**
-	- Advanced mathematics
-	- Sophisticated coding
-	- Exhaustive technical coverage
+**We are not grading:**
+- Advanced mathematics
+- Sophisticated coding
+- Exhaustive technical coverage
 	
-	**We are grading:**
+**We are grading:**
 	
-	| Criterion | What It Means |
-	|-----------|---------------|
-	| **Understanding** | Do you correctly explain how the mechanism works? |
-	| **Causal Reasoning / Comparison** | Do you link structural design choices to observable system behaviour, including how behaviour might change under alternative designs? |
-	| **Limitations** | Do you identify meaningful trade-offs, constraints, or failure modes introduced by the mechanism? |
-	| **Clarity** | Can you explain complex ideas in a precise and accessible manner? |
-	| **Visual Explanation** | Do your diagrams or visual representations clearly communicate the mechanism and information flow? |
+| Criterion | What It Means |
+|-----------|---------------|
+| **Understanding** | Do you correctly explain how the mechanism works? |
+| **Causal Reasoning / Comparison** | Do you link structural design choices to observable system behaviour, including how behaviour might change under alternative designs? |
+| **Limitations** | Do you identify meaningful trade-offs, constraints, or failure modes introduced by the mechanism? |
+| **Clarity** | Can you explain complex ideas in a precise and accessible manner? |
+| **Visual Explanation** | Do your diagrams or visual representations clearly communicate the mechanism and information flow? |
 	
-	#### Rubric
+#### Rubric
 	
-	| Criterion | Excellent | Adequate | Insufficient |
-	|-----------|-----------|----------|--------------|
-	| **Mechanism Accuracy** | Structurally correct and clearly articulated explanation of how the mechanism operates | Mostly correct explanation with minor gaps or simplifications | Superficial, vague, or incorrect description of the mechanism |
-	| **Causal Analysis** | Clear linkage between structural design and system behaviour, with thoughtful comparison or reasoning | Some connection between structure and behaviour, but underdeveloped | Describes outputs or observations without structural reasoning |
-	| **Failure Awareness** | Identifies meaningful trade-offs, limitations, or structural constraints | Mentions limitations but without depth or explanation | No meaningful discussion of limitations |
-	| **Clarity of Communication** | Complex mechanism explained clearly and accessibly to non-specialists | Explanation understandable but dense or uneven | Obscure, overly technical, or difficult to follow |
-	| **Visual Explanation** | Diagrams clearly reveal the system workflow, mechanism, and information flow | Visuals present but only partially clarify the mechanism | Visuals absent, confusing, or decorative rather than explanatory |
+| Criterion | Excellent | Adequate | Insufficient |
+|-----------|-----------|----------|--------------|
+| **Mechanism Accuracy** | Structurally correct and clearly articulated explanation of how the mechanism operates | Mostly correct explanation with minor gaps or simplifications | Superficial, vague, or incorrect description of the mechanism |
+| **Causal Analysis** | Clear linkage between structural design and system behaviour, with thoughtful comparison or reasoning | Some connection between structure and behaviour, but underdeveloped | Describes outputs or observations without structural reasoning |
+| **Failure Awareness** | Identifies meaningful trade-offs, limitations, or structural constraints | Mentions limitations but without depth or explanation | No meaningful discussion of limitations |
+| **Clarity of Communication** | Complex mechanism explained clearly and accessibly to non-specialists | Explanation understandable but dense or uneven | Obscure, overly technical, or difficult to follow |
+| **Visual Explanation** | Diagrams clearly reveal the system workflow, mechanism, and information flow | Visuals present but only partially clarify the mechanism | Visuals absent, confusing, or decorative rather than explanatory |
 	
-	---
+---
 	
-	### Submission Deadline
+### Submission Deadline
 	
-	**Original: 2026.04.29 00:00**
+**Original: 2026.04.29 00:00**
 	
-	---
+---
 	
-	### The Standard
+### The Standard
 	
-	The goal is not to **describe AI**.  
-	The goal is to **understand how it works**.  
-	Do not remain at the surface of outputs.  
-	Demonstrate that you can think in **mechanisms, modules, and pipelines**.  
-	Don't just use AI.  
-	**Explain it.**
+The goal is not to **describe AI**.  
+The goal is to **understand how it works**.  
+Do not remain at the surface of outputs.  
+Demonstrate that you can think in **mechanisms, modules, and pipelines**.  
+Don't just use AI.  
+**Explain it.**
 	
-	**Full requirements and deliverables are provided in the A1.3 assignment-specific outline [link](https://NickoKai1008.github.io/ccai9012/pii_casestudy.html).**  
-	This should be read alongside the general case study rubric [link](https://NickoKai1008.github.io/ccai9012/casestudy.html).
+**Full requirements and deliverables are provided in the A1.3 assignment-specific outline [link](https://NickoKai1008.github.io/ccai9012/piii_casestudy.html).**  
+This should be read alongside the general case study rubric [link](https://NickoKai1008.github.io/ccai9012/casestudy.html).
 
 <div style="height:1.5rem"></div>
 
