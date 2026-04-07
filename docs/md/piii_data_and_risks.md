@@ -99,8 +99,8 @@ This module is assessed through **A1.3 — Case Study 3: The Data Matters**, an 
 - **what problem the mechanism solves**
 - **how it shapes system behaviour**
 
-**Full requirements and deliverables are provided in the assignment-specific outline [link](casestudy.html).**  
-This should be read alongside the general case study rubric [link](https://drive.google.com/drive/folders/1mmM4n6IR7e9HXRLq_WI7uPWG3NlEgGkv).
+**Full requirements and deliverables are provided in the assignment-specific outline [link](https://NickoKai1008.github.io/ccai9012/pii_casestudy.html).**  
+This should be read alongside the general case study rubric [link](https://NickoKai1008.github.io/ccai9012/casestudy.html).
 
 <div style="height:1.5rem"></div>
 
@@ -110,7 +110,7 @@ This should be read alongside the general case study rubric [link](https://drive
 
 ## Resources
 
-**Reading Material:** see _Part III: Datasets and Risks of AI_ under [link](reading_material.html).
+**Reading Material:** see _Part III: Datasets and Risks of AI_ under [link](https://drive.google.com/drive/folders/1mmM4n6IR7e9HXRLq_WI7uPWG3NlEgGkv).
 
 ### Datasets of AI:
 
